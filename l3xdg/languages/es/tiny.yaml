@@ -1,0 +1,412 @@
+#######################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2011, 2012 the HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+
+# Tiny grammar for Spanish
+#
+# 2011.03.14
+# -- possible pn values: (0,1,0),(1,0,0),(0,0,0),(1,0,1),(0,0,1)
+#    (vosotras excluded)
+# -- possible case features: nom: (0), ojd: (1), oji: (2), prep: (3)
+# 2011.03.20
+# -- finite and non-finite verbs, auxiliary and main verbs added
+# 2011.04.10...
+# -- relative clauses
+# 2011.12.03
+# -- PPs modifying nouns
+#    BlockingP prevents noun modifiers from climbing out
+#      blocks: [det, rel, pmod]
+# 2011.12.08
+# -- Obligatory definite determiners
+# 2011.12.09
+# -- More work needed on determiners; use English as model.
+# 2012.07.15
+# -- All hierarchy for crosslexes eliminated (simplifying flattening)
+# 2012.08.13
+# -- Demonstrative adjectives
+
+#### End-of-sentence punctuation
+
+- lexeme: ROOT
+  id: 
+    outs: {root: '!', del: '*'}
+  lp:
+    outs: {root: '!', del: '*'}
+    order: [[root, ^, del]]
+#  cross:
+#    sem:
+#      lex: ROOT
+#      idsem:
+#        arg: {root: [root, vmain, rel]}
+#    qu:
+#      lex: ROOT
+
+- word: '.'
+  classes: [ROOT]
+  cross:
+    sem:
+      lex: STATEMENT
+      idsem:
+        arg: {root: [root, vmain, rel, pmod, npred, apred]}
+
+## Empty things
+- word: zero
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO
+#      bidir: False
+
+### Prepositions
+- gram: PREP
+  pos: prep
+  id:
+    ins: {pmod: '?', ojdp: '?'}
+    outs: {pcomp: '?'}
+  lp:
+    outs: {pcompf: '?'}
+    order: [[^, pcompf]]
+  idlp:
+    ldend: {pcompf: [pcomp]}
+
+- gram: PADJ
+  classes: [PREP]
+  id:
+    ins: {pmod: '!', ojdp: 0}
+    outs: {pcomp: '!'}
+    # Prep comps must be in "prepositional" case
+    govern: {pcomp: [cas, [3]]}
+  lp:
+    ins: {prpaf: '!'}      # ? in Diss: ch. 9
+    outs: {pcompf: '!'}
+#  cross:
+#    sem:
+#      lex: PROC_T
+#      # This must be a subordinate process in semantics
+#      sem:
+#        ins: {sub: '!'}
+#        agrs: {reltime: 0}
+#      idsem:
+#        ldend: {arg2: [pcomp]}
+#        mod: {arg1: [pmod]}
+
+- gram: PADV
+  classes: [PREP]
+  id:
+    ins: {pmod: '!', ojdp: 0}
+    outs: {pcomp: '!'}
+    # Prep comps must be in "prepositional" case
+    govern: {pcomp: [cas, [3]]}
+  lp:
+    ins: {precf: '?', postcf: '?'}
+    outs: {pcompf: '!'}
+
+# Personal direct object
+- lexeme: '%OJDP'
+  shared:
+    classes: [PREP]
+    id:
+      ins: {pmod: 0}
+      govern: {pcomp: [[anim, [1]],
+                       # 4 is a special case for personal objects
+                       [cas, [4]]]}
+    lp:
+      ins: {preargf: '?', postargf: '?'}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+  partition:
+  - morph: '@OJDP'
+    id:
+      ins: {del: '!', ojdp: 0}
+      outs: {pcomp: 0}
+    lp:
+      ins: {del: '!', preargf: 0, postargf: 0}
+      outs: {pcompf: 0}
+  - morph: a
+    id:
+      ins: {ojdp: '!'}
+      outs: {pcomp: '!'}
+    lp:
+      outs: {pcompf: '!'}
+
+#      idsem:
+#        argrev: {pcomp: [loc, instr]}
+#  cross:
+#    sem:
+#      lex: ZERO_GRAM
+#      idsem:
+#        argrev: {pcomp: [loc, instr]}
+
+### Adjetivos demostrativos
+
+- gram: ADJ_DEM
+  pos: det
+  id:
+    ins: {det: '!'}
+    # Gender and number agreement; demonstratives are always definite
+    agrs: {def: 1, gen: [[0], [1]], num: [[1], [2]]}
+  lp:
+    ins: {detf: '!'}
+
+- word: este
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 0, num: 1}
+  cross:
+    sem:
+      lex: THIS_MOD
+
+- word: ese
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 0, num: 1}
+  cross:
+    sem:
+      lex: THAT2_MOD
+
+- word: aquel
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 0, num: 1}
+  cross:
+    sem:
+      lex: THAT3_MOD
+
+- word: esta
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 1, num: 1}
+  cross:
+    sem:
+      lex: THIS_MOD
+
+- word: esa
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 1, num: 1}
+  cross:
+    sem:
+      lex: THAT2_MOD
+
+- word: aquella
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 1, num: 1}
+  cross:
+    sem:
+      lex: THAT3_MOD
+
+- word: estos
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 0, num: 2}
+  cross:
+    sem:
+      lex: THIS_MOD
+
+- word: esos
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 0, num: 2}
+  cross:
+    sem:
+      lex: THAT2_MOD
+
+- word: aquellos
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 0, num: 2}
+  cross:
+    sem:
+      lex: THAT3_MOD
+
+- word: estas
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 1, num: 2}
+  cross:
+    sem:
+      lex: THIS_MOD
+
+- word: esas
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 1, num: 2}
+  cross:
+    sem:
+      lex: THAT2_MOD
+
+- word: aquellas
+  classes: [ADJ_DEM]
+  id:
+    agrs: {gen: 1, num: 2}
+  cross:
+    sem:
+      lex: THAT3_MOD
+
+- lexeme: '%DET'
+  shared:
+    pos: det
+    id:
+      ins: {det: '!'}
+      agrs: {def: [[0], [1]], gen: [[0], [1]], num: [[1], [2]],
+             # default values; actually mean nothing for DET
+             # required because of ambiguity with object "la"
+             pn: [[0,0,0]],
+             cas: 0,
+             anim: 0}
+    lp:
+      ins: {detf: '!'}
+# copied to morph entries
+#    cross:
+#      sem:
+#        lex: ZERO
+#        bidir: false
+  partition:
+  - morph: '@DET'
+    id:
+      ins: {del: '!', det: 0}
+      # Arbitrary values for the agreement features
+      agrs: {def: 0, num: 1, gen: 0}
+    lp:
+      ins: {del: '!', detf: 0}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+  - morph: la
+    id:
+      agrs: {gen: 1, num: 1, def: 1}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+  - morph: las
+    id:
+      agrs: {gen: 1, num: 2, def: 1}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+  - morph: el
+    id:
+      agrs: {gen: 0, num: 1, def: 1}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+  - morph: los
+    id:
+      agrs: {gen: 0, num: 2, def: 1}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+  - morph: una
+    id:
+      agrs: {gen: 1, num: 1, def: 0}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+  - morph: un
+    id:
+      agrs: {gen: 0, num: 1, def: 0}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+
+## Prepositions
+# Modifying nouns
+- word: en
+  classes: [PADJ]
+  cross:
+    sem:
+      lex: BE_IN
+      sem:
+#        ins: {sub: '!'}
+        agrs: {reltime: 0}
+      idsem:
+        ldend: {arg2: [pcomp]}
+        mod: {arg1: [pmod]}
+#- word: en
+#  classes: [PADJ]
+#  cross:
+#    sem:
+#      lex: BE_ON
+
+# Case markers
+- word: en
+  classes: [PADV]
+  cross:
+    sem:
+      lex: LOC_GEN
+      idsem:
+        ldend: {arg1: [pcomp]}
+- word: con
+  classes: [PADV]
+  cross:
+    sem:
+      lex: INSTR
+      idsem:
+        ldend: {arg1: [pcomp]}
+
+### Groups
+- group: tener_miedo_de
+  words:
+  - lexeme: tener
+    classes: [V_T_IMPERS]
+    id:
+      groupouts: [ojd, pmod]
+    cross:
+      sem:
+        lex: FEAR
+        idsem:
+          # This overrides default linking constraints, like
+          #   ldend: {arg2: [ojd]}
+          arg: {arg2: [pcomp]}
+          agree: [[reltime, tam]]
+  - word: miedo
+    classes: [N_M]
+    id:
+      agrs: {gen: 0, def: 0}
+    cross:
+      sem:
+        lex: ZERO_GRAM
+        bidir: False
+  - word: de
+    classes: [PADV]
+    cross:
+      sem:
+        lex: ZERO_GRAM
+        bidir: False
+
+- sublexicon: ngram_tiny
+- sublexicon: n_tiny
+- sublexicon: vgram_tiny
+- sublexicon: v_tiny

@@ -1,0 +1,35 @@
+This is disambiguatr, a Python system for cross-language word sense
+disambiguation, focusing on Spanish-to-Quechua lexical choice.
+
+disambiguatr is part of the L3 Project.
+
+http://code.google.com/p/hltdi-l3
+http://www.cs.indiana.edu/~gasser/Research/projects.html
+
+---------------------------
+| files in this directory |
+---------------------------
+qu_stories.txt is a bunch of text from Quechua, collected by CMU's Avenue
+project. That collected corpus is available linked from the HLTDI L3 wiki. The
+files are just the ones from the "Electronic texts" directory in that archive,
+concatenated together and converted to utf8.
+
+------------------------------
+| how to run the experiments |
+------------------------------
+
+## extract, from the dictionaries, the ambiguous translation pairs
+$ ./ambiguouswords.py
+
+## now find instances of those translation pairs in the bitext bibles.
+## this will append test cases to the files in testcases/*, so you might want
+## to delete them all first, if they're present already.
+$ ./extractbibles.py
+
+## next, run the classifier. Running this script will tell you which
+## classifiers are available. Pick one and specify it on the command line to
+## run the 10-fold cross validation experiments.
+$ ./runtests.py
+
+Presentations about disambiguatr.
+http://tinyurl.com/alexr-hltdi-clwsd

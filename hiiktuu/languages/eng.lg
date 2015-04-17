@@ -1,0 +1,124 @@
+name: English
+abbrev: eng
+forms:
+#  "it's":
+#     seg:
+#      - [it, {root: it, features: {num: 0, per: 3, gen: 2}, cats: [$pron]}]
+#      - [is, {root: be, features: {tns: prs, per: 3, num: 0}, cats: [$aux, $cop]}]
+  end:
+  - root: end_n
+    features: {num: 0, prs: 3}
+    cats: [$abs]
+  - root: end_v
+    features: {tns: prs, per: 3, num: 1}
+  boy:
+    root: boy_
+    features: {num: 0, prs: 3}
+    cats: [$sbd]
+  act:
+    root: act_
+    features: {num: 0, prs: 3}
+    cats: [$sth]
+  us:
+    root: we_
+    features: {num: 1, prs: 1, case: 1}
+    cats: [$sbd]
+  them:
+    root: they_
+    features: {num: 1, prs: 3, case: 1}
+    cats: [$sbd]
+  song:
+    root: song_
+    features: {num: 0, prs: 3}
+    cats: [$singable]
+  sang:
+    root: sing_
+    features: {tns: prt}
+  gave:
+    root: give_
+    features: {tns: prt}
+  gives:
+    root: give_
+    features: {tns: prs, num: 0, prs: 3}
+  read:
+    root: read_
+    features: {tns: prt}
+  kicked:
+    root: kick_v
+    features: {tns: prt}
+  bucket:
+    root: bucket_
+    features: {num: 0, prs: 3}
+    cats: [$sth, $concrete]
+  my:
+    root: possadj_
+    features: {num: 0, prs: 1}
+    cats: [$sbds]
+  her:
+    root: possadj_
+    features: {num: 0, prs: 3, gen: 1}
+    cats: [$sbds]
+  his:
+    root: possadj_
+    features: {num: 0, prs: 3, gen: 0}
+    cats: [$sbds]
+
+groups:
+  kick_v:
+  - words: [kick_v, the, bucket]
+    trans:
+      spa:
+      - [estirar_.la.pata, {agr: [{tns: tmp}, false, false]}]
+  - words: [kick_v, $concrete]
+    trans:
+      spa:
+      - [patear_.$concreto, {agr: [{tns: tmp}, false]}]
+  "it's":
+  - words: ["it's"]
+    trans:
+      spa:
+      - [es]
+  end_n:
+  - words: [the, end, of, the, world]
+    trans:
+      spa:
+      - [el.fin.del.mundo,
+         align: [0, 1, 2, -1, 3]]
+  read_:
+  - words: [read_, $sbd, the, riot, act]
+  - words: [read_, $sth]
+  give_:
+  - words: [give_, $sbd, a, piece, of, possadj_, mind]
+    agr: [[0, 5, [num, num], [prs, prs]]]
+    trans:
+      spa:
+      - [$algnp.cantar_.las.cuarenta,
+         {align: [1, 0, 2, 3, -1, -1, -1],
+          agr: [{tns: tmp, num: num, prs: prs}, false, false, false, false, false, false]}]
+  sing_:
+  - words: [sing_, $singable]
+  boy:
+  - words: [the, boy]
+  us:
+  - words: [us]
+  them:
+  - words: [them]
+    trans:
+      spa:
+      - [les]
+  her:
+  - words: [her]
+    trans:
+      spa:
+      - [su]
+  my:
+  - words: [my]
+  his:
+  - words: [his]
+  song:
+  - words: [a, song]
+  bucket:
+  - words: [the, bucket]
+    trans:
+      spa:
+      - [el.balde]

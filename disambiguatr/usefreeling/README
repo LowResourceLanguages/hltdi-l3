@@ -1,0 +1,9 @@
+Assuming the "analyze" command from FreeLing is on your path, this should work
+for getting nice tokenized, tagged and lemmatized output for the sentences in
+testsentence.txt.
+
+$ analyze -f es.cfg --outf tagged < testsentence.txt
+
+To get the output of the dependency parser, just change "tagged" to "dep"
+
+$ analyze -f es.cfg --outf dep < testsentence.txt

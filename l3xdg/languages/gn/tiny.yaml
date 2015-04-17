@@ -1,0 +1,348 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2011, 2012, 2013
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+
+# Tiny grammar for Guarani
+#
+# 2011.09.03
+# -- Created
+
+- lexeme: ROOT
+  id: 
+    outs: {root: '!', del: '*'}
+  lp:
+    outs: {root: '!', del: '*'}
+    # Put the deleted arguments after the root by convention.
+    order: [[root, ^, del]]
+
+- word: '.'
+  classes: [ROOT]
+  cross:
+    sem:
+      lex: STATEMENT
+      idsem:
+        # sj, oj para verbos de cláusulas relativas
+        arg: {root: [root, sj, oj]}  #, rel]}
+
+## Empty things
+- word: zero
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO
+#      bidir: False
+
+### Posposiciones
+### Tiene el rasgo pp que necesita el principio de rección
+- gram: POSP
+  pos: posp
+  id:
+    ins: {pmod: '?', ojp: '?'}
+    outs: {pcomp: '?'}
+  lp:
+    outs: {pcompf: '?'}
+    order: [[pcompf, ^]]
+  idlp:
+    ldend: {pcompf: [pcomp]}
+
+- gram: POSP_PERIF
+  classes: [POSP]
+  id:
+    ins: {pmod: '!', ojp: 0}
+    outs: {pcomp: '!'}
+  lp:
+    ins: {precf: '?', postcf: '?'}
+    outs: {pcompf: '!'}
+
+## normalmente escritas separadas
+
+# rehe1
+# realizada como ZERO en semántica
+- word: rehe
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[6]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+# rehe2
+# realizada como PERIF en semántica
+#- word: rehe
+#  classes: [POSP]
+
+- word: ndive
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[7]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+- word: ári
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[8]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+- word: rupi
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[9]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+- word: guive
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[10]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+- word: peve
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[11]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+- word: rire
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[12]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+- word: ỹrehe
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[13]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+## escritas no separadas
+# The -pe of human direct objects is separate
+- word: pe
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: 1}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+- word: gui
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: 2}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+- word: vo
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[3]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+- word: icha
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[4]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+- word: ỹ
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[5]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+# también kotyvo, ngotyo?
+- word: gotyo
+  classes: [POSP_PERIF]
+  id:
+    agrs: {pp: [[14]]}
+  cross:
+    sem:
+      lex: ZERO
+      bidir: false
+
+# Posposición para objeto personal (-pe)
+- lexeme: '%OJP'
+  shared:
+    classes: [POSP]
+    id:
+      ins: {pmod: 0}
+      govern: {pcomp: [[an, 1]]}
+    lp:
+      ins: {preargf: '?', postargf: '?'}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+  partition:
+  - morph: '@OJP'
+    id:
+      ins: {del: '!', ojp: 0}
+      outs: {pcomp: 0}
+    lp:
+      ins: {del: '!', preargf: 0, postargf: 0}
+      outs: {pcompf: 0}
+  - morph: pe
+    id:
+      ins: {ojp: '!'}
+      outs: {pcomp: '!'}
+    lp:
+      ins: {preargf: '?', postargf: '?'}
+      outs: {pcompf: '!'}
+
+## Determiners: demonstratives, possessive pronouns
+#- gram: DET
+#  pos: det
+#  id:
+#    ins: {det: '!'}
+#  lp:
+#    ins: {detf: '!'}
+#  cross:
+#    sem:
+#      # not really true
+#      lex: ZERO
+#      bidir: False
+
+## Adjetivos demostrativos: tienen un rasgo de "presencia/ausencia"
+## (temporalmente no implementado)
+## [diferentes en Ayala...]
+
+- gram: DEM_ADJ
+  pos: det
+  id:
+    ins: {det: '!'}
+    agrs: {num: [[1],[2]],
+           def: 1, pos: 0, nas: [[-1]]
+#           pres: [[0],[1]]
+           }
+  lp:
+    ins: {detf: '!'}
+
+- word: ko
+  classes: [DEM_ADJ]
+  id:
+    agrs: {num: 1
+#           pres: 1
+           }
+  cross:
+    sem:
+      lex: THIS_MOD
+
+- word: pe
+  classes: [DEM_ADJ]
+  id:
+    agrs: {num: 1
+#         pres: 1
+           }
+  cross:
+    sem:
+      lex: THAT2_MOD
+
+- word: upe
+  classes: [DEM_ADJ]
+  id:
+    agrs: {num: 1}
+#pres: 1, 
+  cross:
+    sem:
+      lex: THAT2_MOD
+
+- word: amo
+  classes: [DEM_ADJ]
+  id:
+    agrs: {num: 1}
+#pres: 1, 
+  cross:
+    sem:
+      lex: THAT3_MOD
+
+- word: ako
+  classes: [DEM_ADJ]
+  id:
+    agrs: {num: 1}
+#pres: 0, 
+  cross:
+    sem:
+      lex: THAT3_MOD
+
+- word: "ko'ã"
+  classes: [DEM_ADJ]
+  id:
+    agrs: {num: 2}
+#pres: 1,   
+  cross:
+    sem:
+      lex: THIS_MOD
+
+- word: umi
+  classes: [DEM_ADJ]
+  id:
+    agrs: {num: 2}
+#pres: [[0],[1]], 
+  cross:
+    sem:
+    - lex: THAT2_MOD
+    - lex: THAT3_MOD
+
+### Sustantivos, pronombres, verbos
+
+# Gramática de sustantivos; pronombres
+- sublexicon: ngram_tiny
+- sublexicon: n_tiny
+- sublexicon: vgram_tiny
+- sublexicon: v_tiny
+
+### Grupos

@@ -1,0 +1,18 @@
+# use glob syntax.
+syntax: glob
+
+*.elc
+*.pyc
+*~
+.*.swp
+.DS_Store
+xdg/yaml/*
+xdg/languages/*.pkl
+l3xdg/languages/*/*.pkl
+disambiguatr/testcases/*
+notes/*
+old/*
+
+# switch to the regex syntax
+syntax: regexp
+^xdg/languages/morpho/FST/../.*(cas|fst|lex)

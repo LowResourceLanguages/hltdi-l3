@@ -1,0 +1,103 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2010, 2011, 2012
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+#
+# "Verbs" for Semantics
+#
+# 2012.07.31
+#
+# 2012.08.29
+# -- All processes moved here
+# 2012.09.22
+# -- All processes are roots (for now, 'sub' not used)
+
+### Processes (verbs)
+### Verbs
+### Linked to V_MAIN_FIN in English
+-  gram: PROC
+   pos: v
+   sem:
+      # present or past
+      agrs: {reltime: [[0],[1]]}
+      # Every process has an arg1 and can have some peripheral
+      # arguments as well.
+      outs: {arg1: '!', perif: '*'}
+      # 2012.09.22: All processes are roots
+      ins: {root: '!'}
+#, 'sub': '?'}
+
+## Subtypes with respect to aktionsart, Vendler categories, etc.
+
+# need to distinguish temporary from permanent states
+-  gram: STATE
+   classes: [PROC]
+
+-  gram: COS
+   classes: [PROC]
+
+# later distinguish semelfactive, achievement, activity, accomplishment
+
+## Process valency classes
+# Transitive processes: arg2, but it's optional (because some languages
+# may not be explicit about arg2)
+# 2012.09.22: arg2 made obligatory again
+-  gram: PROC_T
+   classes: [PROC]
+   sem:
+      outs: {arg2: '!'}
+
+# Intransitive processes: no arg2
+-  gram: PROC_I
+   classes: [PROC]
+   sem:
+      outs: {arg2: 0}
+
+## Tense (not obligatory)
+-  gram: PROC_PRS
+   classes: [PROC]
+   sem:
+      agrs: {reltime: 0}
+
+-  gram: PROC_PS
+   classes: [PROC]
+   sem:
+      agrs: {reltime: 1}
+
+## PROC classes with multiple ancestors
+## (so that multiple inheritance between languages is not necessary)
+-  gram: PROC_T_PRS
+   classes: [PROC_PRS, PROC_T]
+-  gram: PROC_I_PRS
+   classes: [PROC_PRS, PROC_I]
+
+## Class and equivalence predicates
+## be CLASS; be INDIV
+## Esther is a doctor
+## Esther is my sister
+## I am Esther
+## Unlike other predicates, this has number and definiteness.
+-  gram: THING_PRED
+   classes: [PROC_I, STATE]
+   sem:
+      agrs: {num: [[0],[1],[2]], def: [[0],[1]]}
+

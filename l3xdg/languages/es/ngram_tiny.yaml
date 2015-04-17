@@ -1,0 +1,899 @@
+#######################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2011, 2012
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+#
+# Nouns for tiny Spanish test grammar
+#
+# 2011.12.08
+# 2012.08.08
+# - Noun syntax and pronouns moved here from tiny.yaml.
+# 2012.09.02
+# - Possessives.
+# 2012.10
+# - Relative pronouns
+# 2012.11.13
+# - Name changed to ngram_tiny, n_tiny.lex split off
+# 2012.12.09
+# - Pleonastic pronouns with antple arc from "main" object
+
+### Nouns
+
+- gram: N
+#  shared:
+  pos: n
+  id:
+    # Only one of any of these
+    ins: {sj: '?', ojd: '?', oji: '?', pcomp: '?', npred: '?',
+          ojpl: '?'}
+    # Allow only one relative clause
+    outs: {det: '?', 'rel': '?', pmod: '?', antec: '?',
+           antple: '?'}
+    agrs: {
+           num: [[1], [2]],
+           cas: [[0], [1], [2], [3], [4]],
+           def: [[0], [1]],
+           anim: [[0], [1]]
+           }
+    agree: [[antple, cas, cas], [antple, gen, gen],
+            [antple, pn, pn], [antple, anim, anim]]
+  lp:
+    ins: {preargf: '?', postargf: '?', pcompf: '?'}
+    outs: {detf: '?', relf: '?', 'prpaf': '?'}
+    order: [[detf, ^], [^, relf], [^, prpaf]]
+  idlp:
+    ldend: {detf: [det], prpaf: [pmod]}
+    blocks: [det, rel, pmod]
+#  partition:
+#  - part: N_PRED
+#    id:
+#      ins: {npred: '!', sj: 0, ojd: 0, oji: 0, pcomp: 0}
+#      agrs: {
+#             # Not a feature of non-predicate nominals
+#             tam: [[0], [1]]
+#             }
+#    lp:
+#      ins: {pcompf: 0}
+#  - part: N_NOPRED
+#    id:
+#      ins: {npred: 0}
+
+## Definite and indefinite nouns
+- gram: N_DEF
+  classes: [N]
+  id:
+    outs: {det: '!'}
+    agrs: {def: 1}
+- gram: N_INDEF
+  classes: [N]
+  id:
+    agrs: {def: 0}
+
+## Personal and non-personal nouns (for object 'a')
+- gram: N_PERS
+  classes: [N]
+  id:
+    agrs: {anim: 1}
+- gram: N_IMPERS
+  class: [N]
+  id:
+    agrs: {anim: 0}
+
+## Common nouns
+- gram: N_COM
+  shared:
+    classes: [N]
+    id:
+      ins: {ojpl: 0}
+  partition:
+  # head of relative clause
+  - part: N_REL
+    id:
+      outs: {rel: '!', antec: '!'}
+      agree: [[antec, num, num]]
+    lp:
+      outs: {relf: '!'}
+    idlp:
+      lbend: {relf: [antec]}
+  - part: N_NOREL
+    id:
+      outs: {rel: 0, antec: 0}
+    lp:
+      outs: {relf: 0}
+
+## Count nouns
+- gram: N_C
+  shared:
+    classes: [N_COM]
+    id:
+      agrs: {gen: [[0], [1]]}
+      # determiners agree with nouns in gender, number, and definiteness
+      agree: [[det, gen, gen], [det, def, def], [det, num, num]]
+  partition:
+  # Singular count nouns: 3s agreement
+  - part: N_SG
+    id:
+      outs: {det: '!'}
+      agrs: {num: 1, pn: [[0,0,0]]}
+  # Plural nouns: 3p agreement
+  - subpartition: N_PL
+    shared:
+      id:
+        agrs: {num: 2, pn: [[0,0,1]]}
+    subclasses:
+    - part: N_PL_DEF
+      classes: [N_DEF]
+    - part: N_PL_INDEF
+      classes: [N_INDEF]
+
+## mass nouns
+- gram: N_M
+  classes: [N_COM, N_IMPERS]
+  id:
+    ins: {ojpl: 0}
+    agrs: {gen: [[0],[1]],
+           pn: [[0,0,0]],
+           num: 1}
+    # determiners agree with nouns in gender, number, and definiteness
+#    agree: [[det, gen, gen], [det, num, num]]
+
+### Names
+# include in N_COM to allow for relative clause modifiers?
+- gram: N_NAME
+  classes: [N]
+  id:
+    ins: {ojpl: 0}
+    outs: {det: 0}
+    agrs: {def: 1, num: 1, pn: [[0,0,0]]}
+  lp:
+    outs: {detf: 0}
+
+## PRON a separate category from N so that empty, as well as explicit,
+## pronouns can inherit from it.
+- gram: PRON
+  pos: n
+  # Pronouns have no determiners, relative clauses, or adjectives,
+  # and they don't serve as relative clause antecedents.
+  id:
+    outs: {det: 0, rel: 0, antec: 0, pmod: 0}
+  lp:
+    outs: {detf: 0, relf: 0, prpaf: 0}
+
+## Pronombres relativos
+- lexeme: ~que
+  shared:
+    classes: [PRON]
+    id:
+      # puede ser sujeto o complemento directo (por lo menos)
+      ins: {sj: '?', ojd: '?', antec: '!'}
+      # necesitados por rección y concordancia del verbo con su sujeto
+      # otros casos (2, 3, 4)?
+      agrs: {cas: [[0],[1]],
+             # en realidad no correcto, pero sirve
+             anim: 0}
+    lp:
+      ins: {relpf: '!'}
+    cross:
+      sem:
+        lex: REL
+        idsem:
+          agree: [[num, num]]
+  # que singular
+  partition:
+  - morph: que
+    id:
+      agrs: {pn: [[0,0,0]],
+             num: 1}
+  # que plural
+  - morph: que
+    id:
+      agrs: {pn: [[0,0,1]],
+             num: 2}
+
+# Explicit pronouns
+- gram: PRON_EXPL
+  classes: [PRON, N]
+  id:
+    agrs: {def: 1}
+
+# Empty pronouns; deleted in LP
+- gram: '-PRON'
+  classes: [PRON]
+  id:
+    agrs: {def: 1}
+  lp:
+    ins: {del: '!', preargf: 0, postargf: 0, pcompf: 0, ojpl: 0}
+
+# Object pronouns require an incoming ojprof arc
+# (unless their verb is imperative, infinitive, or gerund)
+- gram: PRON_OJD
+  classes: [PRON_EXPL]
+  id:
+    ins: {ojd: '!',
+          sj: 0, oji: 0, pcomp: 0, npred: 0, ojpl: 0}
+    outs: {antple: 0}
+    agrs: {cas: 1}
+  lp:
+    ins: {ojprof: '!', preargf: 0, postargf: 0, pcompf: 0}
+
+# pleonastic pronouns
+- gram: PRON_OJPLE
+  classes: [PRON_EXPL]
+  id:
+    ins: {ojpl: '!', antple: '!',
+          sj: 0, ojd: 0, oji: 0, pcomp: 0, npred: 0}
+    outs: {antple: 0}
+    # Either accusative or personal accusative
+    agrs: {cas: [[1],[4]]}
+  lp:
+    ins: {ojprof: '!', preargf: 0, postargf: 0, pcompf: 0}
+  # also crosslex to zero in semantics
+
+# prepositional object and personal object pronouns
+- gram: PRON_PREP
+  classes: [PRON_EXPL]
+  id:
+    ins: {pcomp: '!',
+          ojpl: 0, antple: 0,
+          sj: 0, ojd: 0, oji: 0, npred: 0}
+    # Either prep object or personal accusative
+    agrs: {cas: [[3],[4]]}
+  lp:
+    ins: {pcompf: '!', ojprof: 0, preargf: 0, postargf: 0}
+
+# Reflexive pronouns require incoming ojr and ojprof arcs
+# (unless their verb is imperative, infinitive, or gerund!)
+# Doesn't include "real" reflexive pronouns, which behave
+# like direct or indirect objects or objects of prepositions
+- lexeme: '%PRON_OJR'
+  shared:
+    pos: n
+    id:
+      ins: {ojr: '!'}
+    lp:
+      ins: {ojprof: '!'}
+  partition:
+  - morph: me
+    id:
+      agrs: {pn: [[1,0,0]]}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+  - morph: te
+    id:
+      agrs: {pn: [[0,1,0]]}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+  - morph: se
+    id:
+      agrs: {pn: [[0,0,0],[0,0,1],[0,1,1]]}
+    cross:
+      sem:
+        lex: ZERO
+        bidir: false
+
+## Pronouns
+# explicit, with empty options for subjects
+- lexeme: YO
+  shared:
+    classes: [N_PERS, PRON_EXPL]
+    id:
+      agrs: {pn: [[1,0,0]], num: 1, cas: 0}
+    cross:
+      sem:
+        lex: I
+  partition:
+  - morph: yo
+  - morph: '0'
+    classes: ['-PRON']
+
+- word: me
+  # Not N_PERS because animacy forces personal a
+  classes: [PRON_OJD]
+  id:
+    agrs: {pn: [[1,0,0]], num: 1}
+  cross:
+    sem:
+      lex: I
+# pleonastic
+- word: me
+  classes: [PRON_OJPLE]
+  id:
+    agrs: {pn: [[1,0,0]], num: 1}
+  cross:
+    sem:
+      lex: ZERO_THING
+
+- lexeme: TÚ
+  shared:
+    classes: [N_PERS, PRON_EXPL]
+    id:
+      agrs: {pn: [[0,1,0]], num: 1, cas: 0}
+    cross:
+      sem:
+        lex: YOU_SING
+  partition:
+  - morph: tú
+  - morph: '0'
+    classes: ['-PRON']
+
+- word: te
+  classes: [PRON_OJD]
+  id:
+    agrs: {pn: [[0,1,0]], num: 1}
+  cross:
+    sem:
+      lex: YOU_SING
+# pleonastic
+- word: te
+  classes: [PRON_OJPLE]
+  id:
+    agrs: {pn: [[0,1,0]], num: 1}
+  cross:
+    sem:
+      lex: ZERO_THING
+
+# subject ella only
+- lexeme: ELLA
+  shared:
+    classes: [N_PERS, PRON_EXPL]
+    id:
+      agrs: {pn: [[0,0,0]], num: 1, gen: 1, cas: 0}
+    cross:
+      sem:
+        lex: SHE
+#      qu:
+#        lex: pay
+  partition:
+  - morph: ella
+  - morph: '0'
+    classes: ['-PRON']
+
+- word: la
+  classes: [PRON_OJD]
+  id:
+    agrs: {pn: [[0,0,0]], num: 1, gen: 1}
+  cross:
+    sem:
+    - lex: SHE
+    - lex: IT
+
+# pleonastic
+- word: la
+  classes: [PRON_OJPLE]
+  id:
+    agrs: {pn: [[0,0,0]], num: 1, gen: 1}
+  cross:
+    sem:
+      lex: ZERO_THING
+
+# subject él only
+- lexeme: ÉL
+  shared:
+    classes: [N_PERS, PRON_EXPL]
+    id:
+      agrs: {pn: [[0,0,0]], num: 1, gen: 0, cas: 0}
+    cross:
+      sem:
+        lex: HE
+#      qu:
+#        lex: pay
+  partition:
+  - morph: él
+  - morph: '0'
+    classes: ['-PRON']
+
+- word: lo
+  classes: [PRON_OJD]
+  id:
+    agrs: {pn: [[0,0,0]], num: 1, gen: 0}
+  cross:
+    sem:
+    - lex: HE
+    - lex: IT
+# pleonastic
+- word: lo
+  classes: [PRON_OJPLE]
+  id:
+    agrs: {pn: [[0,0,0]], num: 1, gen: 0}
+  cross:
+    sem:
+      lex: ZERO_THING
+
+# subject nosotros
+- lexeme: NOSOTROS
+  shared:
+    classes: [N_PERS, PRON_EXPL]
+    id:
+      agrs: {pn: [[1,0,1]], num: 2, cas: 0}
+    cross:
+      sem:
+      - lex: WE_EXCL
+      - lex: WE_INCL
+  partition:
+  - morph: nosotros
+  - morph: '0'
+    classes: ['-PRON']
+
+- word: nos
+  classes: [PRON_OJD]
+  id:
+    agrs: {pn: [[1,0,1]], num: 2}
+  cross:
+    sem:
+    - lex: WE_EXCL
+    - lex: WE_INCL
+
+# pleonastic
+- word: nos
+  classes: [PRON_OJPLE]
+  id:
+    agrs: {pn: [[1,0,1]], num: 2}
+  cross:
+    sem:
+      lex: ZERO_THING
+
+- lexeme: USTEDES
+  shared:
+    classes: [N_PERS, PRON_EXPL]
+    id:
+      agrs: {pn: [[0,1,1]], num: 2, cas: 0}
+    cross:
+      sem:
+        lex: YOU_PLUR
+  partition:
+  - morph: ustedes
+  - morph: '0'
+    classes: ['-PRON']
+
+- word: los
+  classes: [PRON_OJD]
+  id:
+    agrs: {pn: [[0,1,1]], num: 2, gen: 0}
+  cross:
+    sem:
+      lex: YOU_PLUR
+
+- word: las
+  classes: [PRON_OJD]
+  id:
+    agrs: {pn: [[0,1,1]], num: 2, gen: 1}
+  cross:
+    sem:
+      lex: YOU_PLUR
+
+# pleonastic
+- word: los
+  classes: [PRON_OJPLE]
+  id:
+    agrs: {pn: [[0,1,1]], num: 2, gen: 0}
+  cross:
+    sem:
+      lex: ZERO_THING
+# pleonastic
+- word: las
+  classes: [PRON_OJPLE]
+  id:
+    agrs: {pn: [[0,1,1]], num: 2, gen: 1}
+  cross:
+    sem:
+      lex: ZERO_THING
+
+- lexeme: ELLAS
+  shared:
+    classes: [N_PERS, PRON_EXPL]
+    id:
+      agrs: {pn: [[0,0,1]], num: 2, gen: 1, cas: 0}
+    cross:
+      sem:
+        lex: THEY
+  partition:
+  - morph: ellas
+  - morph: '0'
+    classes: ['-PRON']
+
+- word: las
+  classes: [PRON_OJD]
+  id:
+    agrs: {pn: [[0,0,1]], num: 2, gen: 1}
+  cross:
+    sem:
+      lex: THEY
+# pleonastic
+- word: las
+  classes: [PRON_OJPLE]
+  id:
+    agrs: {pn: [[0,0,1]], num: 2, gen: 1}
+  cross:
+    sem:
+      lex: ZERO_THING
+
+- lexeme: ELLOS
+  shared:
+    classes: [N_PERS, PRON_EXPL]
+    id:
+      agrs: {pn: [[0,0,1]], num: 2, cas: 0}
+    cross:
+      sem:
+        lex: THEY
+  partition:
+  - morph: ellos
+  - morph: '0'
+    classes: ['-PRON']
+
+- word: los
+  classes: [PRON_OJD]
+  id:
+    agrs: {pn: [[0,0,1]], num: 2, gen: 0}
+  cross:
+    sem:
+      lex: THEY
+# pleonastic
+- word: los
+  classes: [PRON_OJPLE]
+  id:
+    agrs: {pn: [[0,0,1]], num: 2, gen: 0}
+  cross:
+    sem:
+      lex: ZERO_THING
+
+## Prepositional object pronouns
+
+- word: mí
+  classes: [PRON_PREP]
+  id:
+    agrs: {pn: [[1,0,0]], num: 1}
+  cross:
+    sem:
+      lex: I
+- word: ti
+  classes: [PRON_PREP]
+  id:
+    agrs: {pn: [[0,1,0]], num: 1}
+  cross:
+    sem:
+      lex: YOU_SING
+- word: ella
+  classes: [PRON_PREP]
+  id:
+    agrs: {pn: [[0,0,0]], num: 1, gen: 1}
+  cross:
+    sem:
+      lex: SHE
+- word: él
+  classes: [PRON_PREP]
+  id:
+    agrs: {pn: [[0,0,0]], num: 1, gen: 0}
+  cross:
+    sem:
+      lex: HE
+- word: nosotros
+  classes: [PRON_PREP]
+  id:
+    agrs: {pn: [[1,0,1]], num: 2}
+  cross:
+    sem:
+      - lex: WE_EXCL
+      - lex: WE_INCL
+- word: ustedes
+  classes: [PRON_PREP]
+  id:
+    agrs: {pn: [[0,1,1]], num: 2}
+  cross:
+    sem:
+      lex: YOU_PLUR
+- word: ellas
+  classes: [PRON_PREP]
+  id:
+    agrs: {pn: [[0,0,1]], num: 2, gen: 1}
+  cross:
+    sem:
+      lex: THEY
+- word: ellos
+  classes: [PRON_PREP]
+  id:
+    agrs: {pn: [[0,0,1]], num: 2, gen: 0}
+  cross:
+    sem:
+      lex: THEY
+
+# empty: partition of class @PRON (empty subjects)
+- lexeme: "@SJ"
+  shared:
+    classes: ['-PRON']
+    id:
+      ins: {sj: '?'}
+      agrs: {cas: 0}
+  partition:
+  # Class for "unused" zero pronouns (there is an explicit subject)
+  - morph: '@none'
+    id:
+      ins: {del: '!', sj: 0}
+      # "default" values
+      agrs: {num: 1,
+             pn: [[0,0,0]], #  [[0,1,0],[1,0,0],[0,0,0],[1,0,1],[0,0,1]],
+             gen: 0,
+             def: 1,
+             anim: 0,
+             cas: 0}
+    cross:
+      sem:
+        lex: ZERO_THING
+#      qu:
+#        lex: '@none'
+  # Classes for "used" empty pronouns (functioning as subjects of verbs
+  # but not appearing explicitly)
+  - morph: '@yo'
+    id:
+      ins: {del: 0, sj: '!'}
+      agrs: {num: 1, pn: [[1,0,0]]}
+    cross:
+      sem:
+        bidir: False
+        lex: I
+        idsem:
+          agree: [[num, num]]
+#      qu:
+#        lex: '@nuqa'
+  - morph: '@tú'
+    id:
+      ins: {del: 0, sj: '!'}
+      agrs: {num: 1, pn: [[0,1,0]]}
+    cross:
+      sem:
+        bidir: False
+        lex: YOU_SING
+        idsem:
+          agree: [[num, num]]
+#      qu:
+#        lex: '@qan'
+  - morph: '@ella'
+    id:
+      ins: {del: 0, sj: '!'}
+      agrs: {num: 1, pn: [[0,0,0]], gen: 1}
+    cross:
+      sem:
+        bidir: False
+        lex: SHE
+        idsem:
+          agree: [[num, num]]
+#      qu:
+#        lex: '@pay'
+  - morph: '@él'
+    id:
+      ins: {del: 0, sj: '!'}
+      agrs: {num: 1, pn: [[0,0,0]], gen: 0}
+    cross:
+      sem:
+        bidir: False
+        lex: HE
+        idsem:
+          agree: [[num, num]]
+#      qu:
+#        lex: '@pay'
+  - morph: '@nosotros'
+    id:
+      ins: {del: 0, sj: '!'}
+      agrs: {num: 2, pn: [[1,0,1]]}
+    cross:
+      sem:
+      - lex: WE_EXCL
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+      - lex: WE_INCL
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+#      qu:
+#      - lex: '@nuqayku'
+#      - lex: '@nuqanchis'
+  - morph: '@ustedes'
+    id:
+      ins: {del: 0, sj: '!'}
+      agrs: {num: 2, pn: [[0,1,1]]}
+    cross:
+      sem:
+        bidir: False
+        lex: YOU_PLUR
+        idsem:
+          agree: [[num, num]]
+#      qu:
+#        lex: '@qankuna'
+  - morph: '@ellas'
+    id:
+      ins: {del: 0, sj: '!'}
+      agrs: {num: 2, pn: [[0,0,1]], gen: 1}
+    cross:
+      sem:
+        bidir: False
+        lex: THEY
+        idsem:
+          agree: [[num, num]]
+#      qu:
+#        lex: '@paykuna'
+  - morph: '@ellos'
+    id:
+      ins: {del: 0, sj: '!'}
+      agrs: {num: 2, pn: [[0,0,1]], gen: 0}
+    cross:
+      sem:
+        bidir: False
+        lex: THEY
+        idsem:
+          agree: [[num, num]]
+#      qu:
+#        lex: '@paykuna'
+
+### Possessive adjectives (included here because of their relation to pronouns)
+
+# so far identical to ADJ_DEM, except that possessive adjectives have a pn feature
+- gram: ADJ_POS
+  pos: det
+  id:
+    ins: {det: '!'}
+    # Gender and number agreement; demonstratives are always definite
+    agrs: {def: 1, gen: [[0], [1]], num: [[1], [2]]}
+  lp:
+    ins: {detf: '!'}
+
+- word: mi
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: [[0],[1]], num: 1,
+           pn: [[1,0,0]]}
+  cross:
+    sem:
+      lex: MY
+
+- word: mis
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: [[0],[1]], num: 2,
+           pn: [[1,0,0]]}
+  cross:
+    sem:
+      lex: MY
+
+- word: tu
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: [[0],[1]], num: 1,
+           pn: [[0,1,0]]}
+  cross:
+    sem:
+      lex: YOUR_SING
+
+- word: tus
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: [[0],[1]], num: 2,
+           pn: [[0,1,0]]}
+  cross:
+    sem:
+      lex: YOUR_SING
+
+- word: nuestro
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: 0, num: 1,
+           pn: [[1,0,1]]}
+  cross:
+    sem:
+    - lex: OUR_EXCL
+    - lex: OUR_INCL
+
+- word: nuestra
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: 1, num: 1,
+           pn: [[1,0,1]]}
+  cross:
+    sem:
+    - lex: OUR_EXCL
+    - lex: OUR_INCL
+
+- word: nuestros
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: 0, num: 2,
+           pn: [[1,0,1]]}
+  cross:
+    sem:
+    - lex: OUR_EXCL
+    - lex: OUR_INCL
+
+- word: nuestras
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: 1, num: 2,
+           pn: [[1,0,1]]}
+  cross:
+    sem:
+    - lex: OUR_EXCL
+    - lex: OUR_INCL
+
+## su/sus
+
+# singular referent
+- word: su
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: [[0],[1]], num: 1,
+           pn: [[0,0,0]]}
+  cross:
+    sem:
+    - lex: HIS
+    - lex: HER
+
+# 3 plural referent
+- word: su
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: [[0],[1]], num: 1,
+           pn: [[0,0,1]]}
+  cross:
+    sem:
+      lex: THEIR
+
+# 2 plural referent
+- word: su
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: [[0],[1]], num: 1,
+           pn: [[0,1,1]]}
+  cross:
+    sem:
+      lex: YOUR_PLUR
+
+# singular referent
+- word: sus
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: [[0],[1]], num: 2,
+           pn: [[0,0,0]]}
+  cross:
+    sem:
+    - lex: HIS
+    - lex: HER
+
+# 3 plural referent
+- word: sus
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: [[0],[1]], num: 2,
+           pn: [[0,0,1]]}
+  cross:
+    sem:
+      lex: THEIR
+
+- word: sus
+  classes: [ADJ_POS]
+  id:
+    agrs: {gen: [[0],[1]], num: 2,
+           pn: [[0,1,1]]}
+  cross:
+    sem:
+      lex: YOUR_PLUR

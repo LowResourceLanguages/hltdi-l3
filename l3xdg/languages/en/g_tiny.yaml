@@ -1,0 +1,55 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2012 The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+#
+#
+# Groups for tiny English test grammar
+#
+# 2012.02.22
+
+-  group: break_the_ice
+   words:
+   -  lexeme*: ~V~break
+      id:
+         groupouts: [ob]
+      cross:
+         sem:
+            lex: ALLEVIATE_SOCIAL_TENSION
+            idsem:
+               arg: {arg1: [sb]}
+   -  word: the
+      classes: [DET]
+      id:
+         # or inherit directly from %the?
+         agrs: {def: [[1]], num: [[1]]}
+   -  word: ice
+      classes: [ISOLATE]
+      id:
+         ins: {ob: '!'}
+         outs: {det: '!'}
+         agrs: {num: [[1]], pn: [[0,0,0]], def: [[1]]}
+         groupouts: [det]
+      lp:
+         ins: {mf2: '!'}
+         outs: {detf: '!'}
+      idlp:
+         ldend: {detf: [det]}

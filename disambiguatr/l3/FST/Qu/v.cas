@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+weighting = UNIFICATION
+
+### Special characters
+
+### Stringsets
+## Vowels
+V = {a, e, i, o, u, á, é, í, ó, ú}
+## Native consonants ... non-native consonants   
+X = {ch, chh, ch', h, k, kh, k', l, ll, m, n, ñ, p, ph, p', q, qh, q', r, s, sh, t, th, t', w, y, ', b, d, g, v, z}
+
+### FSTs
+## allomorphy
+>evid<
+>gen<
+## morphotactics
+>v_mtax<

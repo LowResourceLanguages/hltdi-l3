@@ -1,0 +1,109 @@
+What we've been talking about is a generative model of how a sentence gets
+produced. We could sample from it by first randomly bubbling words into a
+bag-of-words, then randomly sampling an order for those words.  The
+word-cooccurrence model would need to be defined separately, which we mentioned
+briefly.
+
+** generative model that we've been working on **
+This was based on the idea that first we pick the words in the sentence, then
+we pick the order of the words, given that bag of words.
+
+So we estimate the probability of a sentence by saying:
+
+P(sentence) = P(words, order of words)
+
+P(words, order of words) = P(order of words | words) * P(words)
+
+This follows just from the definition of joint probability.
+
+So then I wanted to write down the first factor, what is
+P(order of words | words) ? ... the dumb independence assumption here is that
+the order of the words is independent of the words themselves, which is clearly
+false.
+
+But imagine that it is independent.
+
+So now to talk about the order of the words, we decompose this back into:
+
+P( [words happen in this order] ) = P(wordi before wordj, for each i < j)
+
+... so this, for a sentence of n words is roughly (n^2 / 2) events. We can list
+them out.
+
+For sentence A B C D, we have events:
+
+A<<B, A<<C, A<<D, B<<C, B<<D, C<<D
+
+So P(order) = P(A<<B, A<<C, A<<D, B<<C, B<<D, C<<D)
+
+However, with some clever chain-rule usage, we can show that this reduces to
+just the "distance one" events. Clearly A<<B, B<<C, C<<D imply the other
+events, so they have probability 1, given the distance-1 ordering events. (they
+by themselves completely determine the order of the sentence.)
+
+We were worried (and came up with some examples) that the distance-one events
+alone couldn't seem to handle long-distance dependencies.
+
+So if some subset of all of the ordering events completely determine the
+order of the sentence, are there other subsets of the ordering events that would
+determine the orders in the same way?
+
+I think the answer is yes, and particularly, if we knew the ordering
+relationship between every head and dependent (and between the sibling
+dependents), in a projective dimension, then that should completely order the
+sentence.
+
+** what if we could do this with classifiers instead? **
+
+Consider something like a PCFG. In that case, the order of a sentence is
+completely determined because each subtree covers a span that doesn't overlap
+with its siblings.
+
+In a PCFG, we might have different ways to order a given phrase (even with the
+same constituents), but each one is just a different production rule, with its
+own probability.
+
+We actually already have rules of this form in the grammar, like the "order"
+rules in the lp layer in en.yaml.
+
+So while a PCFG is a generative model of a whole sentence, we could imagine the
+discriminative version of this, where *given* a dependency graph (with
+undetermined order), for each head we just have to decide which ordering that
+head and its children go in.
+
+For example, for a head with two children, there are up to six orderings. The
+classification task is just to pick which of the six is most appropriate.
+
+
+** open question: how to learn the classifiers from a corpus **
+
+Imagine we the Brown corpus and a pre-trained dependency parser for English,
+which we'll take to give us "right answers". Say if it was MaltParser or the
+Stanford parser, how similar are the dependency graphs that we get from that to
+the lp dimension in xdg? Or the id dimension for xdg? It would kind of break
+the meaning of id if we used it for ordering information, but maybe that's not
+so bad.
+
+Question of generalization:
+- would we have classifiers for each kind of head? each individual word that
+  could be a head?
+- perhaps there's a classifier for each part of speech and each set of
+  dependents that that pos can have, and the individual words (and the other
+  words in the sentence), are just features that get fed into that classifier.
+
+** procedure for doing this: soft constraints **
+
+- at lexicalization time: run the cl-wsd classifiers.
+
+- for a given solution in the output language, once we have the words
+  determined and also their dependency relationships in the output syntax, can
+  we run the ordering classifiers and then add more order constraints?
+
+- in either case, have the soft constraints be scaled based on how sure the
+  classifier is about the decision that it wants to make.
+
+** goals **
+- is this actually faster?
+- can this produce more fluent sentences than before?
+- how to measure fluent-ness?
+- is this generalizable outside of l3?

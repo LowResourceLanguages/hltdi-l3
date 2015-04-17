@@ -1,0 +1,78 @@
+The following points summarize differences between XDG in L3
+("XDG.L3") and Debusmann's original theory and implementation
+("XDG.D").
+
+1. The value of the 'agrs' attribute is either a list of feature
+structures (see below) or a dictionary, with arc labels as keys and
+list of features structures as values. XDG.D has only the first
+option. (As of 2009-02-14, the list option is no longer supported;
+'agrs' lists in the lexicon are converted to dicts.)
+agrs: ['[sb=[+p1,-p2],tns=pres]', '[sb=[-p1,+p2],tns=pres]',
+       '[sb=[-p1,-p2,+pl],tns=pres]'] 
+agrs: {sb: ['[+p1,-p2,-plr]', '[-p1,+p2,-plr,-fem]',
+            '[-p1,+p2,-plr,+fem]', '[-p1,-p2,-plr,-fem]',
+	    '[-p1,-p2,-plr,+fem]', '[+p1,-p2,+plr]', '[-p1,+p2,+plr]',
+	    '[-p1,-p2,+plr]']}
+
+The dictionary option is needed for languages with complex morphology
+like Amharic and Quechua where agreement (the 'agree' attribute) needs
+to constrain nodes on different out arcs (for example, 'sb' and 'ob')
+differently (see 2).
+
+2. The value of the 'govern' attribute is a dict of govern features
+(arc labels) whose values are lists consisting of a feature in the
+governed node and a FS value that must unify with the value of that
+feature.
+
+3. The value of the 'agree' attribute is a list of triples,
+[mother_feature, arc_label, daughter_feature], rather than the simple
+list of arc labels in XDG.D. For simple cases, like all English
+agreement, this will always be something like the following:
+agree: [[sb, sb, ^]]
+where '^' means the whole agreement feature structure for the
+daughter. For more complicated cases, as with Amharic verbs, which
+require 1 or 2 different kinds of agreement with their arguments,
+different mother features apply to different arc labels. For example,
+something like the following would be part of the entry for seTTe
+'give' in Amharic (the verb's 'obj' must agree with the noun on the
+'pob1' arc): 
+agree: [[ob, pob1, ^]]
+Whether the third element is justified, that is, whether it is ever
+anything other than '^', remains to be seen.
+
+4. Agreement ('agree' and 'govern' attributes) is handled with
+unification of feature structures (modules borrowed for this from NLTK
+and also used in L3 Morpho), though there is currently no support in
+L3 for variables in feature structures (reentrances) and probably
+doesn't need to be. NLTK feature structure syntax is used (see
+examples under 1).
+
+5. Morphological analysis (and eventually morphological generation)
+are integrated into processing. During lexicalization, morphological
+analysis is first tried on each input wordform, and for each analysis,
+the root or stem is looked up in the lexicon. Whether or not any
+analyses are returned, the original wordform is also looked up in the
+lexicon, in case it is part of a group. (Maybe there are other reasons
+it could be there?)
+
+6. In the implementation of groups (multi-word expressions), the
+'groupouts' attribute (called 'outgroups' in XDG) has as its value a
+dictionary of arc label / wordform pairs rather than just a list of
+arc labels. That is, in L3 there is the stronger constraint that the
+word at the other end of the arc must have a particular form in
+addition to being on the end of an arc with the right label. This is
+the handle the cases that *could* come up where a node within a group
+has multiple out arcs with the same label.
+
+7. "Empty" nodes corresponding to no surface wordforms may be inserted:
+for subjects in Spanish, Quechua, Amharic, Tigrinya and K'iche';
+direct objects in Quechua, Amharic and K'iche'; indirect objects in
+Amharic and Tigrinya; optional object relative pronouns in English
+(not yet implemented); nodes required for semantics for certain
+lexical items, for example, 'headache'.
+
+-- Trivial differences
+1. To avoid conflicts with the reserved word 'in', the 'in' and 'out'
+attributes are called 'ins' and 'outs'.
+2. The group attribute 'outgroups' is called 'groupouts' because it
+seems to make more sense.

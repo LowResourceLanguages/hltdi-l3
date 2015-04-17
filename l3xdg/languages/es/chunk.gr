@@ -1,0 +1,124 @@
+# 2013.10.29: replaces es.py
+
+name: español
+
+seg: a b d e f g h i j á é í ó ú ü
+     m n ñ o p s t u v x y z k w
+     A B D E F G H I J
+     M N Ñ O P S T U V
+     X Y Z Á É Í Ó Ú Ü K W
+     c ch l ll qu r rr
+     C Ch L Ll Qu R Rr
+
+lex: chunk
+
+labels:
+
+  dim: es-syn
+    det preadj postadj cuan pcomp arg neg pron aux apred npred ppred conj1 conj2 root del ?
+
+feats: pos sj oj ng tam pn rfl neg fin cont prf inf
+  hide: pos fin
+
+agrmap: gn
+  sj>sj:  [1,0,1] > [1,0,1]|[1,1,1]
+  oj>oj:  [-1] > [0,0]; [1,0,1] > [1,0,1]|[1,1,1]
+  ng>pl:  [0,0] > [0];  [0,1] > [0];  [1,0] > [1];  [1,1] > [1]
+
+morph:
+  pos: v
+    anal:
+      pos=
+        v;          pos=[1]
+      tam=
+        [+ger,-tmp];                           cont=[1]
+        [+ger,-tmp];                           fin=[0]
+	[+ger,-tmp];			       inf=[0]
+	[+part,-tmp];                          prf=[1]
+        [+part,-tmp];                          fin=[0]
+	[+part,-tmp];			       inf=[0]
+	[+inf,-tmp];                           inf=[1]
+	[+inf,-tmp];                           fin=[0]
+	[+inf,-tmp];			       prf=[0]
+	[+inf,-tmp];			       cont=[0]
+	[+tmp];                                fin=[1]
+	[+tmp];				       inf=[0]
+	[+tmp];				       cont=[0]
+	[+tmp];				       prf=[0]
+        [-cnd,-fut,-imv,-ipf,-prt,-sub,+tmp];  tam=[0]
+	[-fut,-imv,+prt,-sub,+tmp];            tam=[1]
+	[+fut,-imv,-prt,-sub,+tmp];            tam=[2]
+	[-fut,-ger,+imv,-inf,-part,-prt,-tmp]; tam=[4]
+      sj=
+        [+1,-2,-p];  sj=[1,0,0]
+        [-1,+2,-p];  sj=[0,1,0]
+        [-1,-2,-p];  sj=[0,0,0]
+	[+1,+p];     sj=[1,0,1]
+	[-1,+2,+p];  sj=[0,1,1]
+	[-1,-2,+p];  sj=[0,0,1]
+      od=
+        [+1,-2,-p,+xpl];  oj=[1,0,0]
+        [-1,+2,-p,+xpl];  oj=[0,1,0]
+        [-1,-2,-p,+xpl];  oj=[0,0,0]
+	[+1,+p,+xpl];     oj=[1,0,1]
+	[-1,+2,+p,+xpl];  oj=[0,1,1]
+	[-1,-2,+p,+xpl];  oj=[0,0,1]
+#      oi=
+#        [+1,-2,-p,+xpl];  oi=[1,0,0]
+#        [-1,+2,-p,+xpl];  oi=[0,1,0]
+#        [-1,-2,-p,+xpl];  oi=[0,0,0]
+#	[+1,+p,+xpl];     oi=[1,0,1]
+#	[-1,+2,+p,+xpl];  oi=[0,1,1]
+#	[-1,-2,+p,+xpl];  oi=[0,0,1]
+#      rfl=
+    gen:
+      tam=
+        [0];      tam=[-cnd,-fut,-imv,-ipf,-prt,-sub,+tmp]
+        [1];      tmp=[-cnd,-fut,-imv,-ipf,+prt,-sub,+tmp]
+	[2];      tmp=[-cnd,+fut,-imv,-ipf,-prt,-sub,+tmp]
+	[4];      tmp=[-cnd,-fut,+imv,-ipf,-prt,-sub,-tmp]
+      cont=
+        [1];      tmp=[-cnd,-fut,-imv,-ipf,-prt,-sub,-tmp,+ger]
+      prf=
+        [1];      tmp=[-cnd,-fut,-imv,-ipf,-prt,-sub,-tmp,+part]
+      inf=
+        [1];      tmp=[-cnd,-fut,-imv,-ipf,-prt,-sub,-tmp,+inf]
+#      rfl=
+#        [0];      voz=smp
+#        [1];      voz=reflx
+      sj=
+        [0,0,0];  sj=[-1,-2,-p]
+        [0,0,1];  sj=[-1,-2,+p]
+        [1,0,0];  sj=[+1,-2,-p]
+        [1,0,1];  sj=[+1,-2,+p]
+        [0,1,0];  sj=[-1,+2,-p]
+        [0,1,1];  sj=[-1,+2,+p]
+      oj=
+        [0,0,0];  od=[-1,-2,-p]
+        [0,0,1];  od=[-1,-2,+p]
+        [1,0,0];  od=[+1,-2,-p]
+        [1,0,1];  od=[+1,-2,+p]
+        [0,1,0];  od=[-1,+2,-p]
+        [0,1,1];  od=[-1,+2,+p]
+
+trans:
+  Loading language data from {} = Cargando datos lingüísticos de {0}
+  Loading morphological data for {}... = Cargando datos morfológicos para {}...
+  word = palabra
+  root = raíz
+  syllable = sílaba
+  semantics = semántica
+  phonology = fonología
+  syntax = sintaxis
+  morphology = morfología
+  grammar = gramática
+  affix = afijo
+  verb = verbo
+  noun = sustantivo
+  adjective = adjetivo
+  pronoun = pronombre
+  adverb = adverbio
+  agreement = concordancia
+  subject = sujeto
+  postposition = posposición
+  POS = CG

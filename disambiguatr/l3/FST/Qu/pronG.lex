@@ -1,0 +1,7 @@
+nuqa      [+p1,-p2,-pl,t=[es="yo"]]
+nuqayku   [+p1,-p2,+pl,t=[es="nosotros, nosotras"]]
+nuqanchis [+p1,+p2,+pl,t=[es="nosotros, nosotras, yo y tú"]]
+pay       [-p1,-p2,-pl,t=[es="él, ella"]]
+paykuna   [-p1,-p2,+pl,t=[es="ellos, ellas"]]
+qan       [-p1,+p2,-pl,t=[es="tú, usted"]]
+qankuna   [-p1,+p2,+pl,t=[es="ustedes"]]

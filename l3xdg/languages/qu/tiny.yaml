@@ -1,0 +1,478 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2010 The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+
+# Tiny grammar for Quechua
+#
+# 2011.02.04
+# 2011.02.10
+# -- Empty subject node
+# 2011.02.12
+# -- Empty object node
+# 2011.02.25
+# -- Value of pn for zero empty nodes set to -2,
+#    apparently solving some problems
+# 2011.03.11
+# -- New values and agreement constraints for pn, num.
+# -- @PRON partitioned into empty classes for each personal pronoun.
+# 2011.05.12
+# -- "Peripheral" cases
+# 2011.05.15
+# -- Peripheral cases connected to Semantics via "complex" empty nodes
+# 2011.06.01
+# -- kay ('be'), but so far only connected to SUFFER in Semantics
+# 2011.12.22
+# -- Still need to fix agreement and government values to eliminate -1s.
+
+- lexeme: ROOT
+  id: 
+    outs: {root: '!', del: '*'}
+#    govern: {del: [pn, [-2]]}
+  lp:
+    outs: {root: '!', del: '*'}
+    order: [[root, ^, del]]
+  cross:
+    sem:
+      lex: ROOT
+      idsem:
+        arg: {root: [root]}
+
+- word: '.'
+  classes: [ROOT]
+  cross:
+    sem:
+      lex: STATEMENT
+      idsem:
+        arg: {root: [root]}
+
+#### Grammar
+### Verbs
+- gram: V
+  pos: v
+  empty: ['@SB']
+  id:
+    outs: {sb: '!', perif: '*'}
+    ins: {root: '!'}
+    # not subordinate
+    agrs: {sb: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[1,1,1],[0,1,1],[0,0,1]],
+           # Only present, past, future for now
+           tm: [[0],[1],[2]]}
+    agree: [[sb, sb, pn]]
+    govern: {sb: [case, [1,0,0,0]],
+             # Cannot be nom, acc, or gen
+             perif: [case, [0,0,-1,-1]]}
+  lp:
+    ins: {root: '!'}
+    outs: {compf: '*'}
+    # Default order, not rigid
+    order: [[compf, ^]]
+  idlp:
+    ldend: {compf: [sb, ob, perif]}
+  cross:
+    sem:
+      lex: PROC
+      idsem:
+        arg: {arg1: [sb]}
+        agree: [[reltime, tm]]
+
+- gram: V_T
+  classes: [V]
+  empty: ['@OB']
+  id:
+    outs: {ob: '!'}
+    agrs: {ob: [[1,0,0],[0,1,0],[1,0,1],[1,1,1],[0,1,1],[0,0]]}
+    agree: [[ob, ob, pn]]
+    govern: {ob: [case, [2,0,0,0]]}
+  cross:
+    sem:
+      lex: PROC_T
+      idsem:
+        ldend: {arg2: [ob]}
+
+- gram: V_I
+  classes: [V]
+  id:
+    # 3p ob agreement (= no ob agreement)
+    agrs: {ob: [[0,0]]}
+    outs: {ob: 0}
+
+### Nouns
+- gram: N
+  pos: n
+  id:
+    ins: {sb: '?', ob: '?', perif: '?'}
+    agrs: {case: [[1,0,0,0],[2,0,0,0],
+                  [0,0,1,0],[0,0,2,0],[0,0,3,0],[0,0,4,0],[0,0,5,0],[0,0,6,0],
+                  [0,0,0,1],[0,0,0,2]],
+           num: [[0], [1], [2]],
+           #pn...
+           # 0, -n/mi, -s(i)
+#           ev: [[0],[1],[2]],
+           # 0, -qa
+           top: [[0],[1]]}
+  lp:
+    ins: {compf: '!'}
+  cross:
+    sem:
+    - lex: THING
+      idsem:
+        # Semantic definiteness agrees with syntactic topicality (-qa).
+        # Not right at all but it's a start.
+        # [[def, top], [num, num]]
+        agree: [[num, num]]
+    # Nouns that are locative case trigger a LOC node in Semantics,
+    # empty for Quechua and the mother of the noun node in Semantics
+    # on an 'arg1' arc
+    - empty: true
+      slex: zero
+      tlex: LOC_GEN
+      agrs: [qu-id, {case: [0,0,1,0]}]
+      rel: [mother, qu-idsem, arg1, perif]
+
+## Count nouns, either singular or plural
+- gram: N_C
+  shared:
+    classes: [N]
+  partition:
+  - part: N_SG
+    id:
+      agrs: {num: [[1]], pn: [[-1,-1,0]]}
+  - part: N_PL
+    id:
+      agrs: {num: [[2]], pn: [[-1,-1,1]]}
+
+## Proper nouns
+- gram: N_P
+  classes: [N]
+  id:
+    agrs: {num: [[1]], pn: [[0,0,0]]}
+
+## PRON a separate category from N so that empty, as well as explicit,
+## pronouns can inherit from it.
+- gram: PRON
+  pos: n
+#  id:
+#    agrs: {def: [[1]]}
+
+- gram: PRON_EXPL
+  classes: [PRON, N]
+  id:
+    agrs: {def: [[1]],
+           pos2: [[2]]}
+  
+# Empty subject pronouns
+- lexeme: '@SB'
+  classes: ['@PRON']
+  id:
+    ins: {sb: '?'}
+    agrs: {case: [[1,0,0,0],[-2]]}
+#           # (-2,) needed to match ZERO in Semantics
+#           pn: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[1,1,1],[0,1,1],[0,0,1],[-2]]}
+# Empty object pronouns
+- lexeme: '@OB'
+  classes: ['@PRON']
+  id:
+    ins: {ob: '?'}
+    agrs: {case: [[2,0,0,0],[-2]]}
+           # (-2,) needed to match ZERO in Semantics
+#           pn: [[1,0,0],[0,1,0],[1,0,1],[1,1,1],[0,1,1],[0,0],[-2]]}
+  
+### Lexicon
+## Empty
+- word: zero
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO
+- word: zero_gram
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO_GRAM
+- word: zero_thing
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO_THING
+- word: zero_nmod
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO_NMOD
+- word: zero_vmod
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO_VMOD
+
+#  cross:
+#    sem:
+#      lex: LOC
+#      bidir: rev
+#      idsem:
+#        arg: {arg1: [perif]}
+#        crossgov: {perif: [case, [0,0,1,0]]}
+
+## Pronouns
+# explicit
+- lexeme: nuqa
+  classes: [PRON_EXPL]
+  root: nuqa
+  id:
+    agrs: {pn: [[1,0,0]], num: [[1]]}
+  cross:
+    sem:
+      lex: I
+- lexeme: qan
+  classes: [PRON_EXPL]
+  root: qan
+  id:
+    agrs: {pn: [[0,1,0]], num: [[1]]}
+  cross:
+    sem:
+      lex: YOU_SING
+- lexeme: pay
+  classes: [PRON_EXPL]
+  root: pay
+  id:
+    agrs: {pn: [[0,0,0]], num: [[1]]}
+  cross:
+    sem:
+    - lex: SHE
+    - lex: HE
+- lexeme: nuqayku
+  classes: [PRON_EXPL]
+  root: nuqayku
+  id:
+    agrs: {pn: [[1,0,1]], num: [[2]]}
+  cross:
+    sem:
+      lex: WE_EXCL
+- lexeme: nuqanchis
+  classes: [PRON_EXPL]
+  root: nuqanchis
+  id:
+    agrs: {pn: [[1,1,1]], num: [[2]]}
+  cross:
+    sem:
+      lex: WE_INCL
+- lexeme: qankuna
+  classes: [PRON_EXPL]
+  root: qankuna
+  id:
+    agrs: {pn: [[0,1,1]], num: [[2]]}
+  cross:
+    sem:
+      lex: YOU_PLUR
+- lexeme: paykuna
+  classes: [PRON_EXPL]
+  root: paykuna
+  id:
+    agrs: {pn: [[0,0,1]], num: [[2]]}
+  cross:
+    sem:
+      lex: THEY
+
+# empty: partition of class @PRON; one of person/number combinations;
+# also either @SB or @OB
+- gram: "@PRON"
+  shared:
+    classes: [PRON]
+    id:
+      # Nominative or accusative
+      agrs: {case: [[1,0,0,0],[2,0,0,0],[-2]],
+             # Assume topic would be explicit
+             top: [[0]]}
+      ins: {sb: '?', ob: '?'}
+    lp:
+      ins: {del: '!', compf: 0}
+  partition:
+  # Class for zero pronouns
+  - lexemepart: '@none'
+    id:
+      ins: {del: '!'}
+      agrs: {num: [[0]], pn: [[-2]], case: [[-2]]}
+    cross:
+      sem:
+        lex: ZERO_THING
+        bidir: False
+#        idsem:
+#          ldend: {del: [del]}
+  - lexemepart: '@nuqa'
+    id:
+      ins: {del: 0}
+      agrs: {num: [[1]], pn: [[1,0,0]]}
+    cross:
+      sem:
+        lex: I
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: '@qan'
+    id:
+      ins: {del: 0}
+      agrs: {num: [[1]], pn: [[0,1,0]]}
+    cross:
+      sem:
+        lex: YOU_SING
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: '@pay'
+    id:
+      ins: {del: 0}
+      agrs: {num: [[1]], pn: [[0,0,0]]}
+    cross:
+      sem:
+      - lex: SHE
+        idsem:
+          agree: [[num, num]]
+      - lex: HE
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: '@nuqayku'
+    id:
+      ins: {del: 0}
+      agrs: {num: [[2]], pn: [[1,0,1]]}
+    cross:
+      sem:
+        lex: WE_EXCL
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: '@nuqanchis'
+    id:
+      ins: {del: 0}
+      agrs: {num: [[2]], pn: [[1,1,1]]}
+    cross:
+      sem:
+        lex: WE_INCL
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: '@qankuna'
+    id:
+      ins: {del: 0}
+      agrs: {num: [[2]], pn: [[0,1,1]]}
+    cross:
+      sem:
+        lex: YOU_PLUR
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: '@paykuna'
+    id:
+      ins: {del: 0}
+      agrs: {num: [[2]], pn: [[0,0,1]]}
+    cross:
+      sem:
+        lex: THEY
+        idsem:
+          agree: [[num, num]]
+
+## Nouns
+- lexeme: wasi
+  classes: [N_C]
+  root: wasi
+  id:
+    agrs: {pn: [[0,0]]}
+  cross:
+    sem:
+      lex: HOUSE
+- lexeme: yaku
+  classes: [N]
+  root: yaku
+  id:
+    agrs: {pn: [[0,0]]}
+- lexeme: warmi
+  classes: [N_C]
+  root: warmi
+  id:
+    agrs: {pn: [[0,0]]}
+  cross:
+    sem:
+      lex: WOMAN
+- lexeme: chhulli
+  classes: [N_C]
+  root: chhulli
+  id:
+    agrs: {pn: [[0,0,0]], num: [[1]]}
+  cross:
+    sem:
+      lex: INFLUENZA
+- lexeme: Qusqu
+  classes: [N_P]
+  root: Qusqu
+  cross:
+    sem:
+      lex: CUSCO
+
+## Verbs
+# filter
+- lexeme: "huq'uycha"
+  classes: [V_T]
+  root: "huq'uycha"
+# contaminate
+- lexeme: "map'acha"
+  classes: [V_T]
+  root: "map'acha"
+# die
+- lexeme: wañu
+  classes: [V_I]
+  root: wañu
+  cross:
+    sem:
+      lex: DIE
+# clean
+- lexeme: picha
+  classes: [V_T]
+  root: picha
+  cross:
+    sem: 
+      lex: CLEAN
+# see
+- lexeme: qhawa
+  classes: [V_T]
+  root: qhawa
+  cross:
+    sem: 
+      lex: SEE
+# be
+- lexeme: ka
+  classes: [V_I]
+  root: ka
+  cross:
+    sem:
+      lex: SUFFER
+      idsem:
+        ldend: {arg2: [perif]}
+        crossgov: {arg2: [case, [0,0,0,1]]}

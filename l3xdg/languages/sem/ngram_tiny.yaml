@@ -1,0 +1,247 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2010, 2011, 2012
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#   Author: Michael Gasser <gasser@cs.indiana.edu>
+#
+# "Nouns" for Semantics
+# -- Semantic categories
+#    0: unspecified
+#    1: person
+#    2: place
+#    3: condition (e.g., disease)
+#    4: inanimate physical object
+#    5: animals
+#    6: abstract things (languages, governments, etc.)
+
+# 2011.12.10
+# 2012.08.13
+# -- Moved THING classes here
+# 2012.08.27
+# -- Made number of mass things 1 instead of 0 to make
+#    the correspondence to Gn, Es, etc. simpler
+# -- "Possessives": simplest implementation: arc from head to mod
+# 2012.08.31
+# -- Simplifying categories 
+#    0: unspecified
+#    1: person
+#    2: thing
+# -- Subcategories
+#    0, 1, 2, 3 ...
+#    place:       2;1
+#    condition:   2;2
+#    inam physobj 2;3
+#    animal:      2;4
+#    abstraction: 2;5
+#    plant:       2;6
+#    mass:        2;7
+# 2012.09.30
+# -- "Relative pronouns": REL, a word with THING as its class
+
+### Nouns
+-  gram: THING
+   pos: n
+   sem:
+      # The thing can play the same role in multiple processes
+      # 2012.09.22: return to single arg1 and arg2
+      ins: {arg1: '?', arg2: '?'}
+      # More than one possessive possible?
+      outs: {dem: '?', poss: '?', coref: '?'}
+      agrs: {def: [[0], [1]],
+             # reserve 0 for "mass number", but use only later
+             num: [[0], [1], [2]]}
+      agree: [[coref,cat,cat],[coref,def,def],[coref,num,num]]
+
+## Relative "pronoun", has a coreference arc from another THING
+## instance
+
+-  word: REL
+   classes: [THING]
+   sem:
+      agrs: {cat: [[1],[2]]}
+      ins: {coref: '!'}
+      # Should poss be possible?
+      outs: {coref: 0, dem: 0, poss: 0}
+
+-  gram: HUMAN
+   classes: [THING]
+   sem:
+      agrs: {cat: 1}
+
+# CONDITIONs are indefinite and have 0 number
+-  gram: CONDITION
+   classes: [THING]
+   sem:
+      agrs: {cat: 2, subcat: 2,
+             def: 0, num: 0}
+
+-  gram: PHYSOBJ
+   classes: [THING]
+   sem:
+      agrs: {cat: 2, subcat: 3}
+
+# A specific, named place 
+-  gram: PLACE
+   classes: [THING]
+   sem:
+      agrs: {def: 1, pers: [[0,0]], num: 1,
+             cat: 2, subcat: 1}
+
+# Masses are always "singular"
+-  gram: MASS
+   classes: [THING]
+   sem:
+      agrs: {pers: [[0,0]], num: 1,
+             cat: 2, subcat: 7}
+
+### Pronouns
+-  gram: DEICTIC
+   classes: [THING]
+   sem:
+      agrs: {def: 1}
+      outs: {dem: 0, poss: 0}
+
+# Demonstrative pronouns
+-  gram: DEM
+   classes: [DEICTIC]
+
+-  word: THIS
+   classes: [DEM]
+
+# eso
+-  word: THAT2
+   classes: [DEM]
+
+# aquello
+-  word: THAT3
+   classes: [DEM]
+
+# Corresponds to personal pronouns in real languages
+-  gram: DEICTIC_PERS
+   classes: [DEICTIC]
+
+-  word: I
+   classes: [DEICTIC_PERS]
+   sem:
+      agrs: {pers: [[1,0]], num: 1,
+             cat: 1}
+-  word: YOU_SING
+   classes: [DEICTIC_PERS]
+   sem:
+      agrs: {pers: [[0,1]], num: 1,
+             cat: 1}
+# people
+-  word: SHE
+   classes: [DEICTIC_PERS]
+   sem:
+      agrs: {pers: [[0,0]], num: 1,
+             cat: 1}
+-  word: HE
+   classes: [DEICTIC_PERS]
+   sem:
+      agrs: {pers: [[0,0]], num: 1,
+             cat: 1}
+# PHYSOBJ
+-  word: IT
+   classes: [DEICTIC_PERS]
+   sem:
+      agrs: {pers: [[0,0]], num: 1,
+             cat: 2}
+-  word: WE_EXCL
+   classes: [DEICTIC_PERS]
+   sem:
+      agrs: {pers: [[1,0]], num: 2,
+             cat: 1}
+-  word: WE_INCL
+   classes: [DEICTIC_PERS]
+   sem:
+      agrs: {pers: [[1,1]], num: 2,
+             cat: 1}
+-  word: YOU_PLUR
+   classes: [DEICTIC_PERS]
+   sem:
+      agrs: {pers: [[0,1]], num: 2,
+             cat: 1}
+# restricted to HUMAN
+-  word: THEY
+   classes: [DEICTIC_PERS]
+   sem:
+      agrs: {pers: [[0,0]], num: 2,
+             cat: 1}
+
+### Possessive "adjectives"
+
+-  gram: POSS
+   # should this be a separate POS?
+   pos: poss
+   sem:
+      ins: {poss: '!'}
+      outs: {dem: '?', poss: '?'}
+
+-  gram: PRO_POSS
+   classes: [POSS]
+   sem:
+      outs: {dem: 0, poss: 0}
+
+-  word: MY
+   classes: [PRO_POSS]
+   sem:
+      agrs: {pers: [[1,0]], num: 1, cat: 1}
+
+-  word: YOUR_SING
+   classes: [PRO_POSS]
+   sem:
+      agrs: {pers: [[0,1]], num: 1, cat: 1}
+
+-  word: HIS
+   classes: [PRO_POSS]
+   sem:
+      agrs: {pers: [[0,0]], num: 1, cat: 1}
+
+-  word: HER
+   classes: [PRO_POSS]
+   sem:
+      agrs: {pers: [[0,0]], num: 1, cat: 1}
+
+-  word: OUR_EXCL
+   classes: [PRO_POSS]
+   sem:
+      agrs: {pers: [[1,0]], num: 2, cat: 1}
+
+-  word: OUR_INCL
+   classes: [PRO_POSS]
+   sem:
+      agrs: {pers: [[1,1]], num: 2, cat: 1}
+
+-  word: YOUR_PLUR
+   classes: [PRO_POSS]
+   sem:
+      agrs: {pers: [[0,1]], num: 2, cat: 1}
+
+-  word: THEIR
+   classes: [PRO_POSS]
+   sem:
+      agrs: {pers: [[0,0]], num: 2, cat: 1}
+
+#-  word: ITS
+#   classes: [PRO_POSS]
+#   sem:
+#      agrs: {pers: [[0,0]], num: 1, cat: 2}

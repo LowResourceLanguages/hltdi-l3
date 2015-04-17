@@ -1,0 +1,135 @@
+###
+### CHUNK GRAMMAR
+###
+
+VERBS
+
+only a few examples of specific lexemes so far
+
+mothers: root
+
+patterns:
+  ombota (hikuái) (chupe)
+  limitation: only certain tenses/aspects
+
+features:
+  subject person-number
+  object person-number
+    (0,0) for intransitive
+    (0,0,0)/(0,0,1) [3s/p] for transitive with no pronoun object
+  negation
+  tense/aspect
+
+agreement:
+  object agreement with 3 pers pronoun
+
+classes:
+  vat (areal, aireal transitive)
+  vai (areal, aireal intransitive)
+  vc (chendal, always intransitive)
+
+-> Es
+translation agreement
+  tense/aspect
+    'akue -> preterite
+    0 -> present
+    'aína -> progressive
+    -ma -> perfect
+  subject
+  object
+  negation
+
+  limitation: 3 pers object feature always translates as explicit
+  object pronoun (should be optional)
+
+POSTPOSITIONS
+
+mothers: root
+
+pre-processing:
+  postpositional suffixes such as -pe are segmented off as words during tokenization
+    kuñáme -> kuña + pe
+  limitation: generation does not yet recombine postopositional suffixes:
+    kuña + pe /-> kuñáme
+
+-> Es
+prepositions
+
+NOUNS
+
+only a few examples of specific words so far
+
+mothers: root, postpositions
+
+patterns:
+  (det/poss) (num) N (adj)
+
+features:
+  nasality
+  number
+
+agreement:
+  possessive-noun nasal agreement
+
+classes:
+  one, with two entries (for singular and plural Es translations)
+
+-> Es
+translation agreement
+  number
+
+ADJECTIVES
+
+only a few examples of specific words so far
+
+mothers: nouns
+
+features:
+  gender
+  number
+
+-> Gn: isomorphic
+
+classes: none yet
+
+PRONOUNS
+
+subject
+  mothers: root (like nouns)
+
+3 pers object
+  mothers: verbs
+
+CONJUNCTIONS
+
+mothers: root
+
+patterns
+  limitations:
+    only two conjuncts permitted
+    only noun conjuncts covered
+
+-> Es: isomorphic
+
+QUANTIFIERS
+mothers: nouns
+-> Es: isomorphic
+
+DETERMINERS
+mothers: nouns
+
+POSSESSIVE ADJECTIVES
+(treated separately from determiners because of nasal agreement)
+
+mothers: nouns
+
+pre-processing:
+3 pers possessive prefix segmented off as separate word during tokenization to make to comparable to 1 and 2 pers possessives
+  iñangirũ -> i angirũ
+  hetã -> i tetã
+
+agreement:
+  possessive-noun nasal agreement
+
+-> Es: isomorphic
+

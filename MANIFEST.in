@@ -1,0 +1,16 @@
+recursive-include l3xdg *.fst *.cas *.lex *.txt
+recursive-exclude l3xdg en_* am_*
+include LICENSE.txt
+include README.txt
+include l3xdg0.9.pdf
+prune l3xdg/languages/es
+prune l3xdg/languages/om
+prune l3xdg/languages/qu
+prune l3xdg/languages/quc
+prune l3xdg/languages/stv
+prune l3xdg/languages/sw
+prune l3xdg/languages/ti
+
+
+
+

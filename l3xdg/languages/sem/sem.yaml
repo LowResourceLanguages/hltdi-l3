@@ -1,0 +1,357 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2010 The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+#
+# Lexicon for Semantics
+#
+# 2011.01.29
+
+#### End-of-sentence node
+-  lexeme: ROOT
+   sem:
+      outs: {root: '+', del: '*'}
+
+#### Grammar
+### Verbs
+-  gram: V
+   pos: v
+
+-  gram: V_MAIN
+   classes: [V]
+
+-  gram: V_AUX
+   classes: [V]
+   sem:
+      ins: {del: '!'}
+-  gram: V_QAUX
+   classes: [V]
+   sem:
+      ins: {del: '!'}
+-  gram: V_FIN
+   classes: [V]
+   sem:
+      outs: {arg1: '!'}
+-  gram: V_FIN_ROOT
+   classes: [V_FIN]
+   sem:
+      ins: {root: '!'}
+-  gram: V_FIN_REL
+   classes: [V_FIN]
+   sem:
+      ins: {mod: '!'}
+-  gram: V_FIN_SUB
+   classes: [V_FIN]
+## V_FIN_ROOT -> {V_AUX_FIN (1), V_MAIN_FIN}
+## V_AUX -> {V_AUX_FIN (2)}
+## V_MAIN -> {V_MAIN_FIN (2)}
+-  gram: V_AUX_FIN
+   label: V_AUX_FIN_ROOT
+   classes: [V_AUX, V_FIN_ROOT]
+-  gram: V_AUX_FIN
+   label: V_AUX_FIN_REL
+   classes: [V_AUX, V_FIN_REL]
+-  gram: V_MAIN_FIN
+   label: V_MAIN_FIN_ROOT
+   classes: [V_MAIN, V_FIN_ROOT]
+-  gram: V_MAIN_FIN
+   label: V_MAIN_FIN_REL
+   classes: [V_MAIN, V_FIN_REL]
+-  gram: V_MAIN_FIN
+   label: V_MAIN_FIN_SUB
+   classes: [V_MAIN, V_FIN_SUB]
+# Non-finite verbs
+-  gram: V_NONFIN
+   classes: [V]
+## V_NONFIN -> {V_BSE, V_INF, V_PSPT, V_ING}
+# Base form infinitives
+-  gram: V_BSE
+   classes: [V_NONFIN]
+# Full infinitives
+-  gram: V_INF
+   classes: [V_NONFIN]
+# Past participles; later split into (adverbial) participles and passive participles
+-  gram: V_PSPT
+   classes: [V_NONFIN]
+# V_ING -> {V_GER | V_PROG | V_PRPT}
+# gerunds
+-  gram: V_ING
+   classes: [V_NONFIN]
+   label: V_GER
+# progressive -ing
+-  gram: V_ING
+   classes: [V_NONFIN]
+   label: V_PROG
+# adverbial present participles (where do these go in LP?)
+-  gram: V_ING
+   classes: [V_NONFIN]
+   label: V_PRPT
+## Verb valency classes
+-  gram: V_T
+   classes: [V_MAIN]
+
+   sem:
+      outs: {arg2: '!', arg3: 0}
+-  gram: V_TI
+   classes: [V_MAIN]
+   sem:
+      outs: {arg2: '?', arg3: 0}
+## Ditransitive verbs; inherit from transitive to get object
+-  gram: V_DT
+   classes: [V_T]
+   sem:
+      outs: {arg3: '!'}
+## Intransitive verbs: no object
+-  gram: V_I
+   classes: [V_MAIN]
+   sem:
+      outs: {arg2: 0, arg3: 0}
+## Complement verbs
+-  gram: V_SUBC
+   classes: [V_I]
+## Passive verbs (complete later; for now just a place to keep pob2)
+-  gram: V_PAS
+## V_MAIN_FIN -> {V_3SG, V_NON3SG, V_PS}
+# subclasses of finite verbs for particular tenses
+# present tense has sb-v agreement
+-  gram: V_3SG
+   classes: [V_MAIN_FIN]
+-  gram: V_NON3SG
+   classes: [V_MAIN_FIN]
+-  gram: V_PS
+   classes: [V_MAIN_FIN]
+## ambiguity of verb stem
+-  gram: V_STEM
+   label: V_STEM_FIN
+   classes: [V_NON3SG]
+-  gram: V_STEM
+   label: V_STEM_BSE
+   classes: [V_BSE]
+-  gram: V_STEM
+   label: V_STEM_INF
+   classes: [V_INF]
+
+### Nouns
+-  gram: N
+   pos: n
+   sem:
+      ins: {arg1: '?', arg2: '?', arg3: '?'}
+      outs: {mod: '*'}  # , coref: '*'}
+# Personal pronouns shouldn't inherit from N because of case
+# restrictions.
+-  gram: PRO
+   classes: [N]
+   sem:
+      outs: {mod: 0}
+# Proper nouns: no det, adj, or pmod NORMALLY
+-  gram: N_P
+   classes: [N]
+# Common nouns
+-  gram: N_C
+   classes: [N]
+# Count nouns
+-  gram: N_CT
+   classes: [N_C]
+# Adjectives behaving like nouns: "the rich"; how to constrain det?
+-  gram: N_ADJ
+   classes: [N]
+## PRO -> {PRO_PRS, PRO_REL, PRO_WH}
+-  gram: PRO_PRS
+   classes: [PRO]
+-  gram: PRO_REL
+   classes: [PRO]
+-  gram: PRO_WH
+   classes: [PRO]
+## N_CT -> {N_PL, N_SG}
+## N_SG -> {N_SG_CT, N_MS}
+# Plural nouns: 3p agreement
+-  gram: N_PL
+   classes: [N_CT]
+# N_SG -> {N_MS, N_SG_CT}
+# Singular nouns: 3s agreement
+-  gram: N_SG
+   classes: [N_C]
+# Mass nouns: 3s agreement; how to prevent indef det?
+-  gram: N_MS
+   classes: [N_SG]
+# Singular count nouns: must have a determiner
+-  gram: N_SG_CT
+   classes: [N_SG, N_CT]
+# N_P -> {N_P_PL, N_P_NM}
+# place names
+-  gram: N_P_PLC
+   classes: [N_P]
+# human names
+-  gram: N_P_HUM
+   classes: [N_P]
+
+### Adverbs
+-  gram: ADV
+   pos: adv
+   sem:
+      ins: {root: '?', mod: '?'}
+# frequency: often, etc.
+-  gram: ADV_F
+   classes: [ADV]
+# "time": now, etc.
+-  gram: ADV_T
+   classes: [ADV]
+# place or manner: carefully, etc.
+-  gram: ADV_P
+   classes: [ADV]
+
+### Adjectives
+-  gram: ADJ
+   pos: adj
+   sem:
+      ins: {mod: '!'}
+-  gram: ADJer
+   classes: [ADJ]
+-  gram: ADJest
+   classes: [ADJ]
+-  gram: ADJ_PRED
+   classes: [ADJ]
+-  gram: ADJ_ATR
+   classes: [ADJ]
+
+### Prepositions (include pob2?)
+-  gram: PREP
+   pos: prep
+   sem:
+      ins: {del: '!'}
+## PREP -> {POBJ, PMOD}
+-  gram: POBJ
+   classes: [PREP]
+-  gram: PMOD
+   classes: [PREP]
+## PMOD -> {PADJ, PADV}
+-  gram: PADJ
+   classes: [PMOD]
+-  gram: PADV
+   classes: [PMOD]
+### Determiners
+-  gram: DET
+   pos: det
+   sem:
+      ins: {del: '!'}
+### Particles
+-  gram: PART
+   pos: part
+### Conjunctions
+-  gram: CONJ
+   pos: conj
+
+#### Lexemes
+
+#### Words
+
+### Verbs
+
+### Particles
+# infinitive "to"
+-  word: to
+   classes: [PART]
+   sem:
+      ins: {del: '!'}
+### Nouns
+
+# Test novel word categories
+#-  word: scrabbits
+#   classes: [V]
+# old: ambiguous (no N_ADJ in sublexicons yet)
+-  word: old
+   classes: [N_ADJ]
+### Pronouns
+-  word: I
+   classes: [PRO_PRS]
+-  word: me
+   classes: [PRO_PRS]
+-  word: she
+   classes: [PRO_PRS]
+### Complementizers
+-  word: that
+   sem:
+      ins: {del: '!'}
+### Adverbs
+### Adjectives
+### Determiners
+-  word: the
+   classes: [DET]
+-  word: an
+   classes: [DET]
+-  word: a
+   classes: [DET]
+-  word: some
+   classes: [DET]
+### Prepositions
+
+#### Groups
+
+#### Sublexicons
+
+-  word: John
+   classes: [N_P_HUM]
+-  word: Ali
+   classes: [N_P_HUM]
+-  word: Maria
+   classes: [N_P_HUM]
+-  word: Almaz
+   classes: [N_P_HUM]
+-  lexeme: ~N~person
+   classes: [N_CT]
+-  word: people
+   classes: [N_PL, ~N~person]
+-  lexeme: ~V~die
+   classes: [V_I]
+-  word: died
+   classes: [V_PS, ~V~die]
+-  lexeme: ~V~speak
+   classes: [V_I]
+-  word: spoke
+   classes: [V_PS, ~V~speak]
+-  word: speak
+   classes: [V_NON3SG, ~V~speak]
+-  lexeme: ~V~clean
+   classes: [V_TI]
+-  word: cleaned
+   classes: [V_PS, ~V~clean]
+-  lexeme: ~V~buy
+   classes: [V_T]
+-  word: bought
+   classes: [V_PS, ~V~buy]
+-  lexeme: ~V~see
+   classes: [V_T]
+-  word: saw
+   classes: [V_PS, ~V~see]
+-  lexeme: ~V~break
+   classes: [V_TI]
+-  word: broke
+   classes: [V_PS, ~V~break]
+-  lexeme: ~V~flow
+   classes: [V_I]
+-  word: flowed
+   classes: [V_PS, ~V~flow]
+-  word: water
+   classes: [N_MS]
+-  lexeme: ~N~house
+   classes: [N_CT]
+-  word: house
+   classes: [N_SG_CT, ~N~house]

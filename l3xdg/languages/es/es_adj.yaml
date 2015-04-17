@@ -1,0 +1,3724 @@
+# Adjective lexemes
+- lexeme: ~A~abierto
+  classes: [ADJ]
+- lexeme: ~A~abundante
+  classes: [ADJ]
+- lexeme: ~A~aburrido
+  classes: [ADJ]
+- lexeme: ~A~activo
+  classes: [ADJ]
+- lexeme: ~A~afligido
+  classes: [ADJ]
+- lexeme: ~A~agradable
+  classes: [ADJ]
+- lexeme: ~A~agradecido
+  classes: [ADJ]
+- lexeme: ~A~alegre
+  classes: [ADJ]
+- lexeme: ~A~alguno
+  classes: [ADJ]
+- lexeme: ~A~alto
+  classes: [ADJ]
+- lexeme: ~A~amable
+  classes: [ADJ]
+- lexeme: ~A~amargo
+  classes: [ADJ]
+- lexeme: ~A~ancho
+  classes: [ADJ]
+- lexeme: ~A~anciano
+  classes: [ADJ]
+- lexeme: ~A~angosto
+  classes: [ADJ]
+- lexeme: ~A~angélico
+  classes: [ADJ]
+- lexeme: ~A~anterior
+  classes: [ADJ]
+- lexeme: ~A~antiguo
+  classes: [ADJ]
+- lexeme: ~A~antipático
+  classes: [ADJ]
+- lexeme: ~A~aparte
+  classes: [ADJ]
+- lexeme: ~A~apenado
+  classes: [ADJ]
+- lexeme: ~A~apetitoso
+  classes: [ADJ]
+- lexeme: ~A~aplicable
+  classes: [ADJ]
+- lexeme: ~A~aprensivo
+  classes: [ADJ]
+- lexeme: ~A~apropiado
+  classes: [ADJ]
+- lexeme: ~A~apto
+  classes: [ADJ]
+- lexeme: ~A~aterrador
+  classes: [ADJ]
+- lexeme: ~A~atlético
+  classes: [ADJ]
+- lexeme: ~A~atrevido
+  classes: [ADJ]
+- lexeme: ~A~ausente
+  classes: [ADJ]
+- lexeme: ~A~auténtico
+  classes: [ADJ]
+- lexeme: ~A~avaro
+  classes: [ADJ]
+- lexeme: ~A~azulado
+  classes: [ADJ]
+- lexeme: ~A~bajo
+  classes: [ADJ]
+- lexeme: ~A~barato
+  classes: [ADJ]
+- lexeme: ~A~bendito
+  classes: [ADJ]
+- lexeme: ~A~bienvenido
+  classes: [ADJ]
+- lexeme: ~A~bilingüe
+  classes: [ADJ]
+- lexeme: ~A~blando
+  classes: [ADJ]
+- lexeme: ~A~bonito
+  classes: [ADJ]
+- lexeme: ~A~bruto
+  classes: [ADJ]
+- lexeme: ~A~bueno
+  classes: [ADJ]
+- lexeme: ~A~bullanguero
+  classes: [ADJ]
+- lexeme: ~A~caliente
+  classes: [ADJ]
+- lexeme: ~A~cansado
+  classes: [ADJ]
+- lexeme: ~A~capaz
+  classes: [ADJ]
+- lexeme: ~A~caprichoso
+  classes: [ADJ]
+- lexeme: ~A~caro
+  classes: [ADJ]
+- lexeme: ~A~casado
+  classes: [ADJ]
+- lexeme: ~A~central
+  classes: [ADJ]
+- lexeme: ~A~cercano
+  classes: [ADJ]
+- lexeme: ~A~cerrado
+  classes: [ADJ]
+- lexeme: ~A~chango
+  classes: [ADJ]
+- lexeme: ~A~chico
+  classes: [ADJ]
+- lexeme: ~A~chocante
+  classes: [ADJ]
+- lexeme: ~A~civilizado
+  classes: [ADJ]
+- lexeme: ~A~claro
+  classes: [ADJ]
+- lexeme: ~A~clásico
+  classes: [ADJ]
+- lexeme: ~A~complejo
+  classes: [ADJ]
+- lexeme: ~A~confundido
+  classes: [ADJ]
+- lexeme: ~A~conocido
+  classes: [ADJ]
+- lexeme: ~A~contento
+  classes: [ADJ]
+- lexeme: ~A~correcto
+  classes: [ADJ]
+- lexeme: ~A~corto
+  classes: [ADJ]
+- lexeme: ~A~criminal
+  classes: [ADJ]
+- lexeme: ~A~cuidadoso
+  classes: [ADJ]
+- lexeme: ~A~cálido
+  classes: [ADJ]
+- lexeme: ~A~cándido
+  classes: [ADJ]
+- lexeme: ~A~cíclico
+  classes: [ADJ]
+- lexeme: ~A~cívico
+  classes: [ADJ]
+- lexeme: ~A~cómico
+  classes: [ADJ]
+- lexeme: ~A~cómodo
+  classes: [ADJ]
+- lexeme: ~A~dadivoso
+  classes: [ADJ]
+- lexeme: ~A~decente
+  classes: [ADJ]
+- lexeme: ~A~delgado
+  classes: [ADJ]
+- lexeme: ~A~delicioso
+  classes: [ADJ]
+- lexeme: ~A~derecho
+  classes: [ADJ]
+- lexeme: ~A~desconocido
+  classes: [ADJ]
+- lexeme: ~A~descubierto
+  classes: [ADJ]
+- lexeme: ~A~despierto
+  classes: [ADJ]
+- lexeme: ~A~despreciable
+  classes: [ADJ]
+- lexeme: ~A~destructible
+  classes: [ADJ]
+- lexeme: ~A~diferente
+  classes: [ADJ]
+- lexeme: ~A~difícil
+  classes: [ADJ]
+- lexeme: ~A~digestible
+  classes: [ADJ]
+- lexeme: ~A~digital
+  classes: [ADJ]
+- lexeme: ~A~digno
+  classes: [ADJ]
+- lexeme: ~A~divertido
+  classes: [ADJ]
+- lexeme: ~A~divino
+  classes: [ADJ]
+- lexeme: ~A~dogmático
+  classes: [ADJ]
+- lexeme: ~A~doloroso
+  classes: [ADJ]
+- lexeme: ~A~dominante
+  classes: [ADJ]
+- lexeme: ~A~dormido
+  classes: [ADJ]
+- lexeme: ~A~dulce
+  classes: [ADJ]
+- lexeme: ~A~duro
+  classes: [ADJ]
+- lexeme: ~A~débil
+  classes: [ADJ]
+- lexeme: ~A~dócil
+  classes: [ADJ]
+- lexeme: ~A~económico
+  classes: [ADJ]
+- lexeme: ~A~educado
+  classes: [ADJ]
+- lexeme: ~A~eficaz
+  classes: [ADJ]
+- lexeme: ~A~egoísta
+  classes: [ADJ]
+- lexeme: ~A~elegante
+  classes: [ADJ]
+- lexeme: ~A~elemental
+  classes: [ADJ]
+- lexeme: ~A~elevado
+  classes: [ADJ]
+- lexeme: ~A~elocuente
+  classes: [ADJ]
+- lexeme: ~A~elusivo
+  classes: [ADJ]
+- lexeme: ~A~embarazada
+  classes: [ADJ]
+- lexeme: ~A~emocionante
+  classes: [ADJ]
+- lexeme: ~A~encantado
+  classes: [ADJ]
+- lexeme: ~A~encerado
+  classes: [ADJ]
+- lexeme: ~A~encerrado
+  classes: [ADJ]
+- lexeme: ~A~enfermo
+  classes: [ADJ]
+- lexeme: ~A~enorme
+  classes: [ADJ]
+- lexeme: ~A~envidiable
+  classes: [ADJ]
+- lexeme: ~A~envidioso
+  classes: [ADJ]
+- lexeme: ~A~enérgico
+  classes: [ADJ]
+- lexeme: ~A~equivocado
+  classes: [ADJ]
+- lexeme: ~A~escaso
+  classes: [ADJ]
+- lexeme: ~A~escrito
+  classes: [ADJ]
+- lexeme: ~A~espantoso
+  classes: [ADJ]
+- lexeme: ~A~especial
+  classes: [ADJ]
+- lexeme: ~A~espeso
+  classes: [ADJ]
+- lexeme: ~A~espontáneo
+  classes: [ADJ]
+- lexeme: ~A~estupendo
+  classes: [ADJ]
+- lexeme: ~A~estúpido
+  classes: [ADJ]
+- lexeme: ~A~eventual
+  classes: [ADJ]
+- lexeme: ~A~evidente
+  classes: [ADJ]
+- lexeme: ~A~excelente
+  classes: [ADJ]
+- lexeme: ~A~exquisito
+  classes: [ADJ]
+- lexeme: ~A~extra
+  classes: [ADJ]
+- lexeme: ~A~extranjero
+  classes: [ADJ]
+- lexeme: ~A~extremo
+  classes: [ADJ]
+- lexeme: ~A~fabuloso
+  classes: [ADJ]
+- lexeme: ~A~falso
+  classes: [ADJ]
+- lexeme: ~A~familiar
+  classes: [ADJ]
+- lexeme: ~A~famoso
+  classes: [ADJ]
+- lexeme: ~A~fantástico
+  classes: [ADJ]
+- lexeme: ~A~fatal
+  classes: [ADJ]
+- lexeme: ~A~favorito
+  classes: [ADJ]
+- lexeme: ~A~fecundo
+  classes: [ADJ]
+- lexeme: ~A~federal
+  classes: [ADJ]
+- lexeme: ~A~feliz
+  classes: [ADJ]
+- lexeme: ~A~femenino
+  classes: [ADJ]
+- lexeme: ~A~feo
+  classes: [ADJ]
+- lexeme: ~A~fiel
+  classes: [ADJ]
+- lexeme: ~A~financiero
+  classes: [ADJ]
+- lexeme: ~A~fino
+  classes: [ADJ]
+- lexeme: ~A~flaco
+  classes: [ADJ]
+- lexeme: ~A~flagrante
+  classes: [ADJ]
+- lexeme: ~A~flexible
+  classes: [ADJ]
+- lexeme: ~A~flojo
+  classes: [ADJ]
+- lexeme: ~A~formidable
+  classes: [ADJ]
+- lexeme: ~A~franco
+  classes: [ADJ]
+- lexeme: ~A~fresco
+  classes: [ADJ]
+- lexeme: ~A~frito
+  classes: [ADJ]
+- lexeme: ~A~frío
+  classes: [ADJ]
+- lexeme: ~A~frívolo
+  classes: [ADJ]
+- lexeme: ~A~fuerte
+  classes: [ADJ]
+- lexeme: ~A~fundido
+  classes: [ADJ]
+- lexeme: ~A~fértil
+  classes: [ADJ]
+- lexeme: ~A~fónico
+  classes: [ADJ]
+- lexeme: ~A~gastado
+  classes: [ADJ]
+- lexeme: ~A~general
+  classes: [ADJ]
+- lexeme: ~A~generoso
+  classes: [ADJ]
+- lexeme: ~A~genio
+  classes: [ADJ]
+- lexeme: ~A~genérico
+  classes: [ADJ]
+- lexeme: ~A~genético
+  classes: [ADJ]
+- lexeme: ~A~geriátrico
+  classes: [ADJ]
+- lexeme: ~A~glorioso
+  classes: [ADJ]
+- lexeme: ~A~gordo
+  classes: [ADJ]
+- lexeme: ~A~grande
+  classes: [ADJ]
+- lexeme: ~A~grave
+  classes: [ADJ]
+- lexeme: ~A~grosero
+  classes: [ADJ]
+- lexeme: ~A~grueso
+  classes: [ADJ]
+- lexeme: ~A~guapo
+  classes: [ADJ]
+- lexeme: ~A~hablado
+  classes: [ADJ]
+- lexeme: ~A~hambriento
+  classes: [ADJ]
+- lexeme: ~A~hecho a mano
+  classes: [ADJ]
+- lexeme: ~A~helado
+  classes: [ADJ]
+- lexeme: ~A~hermoso
+  classes: [ADJ]
+- lexeme: ~A~hermético
+  classes: [ADJ]
+- lexeme: ~A~hinchado
+  classes: [ADJ]
+- lexeme: ~A~hipócrita
+  classes: [ADJ]
+- lexeme: ~A~histórico
+  classes: [ADJ]
+- lexeme: ~A~honesto
+  classes: [ADJ]
+- lexeme: ~A~horrible
+  classes: [ADJ]
+- lexeme: ~A~humano
+  classes: [ADJ]
+- lexeme: ~A~hábil
+  classes: [ADJ]
+- lexeme: ~A~húmedo
+  classes: [ADJ]
+- lexeme: ~A~ignorante
+  classes: [ADJ]
+- lexeme: ~A~ilegal
+  classes: [ADJ]
+- lexeme: ~A~ilegible
+  classes: [ADJ]
+- lexeme: ~A~iluminado
+  classes: [ADJ]
+- lexeme: ~A~ilógico
+  classes: [ADJ]
+- lexeme: ~A~imaginario
+  classes: [ADJ]
+- lexeme: ~A~impaciente
+  classes: [ADJ]
+- lexeme: ~A~impar
+  classes: [ADJ]
+- lexeme: ~A~imparcial
+  classes: [ADJ]
+- lexeme: ~A~impenetrable
+  classes: [ADJ]
+- lexeme: ~A~imperdonable
+  classes: [ADJ]
+- lexeme: ~A~importante
+  classes: [ADJ]
+- lexeme: ~A~imprudente
+  classes: [ADJ]
+- lexeme: ~A~inalámbrico
+  classes: [ADJ]
+- lexeme: ~A~incalculable
+  classes: [ADJ]
+- lexeme: ~A~incoherente
+  classes: [ADJ]
+- lexeme: ~A~incomparable
+  classes: [ADJ]
+- lexeme: ~A~incompatible
+  classes: [ADJ]
+- lexeme: ~A~incompetente
+  classes: [ADJ]
+- lexeme: ~A~incompleto
+  classes: [ADJ]
+- lexeme: ~A~inconveniente
+  classes: [ADJ]
+- lexeme: ~A~incorrecto
+  classes: [ADJ]
+- lexeme: ~A~incrasto
+  classes: [ADJ]
+- lexeme: ~A~incrédulo
+  classes: [ADJ]
+- lexeme: ~A~incómodo
+  classes: [ADJ]
+- lexeme: ~A~indebido
+  classes: [ADJ]
+- lexeme: ~A~indecente
+  classes: [ADJ]
+- lexeme: ~A~indefinido
+  classes: [ADJ]
+- lexeme: ~A~indivisible
+  classes: [ADJ]
+- lexeme: ~A~indígena
+  classes: [ADJ]
+- lexeme: ~A~inepto
+  classes: [ADJ]
+- lexeme: ~A~infantil
+  classes: [ADJ]
+- lexeme: ~A~infeccioso
+  classes: [ADJ]
+- lexeme: ~A~infiel
+  classes: [ADJ]
+- lexeme: ~A~informal
+  classes: [ADJ]
+- lexeme: ~A~injusto
+  classes: [ADJ]
+- lexeme: ~A~inquieto
+  classes: [ADJ]
+- lexeme: ~A~inteligente
+  classes: [ADJ]
+- lexeme: ~A~interesante
+  classes: [ADJ]
+- lexeme: ~A~invisible
+  classes: [ADJ]
+- lexeme: ~A~inédito
+  classes: [ADJ]
+- lexeme: ~A~inútil
+  classes: [ADJ]
+- lexeme: ~A~irritable
+  classes: [ADJ]
+- lexeme: ~A~izquierdo
+  classes: [ADJ]
+- lexeme: ~A~joven
+  classes: [ADJ]
+- lexeme: ~A~jovial
+  classes: [ADJ]
+- lexeme: ~A~jubiloso
+  classes: [ADJ]
+- lexeme: ~A~judicial
+  classes: [ADJ]
+- lexeme: ~A~juguetón
+  classes: [ADJ]
+- lexeme: ~A~juicioso
+  classes: [ADJ]
+- lexeme: ~A~junto
+  classes: [ADJ]
+- lexeme: ~A~jurado
+  classes: [ADJ]
+- lexeme: ~A~justo
+  classes: [ADJ]
+- lexeme: ~A~juvenil
+  classes: [ADJ]
+- lexeme: ~A~lamentable
+  classes: [ADJ]
+- lexeme: ~A~largo
+  classes: [ADJ]
+- lexeme: ~A~lavable
+  classes: [ADJ]
+- lexeme: ~A~leal
+  classes: [ADJ]
+- lexeme: ~A~lejano
+  classes: [ADJ]
+- lexeme: ~A~lento
+  classes: [ADJ]
+- lexeme: ~A~libre
+  classes: [ADJ]
+- lexeme: ~A~limpio
+  classes: [ADJ]
+- lexeme: ~A~liso
+  classes: [ADJ]
+- lexeme: ~A~listo
+  classes: [ADJ]
+- lexeme: ~A~liviano
+  classes: [ADJ]
+- lexeme: ~A~llamativo
+  classes: [ADJ]
+- lexeme: ~A~llano
+  classes: [ADJ]
+- lexeme: ~A~lleno
+  classes: [ADJ]
+- lexeme: ~A~llorón
+  classes: [ADJ]
+- lexeme: ~A~lluvioso
+  classes: [ADJ]
+- lexeme: ~A~loco
+  classes: [ADJ]
+- lexeme: ~A~locuaz
+  classes: [ADJ]
+- lexeme: ~A~luminoso
+  classes: [ADJ]
+- lexeme: ~A~lunático
+  classes: [ADJ]
+- lexeme: ~A~lógico
+  classes: [ADJ]
+- lexeme: ~A~maduro
+  classes: [ADJ]
+- lexeme: ~A~magnético
+  classes: [ADJ]
+- lexeme: ~A~magnífico
+  classes: [ADJ]
+- lexeme: ~A~majadero
+  classes: [ADJ]
+- lexeme: ~A~majestuoso
+  classes: [ADJ]
+- lexeme: ~A~maligno
+  classes: [ADJ]
+- lexeme: ~A~malo
+  classes: [ADJ]
+- lexeme: ~A~malvado
+  classes: [ADJ]
+- lexeme: ~A~mandón
+  classes: [ADJ]
+- lexeme: ~A~manejable
+  classes: [ADJ]
+- lexeme: ~A~manuscrito
+  classes: [ADJ]
+- lexeme: ~A~mareado
+  classes: [ADJ]
+- lexeme: ~A~marino
+  classes: [ADJ]
+- lexeme: ~A~mayor
+  classes: [ADJ]
+- lexeme: ~A~mejor
+  classes: [ADJ]
+- lexeme: ~A~menor
+  classes: [ADJ]
+- lexeme: ~A~miedoso
+  classes: [ADJ]
+- lexeme: ~A~mismo
+  classes: [ADJ]
+- lexeme: ~A~mojado
+  classes: [ADJ]
+- lexeme: ~A~moreno
+  classes: [ADJ]
+- lexeme: ~A~moroso
+  classes: [ADJ]
+- lexeme: ~A~mucho
+  classes: [ADJ]
+- lexeme: ~A~muerto
+  classes: [ADJ]
+- lexeme: ~A~musical
+  classes: [ADJ]
+- lexeme: ~A~mínimo
+  classes: [ADJ]
+- lexeme: ~A~nacional
+  classes: [ADJ]
+- lexeme: ~A~necesario
+  classes: [ADJ]
+- lexeme: ~A~necio
+  classes: [ADJ]
+- lexeme: ~A~ninguno
+  classes: [ADJ]
+- lexeme: ~A~novato
+  classes: [ADJ]
+- lexeme: ~A~novedoso
+  classes: [ADJ]
+- lexeme: ~A~nublado
+  classes: [ADJ]
+- lexeme: ~A~nuevo
+  classes: [ADJ]
+- lexeme: ~A~obstinado
+  classes: [ADJ]
+- lexeme: ~A~ocupado
+  classes: [ADJ]
+- lexeme: ~A~oloroso
+  classes: [ADJ]
+- lexeme: ~A~optimista
+  classes: [ADJ]
+- lexeme: ~A~paciente
+  classes: [ADJ]
+- lexeme: ~A~pagado
+  classes: [ADJ]
+- lexeme: ~A~paralelo
+  classes: [ADJ]
+- lexeme: ~A~parcial
+  classes: [ADJ]
+- lexeme: ~A~parecido
+  classes: [ADJ]
+- lexeme: ~A~particular
+  classes: [ADJ]
+- lexeme: ~A~pasado
+  classes: [ADJ]
+- lexeme: ~A~pasajero
+  classes: [ADJ]
+- lexeme: ~A~pastoral
+  classes: [ADJ]
+- lexeme: ~A~pastoso
+  classes: [ADJ]
+- lexeme: ~A~paternal
+  classes: [ADJ]
+- lexeme: ~A~patológico
+  classes: [ADJ]
+- lexeme: ~A~patriótico
+  classes: [ADJ]
+- lexeme: ~A~pegajoso
+  classes: [ADJ]
+- lexeme: ~A~pelado
+  classes: [ADJ]
+- lexeme: ~A~peligroso
+  classes: [ADJ]
+- lexeme: ~A~pelirrojo
+  classes: [ADJ]
+- lexeme: ~A~peludo
+  classes: [ADJ]
+- lexeme: ~A~penoso
+  classes: [ADJ]
+- lexeme: ~A~pensativo
+  classes: [ADJ]
+- lexeme: ~A~pequeño
+  classes: [ADJ]
+- lexeme: ~A~perezoso
+  classes: [ADJ]
+- lexeme: ~A~perfecto
+  classes: [ADJ]
+- lexeme: ~A~perjudicial
+  classes: [ADJ]
+- lexeme: ~A~permanente
+  classes: [ADJ]
+- lexeme: ~A~persuasivo
+  classes: [ADJ]
+- lexeme: ~A~pesado
+  classes: [ADJ]
+- lexeme: ~A~piadoso
+  classes: [ADJ]
+- lexeme: ~A~picante
+  classes: [ADJ]
+- lexeme: ~A~pintoresco
+  classes: [ADJ]
+- lexeme: ~A~plano
+  classes: [ADJ]
+- lexeme: ~A~plácido
+  classes: [ADJ]
+- lexeme: ~A~pobre
+  classes: [ADJ]
+- lexeme: ~A~poco
+  classes: [ADJ]
+- lexeme: ~A~podrido
+  classes: [ADJ]
+- lexeme: ~A~policiaco
+  classes: [ADJ]
+- lexeme: ~A~popular
+  classes: [ADJ]
+- lexeme: ~A~poético
+  classes: [ADJ]
+- lexeme: ~A~precavido
+  classes: [ADJ]
+- lexeme: ~A~preferido
+  classes: [ADJ]
+- lexeme: ~A~preocupado
+  classes: [ADJ]
+- lexeme: ~A~preparado
+  classes: [ADJ]
+- lexeme: ~A~presente
+  classes: [ADJ]
+- lexeme: ~A~primero
+  classes: [ADJ]
+- lexeme: ~A~privado
+  classes: [ADJ]
+- lexeme: ~A~privilegiado
+  classes: [ADJ]
+- lexeme: ~A~profundo
+  classes: [ADJ]
+- lexeme: ~A~puntual
+  classes: [ADJ]
+- lexeme: ~A~puro
+  classes: [ADJ]
+- lexeme: ~A~quebrado
+  classes: [ADJ]
+- lexeme: ~A~quemado
+  classes: [ADJ]
+- lexeme: ~A~querido
+  classes: [ADJ]
+- lexeme: ~A~quieto
+  classes: [ADJ]
+- lexeme: ~A~rabioso
+  classes: [ADJ]
+- lexeme: ~A~radial
+  classes: [ADJ]
+- lexeme: ~A~rancio
+  classes: [ADJ]
+- lexeme: ~A~razonable
+  classes: [ADJ]
+- lexeme: ~A~rebelde
+  classes: [ADJ]
+- lexeme: ~A~rebosante
+  classes: [ADJ]
+- lexeme: ~A~recargable
+  classes: [ADJ]
+- lexeme: ~A~receloso
+  classes: [ADJ]
+- lexeme: ~A~receptivo
+  classes: [ADJ]
+- lexeme: ~A~reciclable
+  classes: [ADJ]
+- lexeme: ~A~reciente
+  classes: [ADJ]
+- lexeme: ~A~recomendable
+  classes: [ADJ]
+- lexeme: ~A~reconocido
+  classes: [ADJ]
+- lexeme: ~A~redundante
+  classes: [ADJ]
+- lexeme: ~A~reemplazable
+  classes: [ADJ]
+- lexeme: ~A~refinado
+  classes: [ADJ]
+- lexeme: ~A~regional
+  classes: [ADJ]
+- lexeme: ~A~repugnante
+  classes: [ADJ]
+- lexeme: ~A~resonante
+  classes: [ADJ]
+- lexeme: ~A~respetuoso
+  classes: [ADJ]
+- lexeme: ~A~responsable
+  classes: [ADJ]
+- lexeme: ~A~reverente
+  classes: [ADJ]
+- lexeme: ~A~rico
+  classes: [ADJ]
+- lexeme: ~A~ridículo
+  classes: [ADJ]
+- lexeme: ~A~robusto
+  classes: [ADJ]
+- lexeme: ~A~romántico
+  classes: [ADJ]
+- lexeme: ~A~ronco
+  classes: [ADJ]
+- lexeme: ~A~rubio
+  classes: [ADJ]
+- lexeme: ~A~rápido
+  classes: [ADJ]
+- lexeme: ~A~sabroso
+  classes: [ADJ]
+- lexeme: ~A~saludable
+  classes: [ADJ]
+- lexeme: ~A~sangriento
+  classes: [ADJ]
+- lexeme: ~A~santo
+  classes: [ADJ]
+- lexeme: ~A~seco
+  classes: [ADJ]
+- lexeme: ~A~seguro
+  classes: [ADJ]
+- lexeme: ~A~selecto
+  classes: [ADJ]
+- lexeme: ~A~serio
+  classes: [ADJ]
+- lexeme: ~A~simple
+  classes: [ADJ]
+- lexeme: ~A~simpático
+  classes: [ADJ]
+- lexeme: ~A~solo
+  classes: [ADJ]
+- lexeme: ~A~soltero
+  classes: [ADJ]
+- lexeme: ~A~suave
+  classes: [ADJ]
+- lexeme: ~A~sucio
+  classes: [ADJ]
+- lexeme: ~A~superficial
+  classes: [ADJ]
+- lexeme: ~A~sólido
+  classes: [ADJ]
+- lexeme: ~A~tacaño
+  classes: [ADJ]
+- lexeme: ~A~tercero
+  classes: [ADJ]
+- lexeme: ~A~todo
+  classes: [ADJ]
+- lexeme: ~A~tolerante
+  classes: [ADJ]
+- lexeme: ~A~tonto
+  classes: [ADJ]
+- lexeme: ~A~torcido
+  classes: [ADJ]
+- lexeme: ~A~transparente
+  classes: [ADJ]
+- lexeme: ~A~triste
+  classes: [ADJ]
+- lexeme: ~A~turbio
+  classes: [ADJ]
+- lexeme: ~A~turbulento
+  classes: [ADJ]
+- lexeme: ~A~ultrajoso
+  classes: [ADJ]
+- lexeme: ~A~uniforme
+  classes: [ADJ]
+- lexeme: ~A~universal
+  classes: [ADJ]
+- lexeme: ~A~unánime
+  classes: [ADJ]
+- lexeme: ~A~usurero
+  classes: [ADJ]
+- lexeme: ~A~vacío
+  classes: [ADJ]
+- lexeme: ~A~valiente
+  classes: [ADJ]
+- lexeme: ~A~vario
+  classes: [ADJ]
+- lexeme: ~A~verdadero
+  classes: [ADJ]
+- lexeme: ~A~viejo
+  classes: [ADJ]
+- lexeme: ~A~vigoroso
+  classes: [ADJ]
+- lexeme: ~A~violento
+  classes: [ADJ]
+- lexeme: ~A~vivo
+  classes: [ADJ]
+- lexeme: ~A~zozobroso
+  classes: [ADJ]
+- lexeme: ~A~áspero
+  classes: [ADJ]
+- lexeme: ~A~único
+  classes: [ADJ]
+- lexeme: ~A~útil
+  classes: [ADJ]
+# Invariant adjectives
+- word: cortés
+  classes: [ADJ]
+- word: gratis
+  classes: [ADJ]
+# Adjectives in ADJ_MS
+- word: abierto
+  classes: [~A~abierto, ADJ_MS]
+- word: aburrido
+  classes: [~A~aburrido, ADJ_MS]
+- word: activo
+  classes: [~A~activo, ADJ_MS]
+- word: afligido
+  classes: [~A~afligido, ADJ_MS]
+- word: agradecido
+  classes: [~A~agradecido, ADJ_MS]
+- word: alguno
+  classes: [~A~alguno, ADJ_MS]
+- word: algún
+  classes: [~A~alguno, ADJ_MS]
+- word: alto
+  classes: [~A~alto, ADJ_MS]
+- word: amargo
+  classes: [~A~amargo, ADJ_MS]
+- word: ancho
+  classes: [~A~ancho, ADJ_MS]
+- word: anciano
+  classes: [~A~anciano, ADJ_MS]
+- word: angosto
+  classes: [~A~angosto, ADJ_MS]
+- word: angélico
+  classes: [~A~angélico, ADJ_MS]
+- word: antiguo
+  classes: [~A~antiguo, ADJ_MS]
+- word: antipático
+  classes: [~A~antipático, ADJ_MS]
+- word: apenado
+  classes: [~A~apenado, ADJ_MS]
+- word: apetitoso
+  classes: [~A~apetitoso, ADJ_MS]
+- word: aprensivo
+  classes: [~A~aprensivo, ADJ_MS]
+- word: apropiado
+  classes: [~A~apropiado, ADJ_MS]
+- word: apto
+  classes: [~A~apto, ADJ_MS]
+- word: aterrador
+  classes: [~A~aterrador, ADJ_MS]
+- word: atlético
+  classes: [~A~atlético, ADJ_MS]
+- word: atrevido
+  classes: [~A~atrevido, ADJ_MS]
+- word: auténtico
+  classes: [~A~auténtico, ADJ_MS]
+- word: avaro
+  classes: [~A~avaro, ADJ_MS]
+- word: azulado
+  classes: [~A~azulado, ADJ_MS]
+- word: bajo
+  classes: [~A~bajo, ADJ_MS]
+- word: barato
+  classes: [~A~barato, ADJ_MS]
+- word: bendito
+  classes: [~A~bendito, ADJ_MS]
+- word: bienvenido
+  classes: [~A~bienvenido, ADJ_MS]
+- word: blando
+  classes: [~A~blando, ADJ_MS]
+- word: bonito
+  classes: [~A~bonito, ADJ_MS]
+- word: bruto
+  classes: [~A~bruto, ADJ_MS]
+- word: buen
+  classes: [~A~bueno, ADJ_MS]
+- word: bueno
+  classes: [~A~bueno, ADJ_MS]
+- word: bullanguero
+  classes: [~A~bullanguero, ADJ_MS]
+- word: cansado
+  classes: [~A~cansado, ADJ_MS]
+- word: caprichoso
+  classes: [~A~caprichoso, ADJ_MS]
+- word: caro
+  classes: [~A~caro, ADJ_MS]
+- word: casado
+  classes: [~A~casado, ADJ_MS]
+- word: cercano
+  classes: [~A~cercano, ADJ_MS]
+- word: cerrado
+  classes: [~A~cerrado, ADJ_MS]
+- word: chango
+  classes: [~A~chango, ADJ_MS]
+- word: chico
+  classes: [~A~chico, ADJ_MS]
+- word: civilizado
+  classes: [~A~civilizado, ADJ_MS]
+- word: claro
+  classes: [~A~claro, ADJ_MS]
+- word: clásico
+  classes: [~A~clásico, ADJ_MS]
+- word: complejo
+  classes: [~A~complejo, ADJ_MS]
+- word: confundido
+  classes: [~A~confundido, ADJ_MS]
+- word: conocido
+  classes: [~A~conocido, ADJ_MS]
+- word: contento
+  classes: [~A~contento, ADJ_MS]
+- word: correcto
+  classes: [~A~correcto, ADJ_MS]
+- word: corto
+  classes: [~A~corto, ADJ_MS]
+- word: cuidadoso
+  classes: [~A~cuidadoso, ADJ_MS]
+- word: cálido
+  classes: [~A~cálido, ADJ_MS]
+- word: cándido
+  classes: [~A~cándido, ADJ_MS]
+- word: cíclico
+  classes: [~A~cíclico, ADJ_MS]
+- word: cívico
+  classes: [~A~cívico, ADJ_MS]
+- word: cómico
+  classes: [~A~cómico, ADJ_MS]
+- word: cómodo
+  classes: [~A~cómodo, ADJ_MS]
+- word: dadivoso
+  classes: [~A~dadivoso, ADJ_MS]
+- word: delgado
+  classes: [~A~delgado, ADJ_MS]
+- word: delicioso
+  classes: [~A~delicioso, ADJ_MS]
+- word: derecho
+  classes: [~A~derecho, ADJ_MS]
+- word: desconocido
+  classes: [~A~desconocido, ADJ_MS]
+- word: descubierto
+  classes: [~A~descubierto, ADJ_MS]
+- word: despierto
+  classes: [~A~despierto, ADJ_MS]
+- word: digno
+  classes: [~A~digno, ADJ_MS]
+- word: divertido
+  classes: [~A~divertido, ADJ_MS]
+- word: divino
+  classes: [~A~divino, ADJ_MS]
+- word: dogmático
+  classes: [~A~dogmático, ADJ_MS]
+- word: doloroso
+  classes: [~A~doloroso, ADJ_MS]
+- word: dormido
+  classes: [~A~dormido, ADJ_MS]
+- word: duro
+  classes: [~A~duro, ADJ_MS]
+- word: económico
+  classes: [~A~económico, ADJ_MS]
+- word: educado
+  classes: [~A~educado, ADJ_MS]
+- word: elevado
+  classes: [~A~elevado, ADJ_MS]
+- word: elusivo
+  classes: [~A~elusivo, ADJ_MS]
+- word: encantado
+  classes: [~A~encantado, ADJ_MS]
+- word: encerado
+  classes: [~A~encerado, ADJ_MS]
+- word: encerrado
+  classes: [~A~encerrado, ADJ_MS]
+- word: enfermo
+  classes: [~A~enfermo, ADJ_MS]
+- word: envidioso
+  classes: [~A~envidioso, ADJ_MS]
+- word: enérgico
+  classes: [~A~enérgico, ADJ_MS]
+- word: equivocado
+  classes: [~A~equivocado, ADJ_MS]
+- word: escaso
+  classes: [~A~escaso, ADJ_MS]
+- word: escrito
+  classes: [~A~escrito, ADJ_MS]
+- word: espantoso
+  classes: [~A~espantoso, ADJ_MS]
+- word: espeso
+  classes: [~A~espeso, ADJ_MS]
+- word: espontáneo
+  classes: [~A~espontáneo, ADJ_MS]
+- word: estupendo
+  classes: [~A~estupendo, ADJ_MS]
+- word: estúpido
+  classes: [~A~estúpido, ADJ_MS]
+- word: exquisito
+  classes: [~A~exquisito, ADJ_MS]
+- word: extranjero
+  classes: [~A~extranjero, ADJ_MS]
+- word: extremo
+  classes: [~A~extremo, ADJ_MS]
+- word: fabuloso
+  classes: [~A~fabuloso, ADJ_MS]
+- word: falso
+  classes: [~A~falso, ADJ_MS]
+- word: famoso
+  classes: [~A~famoso, ADJ_MS]
+- word: fantástico
+  classes: [~A~fantástico, ADJ_MS]
+- word: favorito
+  classes: [~A~favorito, ADJ_MS]
+- word: fecundo
+  classes: [~A~fecundo, ADJ_MS]
+- word: femenino
+  classes: [~A~femenino, ADJ_MS]
+- word: feo
+  classes: [~A~feo, ADJ_MS]
+- word: financiero
+  classes: [~A~financiero, ADJ_MS]
+- word: fino
+  classes: [~A~fino, ADJ_MS]
+- word: flaco
+  classes: [~A~flaco, ADJ_MS]
+- word: flojo
+  classes: [~A~flojo, ADJ_MS]
+- word: franco
+  classes: [~A~franco, ADJ_MS]
+- word: fresco
+  classes: [~A~fresco, ADJ_MS]
+- word: frito
+  classes: [~A~frito, ADJ_MS]
+- word: frío
+  classes: [~A~frío, ADJ_MS]
+- word: frívolo
+  classes: [~A~frívolo, ADJ_MS]
+- word: fundido
+  classes: [~A~fundido, ADJ_MS]
+- word: fónico
+  classes: [~A~fónico, ADJ_MS]
+- word: gastado
+  classes: [~A~gastado, ADJ_MS]
+- word: generoso
+  classes: [~A~generoso, ADJ_MS]
+- word: genio
+  classes: [~A~genio, ADJ_MS]
+- word: genérico
+  classes: [~A~genérico, ADJ_MS]
+- word: genético
+  classes: [~A~genético, ADJ_MS]
+- word: geriátrico
+  classes: [~A~geriátrico, ADJ_MS]
+- word: glorioso
+  classes: [~A~glorioso, ADJ_MS]
+- word: gordo
+  classes: [~A~gordo, ADJ_MS]
+- word: grosero
+  classes: [~A~grosero, ADJ_MS]
+- word: grueso
+  classes: [~A~grueso, ADJ_MS]
+- word: guapo
+  classes: [~A~guapo, ADJ_MS]
+- word: hablado
+  classes: [~A~hablado, ADJ_MS]
+- word: hambriento
+  classes: [~A~hambriento, ADJ_MS]
+- word: hecho a mano
+  classes: [~A~hecho a mano, ADJ_MS]
+- word: helado
+  classes: [~A~helado, ADJ_MS]
+- word: hermoso
+  classes: [~A~hermoso, ADJ_MS]
+- word: hermético
+  classes: [~A~hermético, ADJ_MS]
+- word: hinchado
+  classes: [~A~hinchado, ADJ_MS]
+- word: histórico
+  classes: [~A~histórico, ADJ_MS]
+- word: honesto
+  classes: [~A~honesto, ADJ_MS]
+- word: humano
+  classes: [~A~humano, ADJ_MS]
+- word: húmedo
+  classes: [~A~húmedo, ADJ_MS]
+- word: iluminado
+  classes: [~A~iluminado, ADJ_MS]
+- word: ilógico
+  classes: [~A~ilógico, ADJ_MS]
+- word: imaginario
+  classes: [~A~imaginario, ADJ_MS]
+- word: inalámbrico
+  classes: [~A~inalámbrico, ADJ_MS]
+- word: incompleto
+  classes: [~A~incompleto, ADJ_MS]
+- word: incorrecto
+  classes: [~A~incorrecto, ADJ_MS]
+- word: incrasto
+  classes: [~A~incrasto, ADJ_MS]
+- word: incrédulo
+  classes: [~A~incrédulo, ADJ_MS]
+- word: incómodo
+  classes: [~A~incómodo, ADJ_MS]
+- word: indebido
+  classes: [~A~indebido, ADJ_MS]
+- word: indefinido
+  classes: [~A~indefinido, ADJ_MS]
+- word: inepto
+  classes: [~A~inepto, ADJ_MS]
+- word: infeccioso
+  classes: [~A~infeccioso, ADJ_MS]
+- word: injusto
+  classes: [~A~injusto, ADJ_MS]
+- word: inquieto
+  classes: [~A~inquieto, ADJ_MS]
+- word: inédito
+  classes: [~A~inédito, ADJ_MS]
+- word: izquierdo
+  classes: [~A~izquierdo, ADJ_MS]
+- word: jubiloso
+  classes: [~A~jubiloso, ADJ_MS]
+- word: juicioso
+  classes: [~A~juicioso, ADJ_MS]
+- word: junto
+  classes: [~A~junto, ADJ_MS]
+- word: jurado
+  classes: [~A~jurado, ADJ_MS]
+- word: justo
+  classes: [~A~justo, ADJ_MS]
+- word: largo
+  classes: [~A~largo, ADJ_MS]
+- word: lejano
+  classes: [~A~lejano, ADJ_MS]
+- word: lento
+  classes: [~A~lento, ADJ_MS]
+- word: limpio
+  classes: [~A~limpio, ADJ_MS]
+- word: liso
+  classes: [~A~liso, ADJ_MS]
+- word: listo
+  classes: [~A~listo, ADJ_MS]
+- word: liviano
+  classes: [~A~liviano, ADJ_MS]
+- word: llamativo
+  classes: [~A~llamativo, ADJ_MS]
+- word: llano
+  classes: [~A~llano, ADJ_MS]
+- word: lleno
+  classes: [~A~lleno, ADJ_MS]
+- word: lluvioso
+  classes: [~A~lluvioso, ADJ_MS]
+- word: loco
+  classes: [~A~loco, ADJ_MS]
+- word: luminoso
+  classes: [~A~luminoso, ADJ_MS]
+- word: lunático
+  classes: [~A~lunático, ADJ_MS]
+- word: lógico
+  classes: [~A~lógico, ADJ_MS]
+- word: maduro
+  classes: [~A~maduro, ADJ_MS]
+- word: magnético
+  classes: [~A~magnético, ADJ_MS]
+- word: magnífico
+  classes: [~A~magnífico, ADJ_MS]
+- word: majadero
+  classes: [~A~majadero, ADJ_MS]
+- word: majestuoso
+  classes: [~A~majestuoso, ADJ_MS]
+- word: maligno
+  classes: [~A~maligno, ADJ_MS]
+- word: malo
+  classes: [~A~malo, ADJ_MS]
+- word: malvado
+  classes: [~A~malvado, ADJ_MS]
+- word: manuscrito
+  classes: [~A~manuscrito, ADJ_MS]
+- word: mareado
+  classes: [~A~mareado, ADJ_MS]
+- word: marino
+  classes: [~A~marino, ADJ_MS]
+- word: miedoso
+  classes: [~A~miedoso, ADJ_MS]
+- word: mismo
+  classes: [~A~mismo, ADJ_MS]
+- word: mojado
+  classes: [~A~mojado, ADJ_MS]
+- word: moreno
+  classes: [~A~moreno, ADJ_MS]
+- word: moroso
+  classes: [~A~moroso, ADJ_MS]
+- word: mucho
+  classes: [~A~mucho, ADJ_MS]
+- word: muerto
+  classes: [~A~muerto, ADJ_MS]
+- word: mínimo
+  classes: [~A~mínimo, ADJ_MS]
+- word: necesario
+  classes: [~A~necesario, ADJ_MS]
+- word: necio
+  classes: [~A~necio, ADJ_MS]
+- word: ninguno
+  classes: [~A~ninguno, ADJ_MS]
+- word: ningún
+  classes: [~A~ninguno, ADJ_MS]
+- word: novato
+  classes: [~A~novato, ADJ_MS]
+- word: novedoso
+  classes: [~A~novedoso, ADJ_MS]
+- word: nublado
+  classes: [~A~nublado, ADJ_MS]
+- word: nuevo
+  classes: [~A~nuevo, ADJ_MS]
+- word: obstinado
+  classes: [~A~obstinado, ADJ_MS]
+- word: ocupado
+  classes: [~A~ocupado, ADJ_MS]
+- word: oloroso
+  classes: [~A~oloroso, ADJ_MS]
+- word: pagado
+  classes: [~A~pagado, ADJ_MS]
+- word: paralelo
+  classes: [~A~paralelo, ADJ_MS]
+- word: parecido
+  classes: [~A~parecido, ADJ_MS]
+- word: pasado
+  classes: [~A~pasado, ADJ_MS]
+- word: pasajero
+  classes: [~A~pasajero, ADJ_MS]
+- word: pastoso
+  classes: [~A~pastoso, ADJ_MS]
+- word: patológico
+  classes: [~A~patológico, ADJ_MS]
+- word: patriótico
+  classes: [~A~patriótico, ADJ_MS]
+- word: pegajoso
+  classes: [~A~pegajoso, ADJ_MS]
+- word: pelado
+  classes: [~A~pelado, ADJ_MS]
+- word: peligroso
+  classes: [~A~peligroso, ADJ_MS]
+- word: pelirrojo
+  classes: [~A~pelirrojo, ADJ_MS]
+- word: peludo
+  classes: [~A~peludo, ADJ_MS]
+- word: penoso
+  classes: [~A~penoso, ADJ_MS]
+- word: pensativo
+  classes: [~A~pensativo, ADJ_MS]
+- word: pequeño
+  classes: [~A~pequeño, ADJ_MS]
+- word: perezoso
+  classes: [~A~perezoso, ADJ_MS]
+- word: perfecto
+  classes: [~A~perfecto, ADJ_MS]
+- word: persuasivo
+  classes: [~A~persuasivo, ADJ_MS]
+- word: pesado
+  classes: [~A~pesado, ADJ_MS]
+- word: piadoso
+  classes: [~A~piadoso, ADJ_MS]
+- word: pintoresco
+  classes: [~A~pintoresco, ADJ_MS]
+- word: plano
+  classes: [~A~plano, ADJ_MS]
+- word: plácido
+  classes: [~A~plácido, ADJ_MS]
+- word: poco
+  classes: [~A~poco, ADJ_MS]
+- word: podrido
+  classes: [~A~podrido, ADJ_MS]
+- word: policiaco
+  classes: [~A~policiaco, ADJ_MS]
+- word: poético
+  classes: [~A~poético, ADJ_MS]
+- word: precavido
+  classes: [~A~precavido, ADJ_MS]
+- word: preferido
+  classes: [~A~preferido, ADJ_MS]
+- word: preocupado
+  classes: [~A~preocupado, ADJ_MS]
+- word: preparado
+  classes: [~A~preparado, ADJ_MS]
+- word: primer
+  classes: [~A~primero, ADJ_MS]
+- word: primero
+  classes: [~A~primero, ADJ_MS]
+- word: privado
+  classes: [~A~privado, ADJ_MS]
+- word: privilegiado
+  classes: [~A~privilegiado, ADJ_MS]
+- word: profundo
+  classes: [~A~profundo, ADJ_MS]
+- word: puro
+  classes: [~A~puro, ADJ_MS]
+- word: quebrado
+  classes: [~A~quebrado, ADJ_MS]
+- word: quemado
+  classes: [~A~quemado, ADJ_MS]
+- word: querido
+  classes: [~A~querido, ADJ_MS]
+- word: quieto
+  classes: [~A~quieto, ADJ_MS]
+- word: rabioso
+  classes: [~A~rabioso, ADJ_MS]
+- word: rancio
+  classes: [~A~rancio, ADJ_MS]
+- word: receloso
+  classes: [~A~receloso, ADJ_MS]
+- word: receptivo
+  classes: [~A~receptivo, ADJ_MS]
+- word: reconocido
+  classes: [~A~reconocido, ADJ_MS]
+- word: refinado
+  classes: [~A~refinado, ADJ_MS]
+- word: respetuoso
+  classes: [~A~respetuoso, ADJ_MS]
+- word: rico
+  classes: [~A~rico, ADJ_MS]
+- word: ridículo
+  classes: [~A~ridículo, ADJ_MS]
+- word: robusto
+  classes: [~A~robusto, ADJ_MS]
+- word: romántico
+  classes: [~A~romántico, ADJ_MS]
+- word: ronco
+  classes: [~A~ronco, ADJ_MS]
+- word: rubio
+  classes: [~A~rubio, ADJ_MS]
+- word: rápido
+  classes: [~A~rápido, ADJ_MS]
+- word: sabroso
+  classes: [~A~sabroso, ADJ_MS]
+- word: sangriento
+  classes: [~A~sangriento, ADJ_MS]
+- word: santo
+  classes: [~A~santo, ADJ_MS]
+- word: seco
+  classes: [~A~seco, ADJ_MS]
+- word: seguro
+  classes: [~A~seguro, ADJ_MS]
+- word: selecto
+  classes: [~A~selecto, ADJ_MS]
+- word: serio
+  classes: [~A~serio, ADJ_MS]
+- word: simpático
+  classes: [~A~simpático, ADJ_MS]
+- word: solo
+  classes: [~A~solo, ADJ_MS]
+- word: soltero
+  classes: [~A~soltero, ADJ_MS]
+- word: sucio
+  classes: [~A~sucio, ADJ_MS]
+- word: sólido
+  classes: [~A~sólido, ADJ_MS]
+- word: tacaño
+  classes: [~A~tacaño, ADJ_MS]
+- word: tercer
+  classes: [~A~tercer, ADJ_MS]
+- word: tercero
+  classes: [~A~tercero, ADJ_MS]
+- word: todo
+  classes: [~A~todo, ADJ_MS]
+- word: tonto
+  classes: [~A~tonto, ADJ_MS]
+- word: torcido
+  classes: [~A~torcido, ADJ_MS]
+- word: turbio
+  classes: [~A~turbio, ADJ_MS]
+- word: turbulento
+  classes: [~A~turbulento, ADJ_MS]
+- word: ultrajoso
+  classes: [~A~ultrajoso, ADJ_MS]
+- word: usurero
+  classes: [~A~usurero, ADJ_MS]
+- word: vacío
+  classes: [~A~vacío, ADJ_MS]
+- word: vario
+  classes: [~A~vario, ADJ_MS]
+- word: verdadero
+  classes: [~A~verdadero, ADJ_MS]
+- word: viejo
+  classes: [~A~viejo, ADJ_MS]
+- word: vigoroso
+  classes: [~A~vigoroso, ADJ_MS]
+- word: violento
+  classes: [~A~violento, ADJ_MS]
+- word: vivo
+  classes: [~A~vivo, ADJ_MS]
+- word: zozobroso
+  classes: [~A~zozobroso, ADJ_MS]
+- word: áspero
+  classes: [~A~áspero, ADJ_MS]
+- word: único
+  classes: [~A~único, ADJ_MS]
+# Adjectives in ADJ_FS
+- word: abierta
+  classes: [~A~abierto, ADJ_FS]
+- word: aburrida
+  classes: [~A~aburrido, ADJ_FS]
+- word: activa
+  classes: [~A~activo, ADJ_FS]
+- word: afligida
+  classes: [~A~afligido, ADJ_FS]
+- word: agradecida
+  classes: [~A~agradecido, ADJ_FS]
+- word: alguna
+  classes: [~A~alguno, ADJ_FS]
+- word: alta
+  classes: [~A~alto, ADJ_FS]
+- word: amarga
+  classes: [~A~amargo, ADJ_FS]
+- word: ancha
+  classes: [~A~ancho, ADJ_FS]
+- word: anciana
+  classes: [~A~anciano, ADJ_FS]
+- word: angosta
+  classes: [~A~angosto, ADJ_FS]
+- word: angélica
+  classes: [~A~angélico, ADJ_FS]
+- word: antigua
+  classes: [~A~antiguo, ADJ_FS]
+- word: antipática
+  classes: [~A~antipático, ADJ_FS]
+- word: apenada
+  classes: [~A~apenado, ADJ_FS]
+- word: apetitosa
+  classes: [~A~apetitoso, ADJ_FS]
+- word: aprensiva
+  classes: [~A~aprensivo, ADJ_FS]
+- word: apropiada
+  classes: [~A~apropiado, ADJ_FS]
+- word: apta
+  classes: [~A~apto, ADJ_FS]
+- word: aterradoa
+  classes: [~A~aterrador, ADJ_FS]
+- word: atlética
+  classes: [~A~atlético, ADJ_FS]
+- word: atrevida
+  classes: [~A~atrevido, ADJ_FS]
+- word: auténtica
+  classes: [~A~auténtico, ADJ_FS]
+- word: avara
+  classes: [~A~avaro, ADJ_FS]
+- word: azulada
+  classes: [~A~azulado, ADJ_FS]
+- word: baja
+  classes: [~A~bajo, ADJ_FS]
+- word: barata
+  classes: [~A~barato, ADJ_FS]
+- word: bendita
+  classes: [~A~bendito, ADJ_FS]
+- word: bienvenida
+  classes: [~A~bienvenido, ADJ_FS]
+- word: blanda
+  classes: [~A~blando, ADJ_FS]
+- word: bonita
+  classes: [~A~bonito, ADJ_FS]
+- word: bruta
+  classes: [~A~bruto, ADJ_FS]
+- word: buena
+  classes: [~A~bueno, ADJ_FS]
+- word: bullanguera
+  classes: [~A~bullanguero, ADJ_FS]
+- word: cansada
+  classes: [~A~cansado, ADJ_FS]
+- word: caprichosa
+  classes: [~A~caprichoso, ADJ_FS]
+- word: cara
+  classes: [~A~caro, ADJ_FS]
+- word: casada
+  classes: [~A~casado, ADJ_FS]
+- word: cercana
+  classes: [~A~cercano, ADJ_FS]
+- word: cerrada
+  classes: [~A~cerrado, ADJ_FS]
+- word: changa
+  classes: [~A~chango, ADJ_FS]
+- word: chica
+  classes: [~A~chico, ADJ_FS]
+- word: civilizada
+  classes: [~A~civilizado, ADJ_FS]
+- word: clara
+  classes: [~A~claro, ADJ_FS]
+- word: clásica
+  classes: [~A~clásico, ADJ_FS]
+- word: compleja
+  classes: [~A~complejo, ADJ_FS]
+- word: confundida
+  classes: [~A~confundido, ADJ_FS]
+- word: conocida
+  classes: [~A~conocido, ADJ_FS]
+- word: contenta
+  classes: [~A~contento, ADJ_FS]
+- word: correcta
+  classes: [~A~correcto, ADJ_FS]
+- word: corta
+  classes: [~A~corto, ADJ_FS]
+- word: cuidadosa
+  classes: [~A~cuidadoso, ADJ_FS]
+- word: cálida
+  classes: [~A~cálido, ADJ_FS]
+- word: cándida
+  classes: [~A~cándido, ADJ_FS]
+- word: cíclica
+  classes: [~A~cíclico, ADJ_FS]
+- word: cívica
+  classes: [~A~cívico, ADJ_FS]
+- word: cómica
+  classes: [~A~cómico, ADJ_FS]
+- word: cómoda
+  classes: [~A~cómodo, ADJ_FS]
+- word: dadivosa
+  classes: [~A~dadivoso, ADJ_FS]
+- word: delgada
+  classes: [~A~delgado, ADJ_FS]
+- word: deliciosa
+  classes: [~A~delicioso, ADJ_FS]
+- word: derecha
+  classes: [~A~derecho, ADJ_FS]
+- word: desconocida
+  classes: [~A~desconocido, ADJ_FS]
+- word: descubierta
+  classes: [~A~descubierto, ADJ_FS]
+- word: despierta
+  classes: [~A~despierto, ADJ_FS]
+- word: digna
+  classes: [~A~digno, ADJ_FS]
+- word: divertida
+  classes: [~A~divertido, ADJ_FS]
+- word: divina
+  classes: [~A~divino, ADJ_FS]
+- word: dogmática
+  classes: [~A~dogmático, ADJ_FS]
+- word: dolorosa
+  classes: [~A~doloroso, ADJ_FS]
+- word: dormida
+  classes: [~A~dormido, ADJ_FS]
+- word: dura
+  classes: [~A~duro, ADJ_FS]
+- word: económica
+  classes: [~A~económico, ADJ_FS]
+- word: educada
+  classes: [~A~educado, ADJ_FS]
+- word: elevada
+  classes: [~A~elevado, ADJ_FS]
+- word: elusiva
+  classes: [~A~elusivo, ADJ_FS]
+- word: encantada
+  classes: [~A~encantado, ADJ_FS]
+- word: encerada
+  classes: [~A~encerado, ADJ_FS]
+- word: encerrada
+  classes: [~A~encerrado, ADJ_FS]
+- word: enferma
+  classes: [~A~enfermo, ADJ_FS]
+- word: envidiosa
+  classes: [~A~envidioso, ADJ_FS]
+- word: enérgica
+  classes: [~A~enérgico, ADJ_FS]
+- word: equivocada
+  classes: [~A~equivocado, ADJ_FS]
+- word: escasa
+  classes: [~A~escaso, ADJ_FS]
+- word: escrita
+  classes: [~A~escrito, ADJ_FS]
+- word: espantosa
+  classes: [~A~espantoso, ADJ_FS]
+- word: espesa
+  classes: [~A~espeso, ADJ_FS]
+- word: espontánea
+  classes: [~A~espontáneo, ADJ_FS]
+- word: estupenda
+  classes: [~A~estupendo, ADJ_FS]
+- word: estúpida
+  classes: [~A~estúpido, ADJ_FS]
+- word: exquisita
+  classes: [~A~exquisito, ADJ_FS]
+- word: extranjera
+  classes: [~A~extranjero, ADJ_FS]
+- word: extrema
+  classes: [~A~extremo, ADJ_FS]
+- word: fabulosa
+  classes: [~A~fabuloso, ADJ_FS]
+- word: falsa
+  classes: [~A~falso, ADJ_FS]
+- word: famosa
+  classes: [~A~famoso, ADJ_FS]
+- word: fantástica
+  classes: [~A~fantástico, ADJ_FS]
+- word: favorita
+  classes: [~A~favorito, ADJ_FS]
+- word: fea
+  classes: [~A~feo, ADJ_FS]
+- word: fecunda
+  classes: [~A~fecundo, ADJ_FS]
+- word: femenina
+  classes: [~A~femenino, ADJ_FS]
+- word: fina
+  classes: [~A~fino, ADJ_FS]
+- word: financiera
+  classes: [~A~financiero, ADJ_FS]
+- word: flaca
+  classes: [~A~flaco, ADJ_FS]
+- word: floja
+  classes: [~A~flojo, ADJ_FS]
+- word: franca
+  classes: [~A~franco, ADJ_FS]
+- word: fresca
+  classes: [~A~fresco, ADJ_FS]
+- word: frita
+  classes: [~A~frito, ADJ_FS]
+- word: fría
+  classes: [~A~frío, ADJ_FS]
+- word: frívola
+  classes: [~A~frívolo, ADJ_FS]
+- word: fundida
+  classes: [~A~fundido, ADJ_FS]
+- word: fónica
+  classes: [~A~fónico, ADJ_FS]
+- word: gastada
+  classes: [~A~gastado, ADJ_FS]
+- word: generosa
+  classes: [~A~generoso, ADJ_FS]
+- word: genia
+  classes: [~A~genio, ADJ_FS]
+- word: genérica
+  classes: [~A~genérico, ADJ_FS]
+- word: genética
+  classes: [~A~genético, ADJ_FS]
+- word: geriátrica
+  classes: [~A~geriátrico, ADJ_FS]
+- word: gloriosa
+  classes: [~A~glorioso, ADJ_FS]
+- word: gorda
+  classes: [~A~gordo, ADJ_FS]
+- word: grosera
+  classes: [~A~grosero, ADJ_FS]
+- word: gruesa
+  classes: [~A~grueso, ADJ_FS]
+- word: guapa
+  classes: [~A~guapo, ADJ_FS]
+- word: hablada
+  classes: [~A~hablado, ADJ_FS]
+- word: hambrienta
+  classes: [~A~hambriento, ADJ_FS]
+- word: hecho a mana
+  classes: [~A~hecho a mano, ADJ_FS]
+- word: helada
+  classes: [~A~helado, ADJ_FS]
+- word: hermosa
+  classes: [~A~hermoso, ADJ_FS]
+- word: hermética
+  classes: [~A~hermético, ADJ_FS]
+- word: hinchada
+  classes: [~A~hinchado, ADJ_FS]
+- word: histórica
+  classes: [~A~histórico, ADJ_FS]
+- word: honesta
+  classes: [~A~honesto, ADJ_FS]
+- word: humana
+  classes: [~A~humano, ADJ_FS]
+- word: húmeda
+  classes: [~A~húmedo, ADJ_FS]
+- word: iluminada
+  classes: [~A~iluminado, ADJ_FS]
+- word: ilógica
+  classes: [~A~ilógico, ADJ_FS]
+- word: imaginaria
+  classes: [~A~imaginario, ADJ_FS]
+- word: inalámbrica
+  classes: [~A~inalámbrico, ADJ_FS]
+- word: incompleta
+  classes: [~A~incompleto, ADJ_FS]
+- word: incorrecta
+  classes: [~A~incorrecto, ADJ_FS]
+- word: incrasta
+  classes: [~A~incrasto, ADJ_FS]
+- word: incrédula
+  classes: [~A~incrédulo, ADJ_FS]
+- word: incómoda
+  classes: [~A~incómodo, ADJ_FS]
+- word: indebida
+  classes: [~A~indebido, ADJ_FS]
+- word: indefinida
+  classes: [~A~indefinido, ADJ_FS]
+- word: inepta
+  classes: [~A~inepto, ADJ_FS]
+- word: infecciosa
+  classes: [~A~infeccioso, ADJ_FS]
+- word: injusta
+  classes: [~A~injusto, ADJ_FS]
+- word: inquieta
+  classes: [~A~inquieto, ADJ_FS]
+- word: inédita
+  classes: [~A~inédito, ADJ_FS]
+- word: izquierda
+  classes: [~A~izquierdo, ADJ_FS]
+- word: jubilosa
+  classes: [~A~jubiloso, ADJ_FS]
+- word: juiciosa
+  classes: [~A~juicioso, ADJ_FS]
+- word: junta
+  classes: [~A~junto, ADJ_FS]
+- word: jurada
+  classes: [~A~jurado, ADJ_FS]
+- word: justa
+  classes: [~A~justo, ADJ_FS]
+- word: larga
+  classes: [~A~largo, ADJ_FS]
+- word: lejana
+  classes: [~A~lejano, ADJ_FS]
+- word: lenta
+  classes: [~A~lento, ADJ_FS]
+- word: limpia
+  classes: [~A~limpio, ADJ_FS]
+- word: lisa
+  classes: [~A~liso, ADJ_FS]
+- word: lista
+  classes: [~A~listo, ADJ_FS]
+- word: liviana
+  classes: [~A~liviano, ADJ_FS]
+- word: llamativa
+  classes: [~A~llamativo, ADJ_FS]
+- word: llana
+  classes: [~A~llano, ADJ_FS]
+- word: llena
+  classes: [~A~lleno, ADJ_FS]
+- word: lluviosa
+  classes: [~A~lluvioso, ADJ_FS]
+- word: loca
+  classes: [~A~loco, ADJ_FS]
+- word: luminosa
+  classes: [~A~luminoso, ADJ_FS]
+- word: lunática
+  classes: [~A~lunático, ADJ_FS]
+- word: lógica
+  classes: [~A~lógico, ADJ_FS]
+- word: madura
+  classes: [~A~maduro, ADJ_FS]
+- word: magnética
+  classes: [~A~magnético, ADJ_FS]
+- word: magnífica
+  classes: [~A~magnífico, ADJ_FS]
+- word: majadera
+  classes: [~A~majadero, ADJ_FS]
+- word: majestuosa
+  classes: [~A~majestuoso, ADJ_FS]
+- word: mala
+  classes: [~A~malo, ADJ_FS]
+- word: maligna
+  classes: [~A~maligno, ADJ_FS]
+- word: malvada
+  classes: [~A~malvado, ADJ_FS]
+- word: manuscrita
+  classes: [~A~manuscrito, ADJ_FS]
+- word: mareada
+  classes: [~A~mareado, ADJ_FS]
+- word: marina
+  classes: [~A~marino, ADJ_FS]
+- word: miedosa
+  classes: [~A~miedoso, ADJ_FS]
+- word: misma
+  classes: [~A~mismo, ADJ_FS]
+- word: mojada
+  classes: [~A~mojado, ADJ_FS]
+- word: morena
+  classes: [~A~moreno, ADJ_FS]
+- word: morosa
+  classes: [~A~moroso, ADJ_FS]
+- word: mucha
+  classes: [~A~mucho, ADJ_FS]
+- word: muerta
+  classes: [~A~muerto, ADJ_FS]
+- word: mínima
+  classes: [~A~mínimo, ADJ_FS]
+- word: necesaria
+  classes: [~A~necesario, ADJ_FS]
+- word: necia
+  classes: [~A~necio, ADJ_FS]
+- word: ninguna
+  classes: [~A~ninguno, ADJ_FS]
+- word: novata
+  classes: [~A~novato, ADJ_FS]
+- word: novedosa
+  classes: [~A~novedoso, ADJ_FS]
+- word: nublada
+  classes: [~A~nublado, ADJ_FS]
+- word: nueva
+  classes: [~A~nuevo, ADJ_FS]
+- word: obstinada
+  classes: [~A~obstinado, ADJ_FS]
+- word: ocupada
+  classes: [~A~ocupado, ADJ_FS]
+- word: olorosa
+  classes: [~A~oloroso, ADJ_FS]
+- word: pagada
+  classes: [~A~pagado, ADJ_FS]
+- word: paralela
+  classes: [~A~paralelo, ADJ_FS]
+- word: parecida
+  classes: [~A~parecido, ADJ_FS]
+- word: pasada
+  classes: [~A~pasado, ADJ_FS]
+- word: pasajera
+  classes: [~A~pasajero, ADJ_FS]
+- word: pastosa
+  classes: [~A~pastoso, ADJ_FS]
+- word: patológica
+  classes: [~A~patológico, ADJ_FS]
+- word: patriótica
+  classes: [~A~patriótico, ADJ_FS]
+- word: pegajosa
+  classes: [~A~pegajoso, ADJ_FS]
+- word: pelada
+  classes: [~A~pelado, ADJ_FS]
+- word: peligrosa
+  classes: [~A~peligroso, ADJ_FS]
+- word: pelirroja
+  classes: [~A~pelirrojo, ADJ_FS]
+- word: peluda
+  classes: [~A~peludo, ADJ_FS]
+- word: penosa
+  classes: [~A~penoso, ADJ_FS]
+- word: pensativa
+  classes: [~A~pensativo, ADJ_FS]
+- word: pequeña
+  classes: [~A~pequeño, ADJ_FS]
+- word: perezosa
+  classes: [~A~perezoso, ADJ_FS]
+- word: perfecta
+  classes: [~A~perfecto, ADJ_FS]
+- word: persuasiva
+  classes: [~A~persuasivo, ADJ_FS]
+- word: pesada
+  classes: [~A~pesado, ADJ_FS]
+- word: piadosa
+  classes: [~A~piadoso, ADJ_FS]
+- word: pintoresca
+  classes: [~A~pintoresco, ADJ_FS]
+- word: plana
+  classes: [~A~plano, ADJ_FS]
+- word: plácida
+  classes: [~A~plácido, ADJ_FS]
+- word: poca
+  classes: [~A~poco, ADJ_FS]
+- word: podrida
+  classes: [~A~podrido, ADJ_FS]
+- word: policiaca
+  classes: [~A~policiaco, ADJ_FS]
+- word: poética
+  classes: [~A~poético, ADJ_FS]
+- word: precavida
+  classes: [~A~precavido, ADJ_FS]
+- word: preferida
+  classes: [~A~preferido, ADJ_FS]
+- word: preocupada
+  classes: [~A~preocupado, ADJ_FS]
+- word: preparada
+  classes: [~A~preparado, ADJ_FS]
+- word: primera
+  classes: [~A~primero, ADJ_FS]
+- word: privada
+  classes: [~A~privado, ADJ_FS]
+- word: privilegiada
+  classes: [~A~privilegiado, ADJ_FS]
+- word: profunda
+  classes: [~A~profundo, ADJ_FS]
+- word: pura
+  classes: [~A~puro, ADJ_FS]
+- word: quebrada
+  classes: [~A~quebrado, ADJ_FS]
+- word: quemada
+  classes: [~A~quemado, ADJ_FS]
+- word: querida
+  classes: [~A~querido, ADJ_FS]
+- word: quieta
+  classes: [~A~quieto, ADJ_FS]
+- word: rabiosa
+  classes: [~A~rabioso, ADJ_FS]
+- word: rancia
+  classes: [~A~rancio, ADJ_FS]
+- word: recelosa
+  classes: [~A~receloso, ADJ_FS]
+- word: receptiva
+  classes: [~A~receptivo, ADJ_FS]
+- word: reconocida
+  classes: [~A~reconocido, ADJ_FS]
+- word: refinada
+  classes: [~A~refinado, ADJ_FS]
+- word: respetuosa
+  classes: [~A~respetuoso, ADJ_FS]
+- word: rica
+  classes: [~A~rico, ADJ_FS]
+- word: ridícula
+  classes: [~A~ridículo, ADJ_FS]
+- word: robusta
+  classes: [~A~robusto, ADJ_FS]
+- word: romántica
+  classes: [~A~romántico, ADJ_FS]
+- word: ronca
+  classes: [~A~ronco, ADJ_FS]
+- word: rubia
+  classes: [~A~rubio, ADJ_FS]
+- word: rápida
+  classes: [~A~rápido, ADJ_FS]
+- word: sabrosa
+  classes: [~A~sabroso, ADJ_FS]
+- word: sangrienta
+  classes: [~A~sangriento, ADJ_FS]
+- word: santa
+  classes: [~A~santo, ADJ_FS]
+- word: seca
+  classes: [~A~seco, ADJ_FS]
+- word: segura
+  classes: [~A~seguro, ADJ_FS]
+- word: selecta
+  classes: [~A~selecto, ADJ_FS]
+- word: seria
+  classes: [~A~serio, ADJ_FS]
+- word: simpática
+  classes: [~A~simpático, ADJ_FS]
+- word: sola
+  classes: [~A~solo, ADJ_FS]
+- word: soltera
+  classes: [~A~soltero, ADJ_FS]
+- word: sucia
+  classes: [~A~sucio, ADJ_FS]
+- word: sólida
+  classes: [~A~sólido, ADJ_FS]
+- word: tacaña
+  classes: [~A~tacaño, ADJ_FS]
+- word: tercera
+  classes: [~A~tercero, ADJ_FS]
+- word: toda
+  classes: [~A~todo, ADJ_FS]
+- word: tonta
+  classes: [~A~tonto, ADJ_FS]
+- word: torcida
+  classes: [~A~torcido, ADJ_FS]
+- word: turbia
+  classes: [~A~turbio, ADJ_FS]
+- word: turbulenta
+  classes: [~A~turbulento, ADJ_FS]
+- word: ultrajosa
+  classes: [~A~ultrajoso, ADJ_FS]
+- word: usurera
+  classes: [~A~usurero, ADJ_FS]
+- word: vacía
+  classes: [~A~vacío, ADJ_FS]
+- word: varia
+  classes: [~A~vario, ADJ_FS]
+- word: verdadera
+  classes: [~A~verdadero, ADJ_FS]
+- word: vieja
+  classes: [~A~viejo, ADJ_FS]
+- word: vigorosa
+  classes: [~A~vigoroso, ADJ_FS]
+- word: violenta
+  classes: [~A~violento, ADJ_FS]
+- word: viva
+  classes: [~A~vivo, ADJ_FS]
+- word: zozobrosa
+  classes: [~A~zozobroso, ADJ_FS]
+- word: áspera
+  classes: [~A~áspero, ADJ_FS]
+- word: única
+  classes: [~A~único, ADJ_FS]
+# Adjectives in ADJ_MP
+- word: abiertos
+  classes: [~A~abierto, ADJ_MP]
+- word: aburridos
+  classes: [~A~aburrido, ADJ_MP]
+- word: activos
+  classes: [~A~activo, ADJ_MP]
+- word: afligidos
+  classes: [~A~afligido, ADJ_MP]
+- word: agradecidos
+  classes: [~A~agradecido, ADJ_MP]
+- word: algunos
+  classes: [~A~alguno, ADJ_MP]
+- word: altos
+  classes: [~A~alto, ADJ_MP]
+- word: amargos
+  classes: [~A~amargo, ADJ_MP]
+- word: anchos
+  classes: [~A~ancho, ADJ_MP]
+- word: ancianos
+  classes: [~A~anciano, ADJ_MP]
+- word: angostos
+  classes: [~A~angosto, ADJ_MP]
+- word: angélicos
+  classes: [~A~angélico, ADJ_MP]
+- word: antiguos
+  classes: [~A~antiguo, ADJ_MP]
+- word: antipáticos
+  classes: [~A~antipático, ADJ_MP]
+- word: apenados
+  classes: [~A~apenado, ADJ_MP]
+- word: apetitosos
+  classes: [~A~apetitoso, ADJ_MP]
+- word: aprensivos
+  classes: [~A~aprensivo, ADJ_MP]
+- word: apropiados
+  classes: [~A~apropiado, ADJ_MP]
+- word: aptos
+  classes: [~A~apto, ADJ_MP]
+- word: aterradores
+  classes: [~A~aterrador, ADJ_MP]
+- word: atléticos
+  classes: [~A~atlético, ADJ_MP]
+- word: atrevidos
+  classes: [~A~atrevido, ADJ_MP]
+- word: auténticos
+  classes: [~A~auténtico, ADJ_MP]
+- word: avaros
+  classes: [~A~avaro, ADJ_MP]
+- word: azulados
+  classes: [~A~azulado, ADJ_MP]
+- word: bajos
+  classes: [~A~bajo, ADJ_MP]
+- word: baratos
+  classes: [~A~barato, ADJ_MP]
+- word: benditos
+  classes: [~A~bendito, ADJ_MP]
+- word: bienvenidos
+  classes: [~A~bienvenido, ADJ_MP]
+- word: blandos
+  classes: [~A~blando, ADJ_MP]
+- word: bonitos
+  classes: [~A~bonito, ADJ_MP]
+- word: brutos
+  classes: [~A~bruto, ADJ_MP]
+- word: buenos
+  classes: [~A~bueno, ADJ_MP]
+- word: bullangueros
+  classes: [~A~bullanguero, ADJ_MP]
+- word: cansados
+  classes: [~A~cansado, ADJ_MP]
+- word: caprichosos
+  classes: [~A~caprichoso, ADJ_MP]
+- word: caros
+  classes: [~A~caro, ADJ_MP]
+- word: casados
+  classes: [~A~casado, ADJ_MP]
+- word: cercanos
+  classes: [~A~cercano, ADJ_MP]
+- word: cerrados
+  classes: [~A~cerrado, ADJ_MP]
+- word: changos
+  classes: [~A~chango, ADJ_MP]
+- word: chicos
+  classes: [~A~chico, ADJ_MP]
+- word: civilizados
+  classes: [~A~civilizado, ADJ_MP]
+- word: claros
+  classes: [~A~claro, ADJ_MP]
+- word: clásicos
+  classes: [~A~clásico, ADJ_MP]
+- word: complejos
+  classes: [~A~complejo, ADJ_MP]
+- word: confundidos
+  classes: [~A~confundido, ADJ_MP]
+- word: conocidos
+  classes: [~A~conocido, ADJ_MP]
+- word: contentos
+  classes: [~A~contento, ADJ_MP]
+- word: correctos
+  classes: [~A~correcto, ADJ_MP]
+- word: cortos
+  classes: [~A~corto, ADJ_MP]
+- word: cuidadosos
+  classes: [~A~cuidadoso, ADJ_MP]
+- word: cálidos
+  classes: [~A~cálido, ADJ_MP]
+- word: cándidos
+  classes: [~A~cándido, ADJ_MP]
+- word: cíclicos
+  classes: [~A~cíclico, ADJ_MP]
+- word: cívicos
+  classes: [~A~cívico, ADJ_MP]
+- word: cómicos
+  classes: [~A~cómico, ADJ_MP]
+- word: cómodos
+  classes: [~A~cómodo, ADJ_MP]
+- word: dadivosos
+  classes: [~A~dadivoso, ADJ_MP]
+- word: delgados
+  classes: [~A~delgado, ADJ_MP]
+- word: deliciosos
+  classes: [~A~delicioso, ADJ_MP]
+- word: derechos
+  classes: [~A~derecho, ADJ_MP]
+- word: desconocidos
+  classes: [~A~desconocido, ADJ_MP]
+- word: descubiertos
+  classes: [~A~descubierto, ADJ_MP]
+- word: despiertos
+  classes: [~A~despierto, ADJ_MP]
+- word: dignos
+  classes: [~A~digno, ADJ_MP]
+- word: divertidos
+  classes: [~A~divertido, ADJ_MP]
+- word: divinos
+  classes: [~A~divino, ADJ_MP]
+- word: dogmáticos
+  classes: [~A~dogmático, ADJ_MP]
+- word: dolorosos
+  classes: [~A~doloroso, ADJ_MP]
+- word: dormidos
+  classes: [~A~dormido, ADJ_MP]
+- word: duros
+  classes: [~A~duro, ADJ_MP]
+- word: económicos
+  classes: [~A~económico, ADJ_MP]
+- word: educados
+  classes: [~A~educado, ADJ_MP]
+- word: elevados
+  classes: [~A~elevado, ADJ_MP]
+- word: elusivos
+  classes: [~A~elusivo, ADJ_MP]
+- word: encantados
+  classes: [~A~encantado, ADJ_MP]
+- word: encerados
+  classes: [~A~encerado, ADJ_MP]
+- word: encerrados
+  classes: [~A~encerrado, ADJ_MP]
+- word: enfermos
+  classes: [~A~enfermo, ADJ_MP]
+- word: envidiosos
+  classes: [~A~envidioso, ADJ_MP]
+- word: enérgicos
+  classes: [~A~enérgico, ADJ_MP]
+- word: equivocados
+  classes: [~A~equivocado, ADJ_MP]
+- word: escasos
+  classes: [~A~escaso, ADJ_MP]
+- word: escritos
+  classes: [~A~escrito, ADJ_MP]
+- word: espantosos
+  classes: [~A~espantoso, ADJ_MP]
+- word: espesos
+  classes: [~A~espeso, ADJ_MP]
+- word: espontáneos
+  classes: [~A~espontáneo, ADJ_MP]
+- word: estupendos
+  classes: [~A~estupendo, ADJ_MP]
+- word: estúpidos
+  classes: [~A~estúpido, ADJ_MP]
+- word: exquisitos
+  classes: [~A~exquisito, ADJ_MP]
+- word: extranjeros
+  classes: [~A~extranjero, ADJ_MP]
+- word: extremos
+  classes: [~A~extremo, ADJ_MP]
+- word: fabulosos
+  classes: [~A~fabuloso, ADJ_MP]
+- word: falsos
+  classes: [~A~falso, ADJ_MP]
+- word: famosos
+  classes: [~A~famoso, ADJ_MP]
+- word: fantásticos
+  classes: [~A~fantástico, ADJ_MP]
+- word: favoritos
+  classes: [~A~favorito, ADJ_MP]
+- word: fecundos
+  classes: [~A~fecundo, ADJ_MP]
+- word: femeninos
+  classes: [~A~femenino, ADJ_MP]
+- word: feos
+  classes: [~A~feo, ADJ_MP]
+- word: financieros
+  classes: [~A~financiero, ADJ_MP]
+- word: finos
+  classes: [~A~fino, ADJ_MP]
+- word: flacos
+  classes: [~A~flaco, ADJ_MP]
+- word: flojos
+  classes: [~A~flojo, ADJ_MP]
+- word: francos
+  classes: [~A~franco, ADJ_MP]
+- word: frescos
+  classes: [~A~fresco, ADJ_MP]
+- word: fritos
+  classes: [~A~frito, ADJ_MP]
+- word: fríos
+  classes: [~A~frío, ADJ_MP]
+- word: frívolos
+  classes: [~A~frívolo, ADJ_MP]
+- word: fundidos
+  classes: [~A~fundido, ADJ_MP]
+- word: fónicos
+  classes: [~A~fónico, ADJ_MP]
+- word: gastados
+  classes: [~A~gastado, ADJ_MP]
+- word: generosos
+  classes: [~A~generoso, ADJ_MP]
+- word: genios
+  classes: [~A~genio, ADJ_MP]
+- word: genéricos
+  classes: [~A~genérico, ADJ_MP]
+- word: genéticos
+  classes: [~A~genético, ADJ_MP]
+- word: geriátricos
+  classes: [~A~geriátrico, ADJ_MP]
+- word: gloriosos
+  classes: [~A~glorioso, ADJ_MP]
+- word: gordos
+  classes: [~A~gordo, ADJ_MP]
+- word: groseros
+  classes: [~A~grosero, ADJ_MP]
+- word: gruesos
+  classes: [~A~grueso, ADJ_MP]
+- word: guapos
+  classes: [~A~guapo, ADJ_MP]
+- word: hablados
+  classes: [~A~hablado, ADJ_MP]
+- word: hambrientos
+  classes: [~A~hambriento, ADJ_MP]
+- word: hecho a manos
+  classes: [~A~hecho a mano, ADJ_MP]
+- word: helados
+  classes: [~A~helado, ADJ_MP]
+- word: hermosos
+  classes: [~A~hermoso, ADJ_MP]
+- word: herméticos
+  classes: [~A~hermético, ADJ_MP]
+- word: hinchados
+  classes: [~A~hinchado, ADJ_MP]
+- word: históricos
+  classes: [~A~histórico, ADJ_MP]
+- word: honestos
+  classes: [~A~honesto, ADJ_MP]
+- word: humanos
+  classes: [~A~humano, ADJ_MP]
+- word: húmedos
+  classes: [~A~húmedo, ADJ_MP]
+- word: iluminados
+  classes: [~A~iluminado, ADJ_MP]
+- word: ilógicos
+  classes: [~A~ilógico, ADJ_MP]
+- word: imaginarios
+  classes: [~A~imaginario, ADJ_MP]
+- word: inalámbricos
+  classes: [~A~inalámbrico, ADJ_MP]
+- word: incompletos
+  classes: [~A~incompleto, ADJ_MP]
+- word: incorrectos
+  classes: [~A~incorrecto, ADJ_MP]
+- word: incrastos
+  classes: [~A~incrasto, ADJ_MP]
+- word: incrédulos
+  classes: [~A~incrédulo, ADJ_MP]
+- word: incómodos
+  classes: [~A~incómodo, ADJ_MP]
+- word: indebidos
+  classes: [~A~indebido, ADJ_MP]
+- word: indefinidos
+  classes: [~A~indefinido, ADJ_MP]
+- word: ineptos
+  classes: [~A~inepto, ADJ_MP]
+- word: infecciosos
+  classes: [~A~infeccioso, ADJ_MP]
+- word: injustos
+  classes: [~A~injusto, ADJ_MP]
+- word: inquietos
+  classes: [~A~inquieto, ADJ_MP]
+- word: inéditos
+  classes: [~A~inédito, ADJ_MP]
+- word: izquierdos
+  classes: [~A~izquierdo, ADJ_MP]
+- word: jubilosos
+  classes: [~A~jubiloso, ADJ_MP]
+- word: juiciosos
+  classes: [~A~juicioso, ADJ_MP]
+- word: juntos
+  classes: [~A~junto, ADJ_MP]
+- word: jurados
+  classes: [~A~jurado, ADJ_MP]
+- word: justos
+  classes: [~A~justo, ADJ_MP]
+- word: largos
+  classes: [~A~largo, ADJ_MP]
+- word: lejanos
+  classes: [~A~lejano, ADJ_MP]
+- word: lentos
+  classes: [~A~lento, ADJ_MP]
+- word: limpios
+  classes: [~A~limpio, ADJ_MP]
+- word: lisos
+  classes: [~A~liso, ADJ_MP]
+- word: listos
+  classes: [~A~listo, ADJ_MP]
+- word: livianos
+  classes: [~A~liviano, ADJ_MP]
+- word: llamativos
+  classes: [~A~llamativo, ADJ_MP]
+- word: llanos
+  classes: [~A~llano, ADJ_MP]
+- word: llenos
+  classes: [~A~lleno, ADJ_MP]
+- word: lluviosos
+  classes: [~A~lluvioso, ADJ_MP]
+- word: locos
+  classes: [~A~loco, ADJ_MP]
+- word: luminosos
+  classes: [~A~luminoso, ADJ_MP]
+- word: lunáticos
+  classes: [~A~lunático, ADJ_MP]
+- word: lógicos
+  classes: [~A~lógico, ADJ_MP]
+- word: maduros
+  classes: [~A~maduro, ADJ_MP]
+- word: magnéticos
+  classes: [~A~magnético, ADJ_MP]
+- word: magníficos
+  classes: [~A~magnífico, ADJ_MP]
+- word: majaderos
+  classes: [~A~majadero, ADJ_MP]
+- word: majestuosos
+  classes: [~A~majestuoso, ADJ_MP]
+- word: malignos
+  classes: [~A~maligno, ADJ_MP]
+- word: malos
+  classes: [~A~malo, ADJ_MP]
+- word: malvados
+  classes: [~A~malvado, ADJ_MP]
+- word: manuscritos
+  classes: [~A~manuscrito, ADJ_MP]
+- word: mareados
+  classes: [~A~mareado, ADJ_MP]
+- word: marinos
+  classes: [~A~marino, ADJ_MP]
+- word: miedosos
+  classes: [~A~miedoso, ADJ_MP]
+- word: mismos
+  classes: [~A~mismo, ADJ_MP]
+- word: mojados
+  classes: [~A~mojado, ADJ_MP]
+- word: morenos
+  classes: [~A~moreno, ADJ_MP]
+- word: morosos
+  classes: [~A~moroso, ADJ_MP]
+- word: muchos
+  classes: [~A~mucho, ADJ_MP]
+- word: muertos
+  classes: [~A~muerto, ADJ_MP]
+- word: mínimos
+  classes: [~A~mínimo, ADJ_MP]
+- word: necesarios
+  classes: [~A~necesario, ADJ_MP]
+- word: necios
+  classes: [~A~necio, ADJ_MP]
+- word: ningunos
+  classes: [~A~ninguno, ADJ_MP]
+- word: novatos
+  classes: [~A~novato, ADJ_MP]
+- word: novedosos
+  classes: [~A~novedoso, ADJ_MP]
+- word: nublados
+  classes: [~A~nublado, ADJ_MP]
+- word: nuevos
+  classes: [~A~nuevo, ADJ_MP]
+- word: obstinados
+  classes: [~A~obstinado, ADJ_MP]
+- word: ocupados
+  classes: [~A~ocupado, ADJ_MP]
+- word: olorosos
+  classes: [~A~oloroso, ADJ_MP]
+- word: pagados
+  classes: [~A~pagado, ADJ_MP]
+- word: paralelos
+  classes: [~A~paralelo, ADJ_MP]
+- word: parecidos
+  classes: [~A~parecido, ADJ_MP]
+- word: pasados
+  classes: [~A~pasado, ADJ_MP]
+- word: pasajeros
+  classes: [~A~pasajero, ADJ_MP]
+- word: pastosos
+  classes: [~A~pastoso, ADJ_MP]
+- word: patológicos
+  classes: [~A~patológico, ADJ_MP]
+- word: patrióticos
+  classes: [~A~patriótico, ADJ_MP]
+- word: pegajosos
+  classes: [~A~pegajoso, ADJ_MP]
+- word: pelados
+  classes: [~A~pelado, ADJ_MP]
+- word: peligrosos
+  classes: [~A~peligroso, ADJ_MP]
+- word: pelirrojos
+  classes: [~A~pelirrojo, ADJ_MP]
+- word: peludos
+  classes: [~A~peludo, ADJ_MP]
+- word: penosos
+  classes: [~A~penoso, ADJ_MP]
+- word: pensativos
+  classes: [~A~pensativo, ADJ_MP]
+- word: pequeños
+  classes: [~A~pequeño, ADJ_MP]
+- word: perezosos
+  classes: [~A~perezoso, ADJ_MP]
+- word: perfectos
+  classes: [~A~perfecto, ADJ_MP]
+- word: persuasivos
+  classes: [~A~persuasivo, ADJ_MP]
+- word: pesados
+  classes: [~A~pesado, ADJ_MP]
+- word: piadosos
+  classes: [~A~piadoso, ADJ_MP]
+- word: pintorescos
+  classes: [~A~pintoresco, ADJ_MP]
+- word: planos
+  classes: [~A~plano, ADJ_MP]
+- word: plácidos
+  classes: [~A~plácido, ADJ_MP]
+- word: pocos
+  classes: [~A~poco, ADJ_MP]
+- word: podridos
+  classes: [~A~podrido, ADJ_MP]
+- word: policiacos
+  classes: [~A~policiaco, ADJ_MP]
+- word: poéticos
+  classes: [~A~poético, ADJ_MP]
+- word: precavidos
+  classes: [~A~precavido, ADJ_MP]
+- word: preferidos
+  classes: [~A~preferido, ADJ_MP]
+- word: preocupados
+  classes: [~A~preocupado, ADJ_MP]
+- word: preparados
+  classes: [~A~preparado, ADJ_MP]
+- word: primeros
+  classes: [~A~primero, ADJ_MP]
+- word: privados
+  classes: [~A~privado, ADJ_MP]
+- word: privilegiados
+  classes: [~A~privilegiado, ADJ_MP]
+- word: profundos
+  classes: [~A~profundo, ADJ_MP]
+- word: puros
+  classes: [~A~puro, ADJ_MP]
+- word: quebrados
+  classes: [~A~quebrado, ADJ_MP]
+- word: quemados
+  classes: [~A~quemado, ADJ_MP]
+- word: queridos
+  classes: [~A~querido, ADJ_MP]
+- word: quietos
+  classes: [~A~quieto, ADJ_MP]
+- word: rabiosos
+  classes: [~A~rabioso, ADJ_MP]
+- word: rancios
+  classes: [~A~rancio, ADJ_MP]
+- word: recelosos
+  classes: [~A~receloso, ADJ_MP]
+- word: receptivos
+  classes: [~A~receptivo, ADJ_MP]
+- word: reconocidos
+  classes: [~A~reconocido, ADJ_MP]
+- word: refinados
+  classes: [~A~refinado, ADJ_MP]
+- word: respetuosos
+  classes: [~A~respetuoso, ADJ_MP]
+- word: ricos
+  classes: [~A~rico, ADJ_MP]
+- word: ridículos
+  classes: [~A~ridículo, ADJ_MP]
+- word: robustos
+  classes: [~A~robusto, ADJ_MP]
+- word: románticos
+  classes: [~A~romántico, ADJ_MP]
+- word: roncos
+  classes: [~A~ronco, ADJ_MP]
+- word: rubios
+  classes: [~A~rubio, ADJ_MP]
+- word: rápidos
+  classes: [~A~rápido, ADJ_MP]
+- word: sabrosos
+  classes: [~A~sabroso, ADJ_MP]
+- word: sangrientos
+  classes: [~A~sangriento, ADJ_MP]
+- word: santos
+  classes: [~A~santo, ADJ_MP]
+- word: secos
+  classes: [~A~seco, ADJ_MP]
+- word: seguros
+  classes: [~A~seguro, ADJ_MP]
+- word: selectos
+  classes: [~A~selecto, ADJ_MP]
+- word: serios
+  classes: [~A~serio, ADJ_MP]
+- word: simpáticos
+  classes: [~A~simpático, ADJ_MP]
+- word: solos
+  classes: [~A~solo, ADJ_MP]
+- word: solteros
+  classes: [~A~soltero, ADJ_MP]
+- word: sucios
+  classes: [~A~sucio, ADJ_MP]
+- word: sólidos
+  classes: [~A~sólido, ADJ_MP]
+- word: tacaños
+  classes: [~A~tacaño, ADJ_MP]
+- word: terceros
+  classes: [~A~tercero, ADJ_MP]
+- word: todos
+  classes: [~A~todo, ADJ_MP]
+- word: tontos
+  classes: [~A~tonto, ADJ_MP]
+- word: torcidos
+  classes: [~A~torcido, ADJ_MP]
+- word: turbios
+  classes: [~A~turbio, ADJ_MP]
+- word: turbulentos
+  classes: [~A~turbulento, ADJ_MP]
+- word: ultrajosos
+  classes: [~A~ultrajoso, ADJ_MP]
+- word: usureros
+  classes: [~A~usurero, ADJ_MP]
+- word: vacíos
+  classes: [~A~vacío, ADJ_MP]
+- word: varios
+  classes: [~A~vario, ADJ_MP]
+- word: verdaderos
+  classes: [~A~verdadero, ADJ_MP]
+- word: viejos
+  classes: [~A~viejo, ADJ_MP]
+- word: vigorosos
+  classes: [~A~vigoroso, ADJ_MP]
+- word: violentos
+  classes: [~A~violento, ADJ_MP]
+- word: vivos
+  classes: [~A~vivo, ADJ_MP]
+- word: zozobrosos
+  classes: [~A~zozobroso, ADJ_MP]
+- word: ásperos
+  classes: [~A~áspero, ADJ_MP]
+- word: únicos
+  classes: [~A~único, ADJ_MP]
+# Adjectives in ADJ_FP
+- word: abiertas
+  classes: [~A~abierto, ADJ_FP]
+- word: aburridas
+  classes: [~A~aburrido, ADJ_FP]
+- word: activas
+  classes: [~A~activo, ADJ_FP]
+- word: afligidas
+  classes: [~A~afligido, ADJ_FP]
+- word: agradecidas
+  classes: [~A~agradecido, ADJ_FP]
+- word: algunas
+  classes: [~A~alguno, ADJ_FP]
+- word: altas
+  classes: [~A~alto, ADJ_FP]
+- word: amargas
+  classes: [~A~amargo, ADJ_FP]
+- word: anchas
+  classes: [~A~ancho, ADJ_FP]
+- word: ancianas
+  classes: [~A~anciano, ADJ_FP]
+- word: angostas
+  classes: [~A~angosto, ADJ_FP]
+- word: angélicas
+  classes: [~A~angélico, ADJ_FP]
+- word: antiguas
+  classes: [~A~antiguo, ADJ_FP]
+- word: antipáticas
+  classes: [~A~antipático, ADJ_FP]
+- word: apenadas
+  classes: [~A~apenado, ADJ_FP]
+- word: apetitosas
+  classes: [~A~apetitoso, ADJ_FP]
+- word: aprensivas
+  classes: [~A~aprensivo, ADJ_FP]
+- word: apropiadas
+  classes: [~A~apropiado, ADJ_FP]
+- word: aptas
+  classes: [~A~apto, ADJ_FP]
+- word: aterradoas
+  classes: [~A~aterrador, ADJ_FP]
+- word: atléticas
+  classes: [~A~atlético, ADJ_FP]
+- word: atrevidas
+  classes: [~A~atrevido, ADJ_FP]
+- word: auténticas
+  classes: [~A~auténtico, ADJ_FP]
+- word: avaras
+  classes: [~A~avaro, ADJ_FP]
+- word: azuladas
+  classes: [~A~azulado, ADJ_FP]
+- word: bajas
+  classes: [~A~bajo, ADJ_FP]
+- word: baratas
+  classes: [~A~barato, ADJ_FP]
+- word: benditas
+  classes: [~A~bendito, ADJ_FP]
+- word: bienvenidas
+  classes: [~A~bienvenido, ADJ_FP]
+- word: blandas
+  classes: [~A~blando, ADJ_FP]
+- word: bonitas
+  classes: [~A~bonito, ADJ_FP]
+- word: brutas
+  classes: [~A~bruto, ADJ_FP]
+- word: buenas
+  classes: [~A~bueno, ADJ_FP]
+- word: bullangueras
+  classes: [~A~bullanguero, ADJ_FP]
+- word: cansadas
+  classes: [~A~cansado, ADJ_FP]
+- word: caprichosas
+  classes: [~A~caprichoso, ADJ_FP]
+- word: caras
+  classes: [~A~caro, ADJ_FP]
+- word: casadas
+  classes: [~A~casado, ADJ_FP]
+- word: cercanas
+  classes: [~A~cercano, ADJ_FP]
+- word: cerradas
+  classes: [~A~cerrado, ADJ_FP]
+- word: changas
+  classes: [~A~chango, ADJ_FP]
+- word: chicas
+  classes: [~A~chico, ADJ_FP]
+- word: civilizadas
+  classes: [~A~civilizado, ADJ_FP]
+- word: claras
+  classes: [~A~claro, ADJ_FP]
+- word: clásicas
+  classes: [~A~clásico, ADJ_FP]
+- word: complejas
+  classes: [~A~complejo, ADJ_FP]
+- word: confundidas
+  classes: [~A~confundido, ADJ_FP]
+- word: conocidas
+  classes: [~A~conocido, ADJ_FP]
+- word: contentas
+  classes: [~A~contento, ADJ_FP]
+- word: correctas
+  classes: [~A~correcto, ADJ_FP]
+- word: cortas
+  classes: [~A~corto, ADJ_FP]
+- word: cuidadosas
+  classes: [~A~cuidadoso, ADJ_FP]
+- word: cálidas
+  classes: [~A~cálido, ADJ_FP]
+- word: cándidas
+  classes: [~A~cándido, ADJ_FP]
+- word: cíclicas
+  classes: [~A~cíclico, ADJ_FP]
+- word: cívicas
+  classes: [~A~cívico, ADJ_FP]
+- word: cómicas
+  classes: [~A~cómico, ADJ_FP]
+- word: cómodas
+  classes: [~A~cómodo, ADJ_FP]
+- word: dadivosas
+  classes: [~A~dadivoso, ADJ_FP]
+- word: delgadas
+  classes: [~A~delgado, ADJ_FP]
+- word: deliciosas
+  classes: [~A~delicioso, ADJ_FP]
+- word: derechas
+  classes: [~A~derecho, ADJ_FP]
+- word: desconocidas
+  classes: [~A~desconocido, ADJ_FP]
+- word: descubiertas
+  classes: [~A~descubierto, ADJ_FP]
+- word: despiertas
+  classes: [~A~despierto, ADJ_FP]
+- word: dignas
+  classes: [~A~digno, ADJ_FP]
+- word: divertidas
+  classes: [~A~divertido, ADJ_FP]
+- word: divinas
+  classes: [~A~divino, ADJ_FP]
+- word: dogmáticas
+  classes: [~A~dogmático, ADJ_FP]
+- word: dolorosas
+  classes: [~A~doloroso, ADJ_FP]
+- word: dormidas
+  classes: [~A~dormido, ADJ_FP]
+- word: duras
+  classes: [~A~duro, ADJ_FP]
+- word: económicas
+  classes: [~A~económico, ADJ_FP]
+- word: educadas
+  classes: [~A~educado, ADJ_FP]
+- word: elevadas
+  classes: [~A~elevado, ADJ_FP]
+- word: elusivas
+  classes: [~A~elusivo, ADJ_FP]
+- word: encantadas
+  classes: [~A~encantado, ADJ_FP]
+- word: enceradas
+  classes: [~A~encerado, ADJ_FP]
+- word: encerradas
+  classes: [~A~encerrado, ADJ_FP]
+- word: enfermas
+  classes: [~A~enfermo, ADJ_FP]
+- word: envidiosas
+  classes: [~A~envidioso, ADJ_FP]
+- word: enérgicas
+  classes: [~A~enérgico, ADJ_FP]
+- word: equivocadas
+  classes: [~A~equivocado, ADJ_FP]
+- word: escasas
+  classes: [~A~escaso, ADJ_FP]
+- word: escritas
+  classes: [~A~escrito, ADJ_FP]
+- word: espantosas
+  classes: [~A~espantoso, ADJ_FP]
+- word: espesas
+  classes: [~A~espeso, ADJ_FP]
+- word: espontáneas
+  classes: [~A~espontáneo, ADJ_FP]
+- word: estupendas
+  classes: [~A~estupendo, ADJ_FP]
+- word: estúpidas
+  classes: [~A~estúpido, ADJ_FP]
+- word: exquisitas
+  classes: [~A~exquisito, ADJ_FP]
+- word: extranjeras
+  classes: [~A~extranjero, ADJ_FP]
+- word: extremas
+  classes: [~A~extremo, ADJ_FP]
+- word: fabulosas
+  classes: [~A~fabuloso, ADJ_FP]
+- word: falsas
+  classes: [~A~falso, ADJ_FP]
+- word: famosas
+  classes: [~A~famoso, ADJ_FP]
+- word: fantásticas
+  classes: [~A~fantástico, ADJ_FP]
+- word: favoritas
+  classes: [~A~favorito, ADJ_FP]
+- word: feas
+  classes: [~A~feo, ADJ_FP]
+- word: fecundas
+  classes: [~A~fecundo, ADJ_FP]
+- word: femeninas
+  classes: [~A~femenino, ADJ_FP]
+- word: financieras
+  classes: [~A~financiero, ADJ_FP]
+- word: finas
+  classes: [~A~fino, ADJ_FP]
+- word: flacas
+  classes: [~A~flaco, ADJ_FP]
+- word: flojas
+  classes: [~A~flojo, ADJ_FP]
+- word: francas
+  classes: [~A~franco, ADJ_FP]
+- word: frescas
+  classes: [~A~fresco, ADJ_FP]
+- word: fritas
+  classes: [~A~frito, ADJ_FP]
+- word: frías
+  classes: [~A~frío, ADJ_FP]
+- word: frívolas
+  classes: [~A~frívolo, ADJ_FP]
+- word: fundidas
+  classes: [~A~fundido, ADJ_FP]
+- word: fónicas
+  classes: [~A~fónico, ADJ_FP]
+- word: gastadas
+  classes: [~A~gastado, ADJ_FP]
+- word: generosas
+  classes: [~A~generoso, ADJ_FP]
+- word: genias
+  classes: [~A~genio, ADJ_FP]
+- word: genéricas
+  classes: [~A~genérico, ADJ_FP]
+- word: genéticas
+  classes: [~A~genético, ADJ_FP]
+- word: geriátricas
+  classes: [~A~geriátrico, ADJ_FP]
+- word: gloriosas
+  classes: [~A~glorioso, ADJ_FP]
+- word: gordas
+  classes: [~A~gordo, ADJ_FP]
+- word: groseras
+  classes: [~A~grosero, ADJ_FP]
+- word: gruesas
+  classes: [~A~grueso, ADJ_FP]
+- word: guapas
+  classes: [~A~guapo, ADJ_FP]
+- word: habladas
+  classes: [~A~hablado, ADJ_FP]
+- word: hambrientas
+  classes: [~A~hambriento, ADJ_FP]
+- word: hecho a manas
+  classes: [~A~hecho a mano, ADJ_FP]
+- word: heladas
+  classes: [~A~helado, ADJ_FP]
+- word: hermosas
+  classes: [~A~hermoso, ADJ_FP]
+- word: herméticas
+  classes: [~A~hermético, ADJ_FP]
+- word: hinchadas
+  classes: [~A~hinchado, ADJ_FP]
+- word: históricas
+  classes: [~A~histórico, ADJ_FP]
+- word: honestas
+  classes: [~A~honesto, ADJ_FP]
+- word: humanas
+  classes: [~A~humano, ADJ_FP]
+- word: húmedas
+  classes: [~A~húmedo, ADJ_FP]
+- word: iluminadas
+  classes: [~A~iluminado, ADJ_FP]
+- word: ilógicas
+  classes: [~A~ilógico, ADJ_FP]
+- word: imaginarias
+  classes: [~A~imaginario, ADJ_FP]
+- word: inalámbricas
+  classes: [~A~inalámbrico, ADJ_FP]
+- word: incompletas
+  classes: [~A~incompleto, ADJ_FP]
+- word: incorrectas
+  classes: [~A~incorrecto, ADJ_FP]
+- word: incrastas
+  classes: [~A~incrasto, ADJ_FP]
+- word: incrédulas
+  classes: [~A~incrédulo, ADJ_FP]
+- word: incómodas
+  classes: [~A~incómodo, ADJ_FP]
+- word: indebidas
+  classes: [~A~indebido, ADJ_FP]
+- word: indefinidas
+  classes: [~A~indefinido, ADJ_FP]
+- word: ineptas
+  classes: [~A~inepto, ADJ_FP]
+- word: infecciosas
+  classes: [~A~infeccioso, ADJ_FP]
+- word: injustas
+  classes: [~A~injusto, ADJ_FP]
+- word: inquietas
+  classes: [~A~inquieto, ADJ_FP]
+- word: inéditas
+  classes: [~A~inédito, ADJ_FP]
+- word: izquierdas
+  classes: [~A~izquierdo, ADJ_FP]
+- word: jubilosas
+  classes: [~A~jubiloso, ADJ_FP]
+- word: juiciosas
+  classes: [~A~juicioso, ADJ_FP]
+- word: juntas
+  classes: [~A~junto, ADJ_FP]
+- word: juradas
+  classes: [~A~jurado, ADJ_FP]
+- word: justas
+  classes: [~A~justo, ADJ_FP]
+- word: largas
+  classes: [~A~largo, ADJ_FP]
+- word: lejanas
+  classes: [~A~lejano, ADJ_FP]
+- word: lentas
+  classes: [~A~lento, ADJ_FP]
+- word: limpias
+  classes: [~A~limpio, ADJ_FP]
+- word: lisas
+  classes: [~A~liso, ADJ_FP]
+- word: listas
+  classes: [~A~listo, ADJ_FP]
+- word: livianas
+  classes: [~A~liviano, ADJ_FP]
+- word: llamativas
+  classes: [~A~llamativo, ADJ_FP]
+- word: llanas
+  classes: [~A~llano, ADJ_FP]
+- word: llenas
+  classes: [~A~lleno, ADJ_FP]
+- word: lluviosas
+  classes: [~A~lluvioso, ADJ_FP]
+- word: locas
+  classes: [~A~loco, ADJ_FP]
+- word: luminosas
+  classes: [~A~luminoso, ADJ_FP]
+- word: lunáticas
+  classes: [~A~lunático, ADJ_FP]
+- word: lógicas
+  classes: [~A~lógico, ADJ_FP]
+- word: maduras
+  classes: [~A~maduro, ADJ_FP]
+- word: magnéticas
+  classes: [~A~magnético, ADJ_FP]
+- word: magníficas
+  classes: [~A~magnífico, ADJ_FP]
+- word: majaderas
+  classes: [~A~majadero, ADJ_FP]
+- word: majestuosas
+  classes: [~A~majestuoso, ADJ_FP]
+- word: malas
+  classes: [~A~malo, ADJ_FP]
+- word: malignas
+  classes: [~A~maligno, ADJ_FP]
+- word: malvadas
+  classes: [~A~malvado, ADJ_FP]
+- word: manuscritas
+  classes: [~A~manuscrito, ADJ_FP]
+- word: mareadas
+  classes: [~A~mareado, ADJ_FP]
+- word: marinas
+  classes: [~A~marino, ADJ_FP]
+- word: miedosas
+  classes: [~A~miedoso, ADJ_FP]
+- word: mismas
+  classes: [~A~mismo, ADJ_FP]
+- word: mojadas
+  classes: [~A~mojado, ADJ_FP]
+- word: morenas
+  classes: [~A~moreno, ADJ_FP]
+- word: morosas
+  classes: [~A~moroso, ADJ_FP]
+- word: muchas
+  classes: [~A~mucho, ADJ_FP]
+- word: muertas
+  classes: [~A~muerto, ADJ_FP]
+- word: mínimas
+  classes: [~A~mínimo, ADJ_FP]
+- word: necesarias
+  classes: [~A~necesario, ADJ_FP]
+- word: necias
+  classes: [~A~necio, ADJ_FP]
+- word: ningunas
+  classes: [~A~ninguno, ADJ_FP]
+- word: novatas
+  classes: [~A~novato, ADJ_FP]
+- word: novedosas
+  classes: [~A~novedoso, ADJ_FP]
+- word: nubladas
+  classes: [~A~nublado, ADJ_FP]
+- word: nuevas
+  classes: [~A~nuevo, ADJ_FP]
+- word: obstinadas
+  classes: [~A~obstinado, ADJ_FP]
+- word: ocupadas
+  classes: [~A~ocupado, ADJ_FP]
+- word: olorosas
+  classes: [~A~oloroso, ADJ_FP]
+- word: pagadas
+  classes: [~A~pagado, ADJ_FP]
+- word: paralelas
+  classes: [~A~paralelo, ADJ_FP]
+- word: parecidas
+  classes: [~A~parecido, ADJ_FP]
+- word: pasadas
+  classes: [~A~pasado, ADJ_FP]
+- word: pasajeras
+  classes: [~A~pasajero, ADJ_FP]
+- word: pastosas
+  classes: [~A~pastoso, ADJ_FP]
+- word: patológicas
+  classes: [~A~patológico, ADJ_FP]
+- word: patrióticas
+  classes: [~A~patriótico, ADJ_FP]
+- word: pegajosas
+  classes: [~A~pegajoso, ADJ_FP]
+- word: peladas
+  classes: [~A~pelado, ADJ_FP]
+- word: peligrosas
+  classes: [~A~peligroso, ADJ_FP]
+- word: pelirrojas
+  classes: [~A~pelirrojo, ADJ_FP]
+- word: peludas
+  classes: [~A~peludo, ADJ_FP]
+- word: penosas
+  classes: [~A~penoso, ADJ_FP]
+- word: pensativas
+  classes: [~A~pensativo, ADJ_FP]
+- word: pequeñas
+  classes: [~A~pequeño, ADJ_FP]
+- word: perezosas
+  classes: [~A~perezoso, ADJ_FP]
+- word: perfectas
+  classes: [~A~perfecto, ADJ_FP]
+- word: persuasivas
+  classes: [~A~persuasivo, ADJ_FP]
+- word: pesadas
+  classes: [~A~pesado, ADJ_FP]
+- word: piadosas
+  classes: [~A~piadoso, ADJ_FP]
+- word: pintorescas
+  classes: [~A~pintoresco, ADJ_FP]
+- word: planas
+  classes: [~A~plano, ADJ_FP]
+- word: plácidas
+  classes: [~A~plácido, ADJ_FP]
+- word: pocas
+  classes: [~A~poco, ADJ_FP]
+- word: podridas
+  classes: [~A~podrido, ADJ_FP]
+- word: policiacas
+  classes: [~A~policiaco, ADJ_FP]
+- word: poéticas
+  classes: [~A~poético, ADJ_FP]
+- word: precavidas
+  classes: [~A~precavido, ADJ_FP]
+- word: preferidas
+  classes: [~A~preferido, ADJ_FP]
+- word: preocupadas
+  classes: [~A~preocupado, ADJ_FP]
+- word: preparadas
+  classes: [~A~preparado, ADJ_FP]
+- word: primeras
+  classes: [~A~primero, ADJ_FP]
+- word: privadas
+  classes: [~A~privado, ADJ_FP]
+- word: privilegiadas
+  classes: [~A~privilegiado, ADJ_FP]
+- word: profundas
+  classes: [~A~profundo, ADJ_FP]
+- word: puras
+  classes: [~A~puro, ADJ_FP]
+- word: quebradas
+  classes: [~A~quebrado, ADJ_FP]
+- word: quemadas
+  classes: [~A~quemado, ADJ_FP]
+- word: queridas
+  classes: [~A~querido, ADJ_FP]
+- word: quietas
+  classes: [~A~quieto, ADJ_FP]
+- word: rabiosas
+  classes: [~A~rabioso, ADJ_FP]
+- word: rancias
+  classes: [~A~rancio, ADJ_FP]
+- word: recelosas
+  classes: [~A~receloso, ADJ_FP]
+- word: receptivas
+  classes: [~A~receptivo, ADJ_FP]
+- word: reconocidas
+  classes: [~A~reconocido, ADJ_FP]
+- word: refinadas
+  classes: [~A~refinado, ADJ_FP]
+- word: respetuosas
+  classes: [~A~respetuoso, ADJ_FP]
+- word: ricas
+  classes: [~A~rico, ADJ_FP]
+- word: ridículas
+  classes: [~A~ridículo, ADJ_FP]
+- word: robustas
+  classes: [~A~robusto, ADJ_FP]
+- word: románticas
+  classes: [~A~romántico, ADJ_FP]
+- word: roncas
+  classes: [~A~ronco, ADJ_FP]
+- word: rubias
+  classes: [~A~rubio, ADJ_FP]
+- word: rápidas
+  classes: [~A~rápido, ADJ_FP]
+- word: sabrosas
+  classes: [~A~sabroso, ADJ_FP]
+- word: sangrientas
+  classes: [~A~sangriento, ADJ_FP]
+- word: santas
+  classes: [~A~santo, ADJ_FP]
+- word: secas
+  classes: [~A~seco, ADJ_FP]
+- word: seguras
+  classes: [~A~seguro, ADJ_FP]
+- word: selectas
+  classes: [~A~selecto, ADJ_FP]
+- word: serias
+  classes: [~A~serio, ADJ_FP]
+- word: simpáticas
+  classes: [~A~simpático, ADJ_FP]
+- word: solas
+  classes: [~A~solo, ADJ_FP]
+- word: solteras
+  classes: [~A~soltero, ADJ_FP]
+- word: sucias
+  classes: [~A~sucio, ADJ_FP]
+- word: sólidas
+  classes: [~A~sólido, ADJ_FP]
+- word: tacañas
+  classes: [~A~tacaño, ADJ_FP]
+- word: terceras
+  classes: [~A~tercero, ADJ_FP]
+- word: todas
+  classes: [~A~todo, ADJ_FP]
+- word: tontas
+  classes: [~A~tonto, ADJ_FP]
+- word: torcidas
+  classes: [~A~torcido, ADJ_FP]
+- word: turbias
+  classes: [~A~turbio, ADJ_FP]
+- word: turbulentas
+  classes: [~A~turbulento, ADJ_FP]
+- word: ultrajosas
+  classes: [~A~ultrajoso, ADJ_FP]
+- word: usureras
+  classes: [~A~usurero, ADJ_FP]
+- word: vacías
+  classes: [~A~vacío, ADJ_FP]
+- word: varias
+  classes: [~A~vario, ADJ_FP]
+- word: verdaderas
+  classes: [~A~verdadero, ADJ_FP]
+- word: viejas
+  classes: [~A~viejo, ADJ_FP]
+- word: vigorosas
+  classes: [~A~vigoroso, ADJ_FP]
+- word: violentas
+  classes: [~A~violento, ADJ_FP]
+- word: vivas
+  classes: [~A~vivo, ADJ_FP]
+- word: zozobrosas
+  classes: [~A~zozobroso, ADJ_FP]
+- word: ásperas
+  classes: [~A~áspero, ADJ_FP]
+- word: únicas
+  classes: [~A~único, ADJ_FP]
+# Adjectives in ADJ_SING
+- word: abundante
+  classes: [~A~abundante, ADJ_SING]
+- word: agradable
+  classes: [~A~agradable, ADJ_SING]
+- word: alegre
+  classes: [~A~alegre, ADJ_SING]
+- word: amable
+  classes: [~A~amable, ADJ_SING]
+- word: anterior
+  classes: [~A~anterior, ADJ_SING]
+- word: aparte
+  classes: [~A~aparte, ADJ_SING]
+- word: aplicable
+  classes: [~A~aplicable, ADJ_SING]
+- word: ausente
+  classes: [~A~ausente, ADJ_SING]
+- word: bilingüe
+  classes: [~A~bilingüe, ADJ_SING]
+- word: caliente
+  classes: [~A~caliente, ADJ_SING]
+- word: capaz
+  classes: [~A~capaz, ADJ_SING]
+- word: central
+  classes: [~A~central, ADJ_SING]
+- word: chocante
+  classes: [~A~chocante, ADJ_SING]
+- word: criminal
+  classes: [~A~criminal, ADJ_SING]
+- word: decente
+  classes: [~A~decente, ADJ_SING]
+- word: despreciable
+  classes: [~A~despreciable, ADJ_SING]
+- word: destructible
+  classes: [~A~destructible, ADJ_SING]
+- word: diferente
+  classes: [~A~diferente, ADJ_SING]
+- word: difícil
+  classes: [~A~difícil, ADJ_SING]
+- word: digestible
+  classes: [~A~digestible, ADJ_SING]
+- word: digital
+  classes: [~A~digital, ADJ_SING]
+- word: dominante
+  classes: [~A~dominante, ADJ_SING]
+- word: dulce
+  classes: [~A~dulce, ADJ_SING]
+- word: débil
+  classes: [~A~débil, ADJ_SING]
+- word: dócil
+  classes: [~A~dócil, ADJ_SING]
+- word: eficaz
+  classes: [~A~eficaz, ADJ_SING]
+- word: egoísta
+  classes: [~A~egoísta, ADJ_SING]
+- word: elegante
+  classes: [~A~elegante, ADJ_SING]
+- word: elemental
+  classes: [~A~elemental, ADJ_SING]
+- word: elocuente
+  classes: [~A~elocuente, ADJ_SING]
+- word: embarazada
+  classes: [~A~embarazada, ADJ_SING]
+- word: emocionante
+  classes: [~A~emocionante, ADJ_SING]
+- word: enorme
+  classes: [~A~enorme, ADJ_SING]
+- word: envidiable
+  classes: [~A~envidiable, ADJ_SING]
+- word: especial
+  classes: [~A~especial, ADJ_SING]
+- word: eventual
+  classes: [~A~eventual, ADJ_SING]
+- word: evidente
+  classes: [~A~evidente, ADJ_SING]
+- word: excelente
+  classes: [~A~excelente, ADJ_SING]
+- word: extra
+  classes: [~A~extra, ADJ_SING]
+- word: familiar
+  classes: [~A~familiar, ADJ_SING]
+- word: fatal
+  classes: [~A~fatal, ADJ_SING]
+- word: federal
+  classes: [~A~federal, ADJ_SING]
+- word: feliz
+  classes: [~A~feliz, ADJ_SING]
+- word: fiel
+  classes: [~A~fiel, ADJ_SING]
+- word: flagrante
+  classes: [~A~flagrante, ADJ_SING]
+- word: flexible
+  classes: [~A~flexible, ADJ_SING]
+- word: formidable
+  classes: [~A~formidable, ADJ_SING]
+- word: fuerte
+  classes: [~A~fuerte, ADJ_SING]
+- word: fértil
+  classes: [~A~fértil, ADJ_SING]
+- word: general
+  classes: [~A~general, ADJ_SING]
+- word: gran
+  classes: [~A~grande, ADJ_SING]
+- word: grande
+  classes: [~A~grande, ADJ_SING]
+- word: grave
+  classes: [~A~grave, ADJ_SING]
+- word: hipócrita
+  classes: [~A~hipócrita, ADJ_SING]
+- word: horrible
+  classes: [~A~horrible, ADJ_SING]
+- word: hábil
+  classes: [~A~hábil, ADJ_SING]
+- word: ignorante
+  classes: [~A~ignorante, ADJ_SING]
+- word: ilegal
+  classes: [~A~ilegal, ADJ_SING]
+- word: ilegible
+  classes: [~A~ilegible, ADJ_SING]
+- word: impaciente
+  classes: [~A~impaciente, ADJ_SING]
+- word: impar
+  classes: [~A~impar, ADJ_SING]
+- word: imparcial
+  classes: [~A~imparcial, ADJ_SING]
+- word: impenetrable
+  classes: [~A~impenetrable, ADJ_SING]
+- word: imperdonable
+  classes: [~A~imperdonable, ADJ_SING]
+- word: importante
+  classes: [~A~importante, ADJ_SING]
+- word: imprudente
+  classes: [~A~imprudente, ADJ_SING]
+- word: incalculable
+  classes: [~A~incalculable, ADJ_SING]
+- word: incoherente
+  classes: [~A~incoherente, ADJ_SING]
+- word: incomparable
+  classes: [~A~incomparable, ADJ_SING]
+- word: incompatible
+  classes: [~A~incompatible, ADJ_SING]
+- word: incompetente
+  classes: [~A~incompetente, ADJ_SING]
+- word: inconveniente
+  classes: [~A~inconveniente, ADJ_SING]
+- word: indecente
+  classes: [~A~indecente, ADJ_SING]
+- word: indivisible
+  classes: [~A~indivisible, ADJ_SING]
+- word: indígena
+  classes: [~A~indígena, ADJ_SING]
+- word: infantil
+  classes: [~A~infantil, ADJ_SING]
+- word: infiel
+  classes: [~A~infiel, ADJ_SING]
+- word: informal
+  classes: [~A~informal, ADJ_SING]
+- word: inteligente
+  classes: [~A~inteligente, ADJ_SING]
+- word: interesante
+  classes: [~A~interesante, ADJ_SING]
+- word: invisible
+  classes: [~A~invisible, ADJ_SING]
+- word: inútil
+  classes: [~A~inútil, ADJ_SING]
+- word: irritable
+  classes: [~A~irritable, ADJ_SING]
+- word: joven
+  classes: [~A~joven, ADJ_SING]
+- word: jovial
+  classes: [~A~jovial, ADJ_SING]
+- word: judicial
+  classes: [~A~judicial, ADJ_SING]
+- word: juguetón
+  classes: [~A~juguetón, ADJ_SING]
+- word: juvenil
+  classes: [~A~juvenil, ADJ_SING]
+- word: lamentable
+  classes: [~A~lamentable, ADJ_SING]
+- word: lavable
+  classes: [~A~lavable, ADJ_SING]
+- word: leal
+  classes: [~A~leal, ADJ_SING]
+- word: libre
+  classes: [~A~libre, ADJ_SING]
+- word: llorón
+  classes: [~A~llorón, ADJ_SING]
+- word: locuaz
+  classes: [~A~locuaz, ADJ_SING]
+- word: mandón
+  classes: [~A~mandón, ADJ_SING]
+- word: manejable
+  classes: [~A~manejable, ADJ_SING]
+- word: mayor
+  classes: [~A~mayor, ADJ_SING]
+- word: mejor
+  classes: [~A~mejor, ADJ_SING]
+- word: menor
+  classes: [~A~menor, ADJ_SING]
+- word: musical
+  classes: [~A~musical, ADJ_SING]
+- word: nacional
+  classes: [~A~nacional, ADJ_SING]
+- word: optimista
+  classes: [~A~optimista, ADJ_SING]
+- word: paciente
+  classes: [~A~paciente, ADJ_SING]
+- word: parcial
+  classes: [~A~parcial, ADJ_SING]
+- word: particular
+  classes: [~A~particular, ADJ_SING]
+- word: pastoral
+  classes: [~A~pastoral, ADJ_SING]
+- word: paternal
+  classes: [~A~paternal, ADJ_SING]
+- word: perjudicial
+  classes: [~A~perjudicial, ADJ_SING]
+- word: permanente
+  classes: [~A~permanente, ADJ_SING]
+- word: picante
+  classes: [~A~picante, ADJ_SING]
+- word: pobre
+  classes: [~A~pobre, ADJ_SING]
+- word: popular
+  classes: [~A~popular, ADJ_SING]
+- word: presente
+  classes: [~A~presente, ADJ_SING]
+- word: puntual
+  classes: [~A~puntual, ADJ_SING]
+- word: radial
+  classes: [~A~radial, ADJ_SING]
+- word: razonable
+  classes: [~A~razonable, ADJ_SING]
+- word: rebelde
+  classes: [~A~rebelde, ADJ_SING]
+- word: rebosante
+  classes: [~A~rebosante, ADJ_SING]
+- word: recargable
+  classes: [~A~recargable, ADJ_SING]
+- word: reciclable
+  classes: [~A~reciclable, ADJ_SING]
+- word: reciente
+  classes: [~A~reciente, ADJ_SING]
+- word: recomendable
+  classes: [~A~recomendable, ADJ_SING]
+- word: redundante
+  classes: [~A~redundante, ADJ_SING]
+- word: reemplazable
+  classes: [~A~reemplazable, ADJ_SING]
+- word: regional
+  classes: [~A~regional, ADJ_SING]
+- word: repugnante
+  classes: [~A~repugnante, ADJ_SING]
+- word: resonante
+  classes: [~A~resonante, ADJ_SING]
+- word: responsable
+  classes: [~A~responsable, ADJ_SING]
+- word: reverente
+  classes: [~A~reverente, ADJ_SING]
+- word: saludable
+  classes: [~A~saludable, ADJ_SING]
+- word: simple
+  classes: [~A~simple, ADJ_SING]
+- word: suave
+  classes: [~A~suave, ADJ_SING]
+- word: superficial
+  classes: [~A~superficial, ADJ_SING]
+- word: tolerante
+  classes: [~A~tolerante, ADJ_SING]
+- word: transparente
+  classes: [~A~transparente, ADJ_SING]
+- word: triste
+  classes: [~A~triste, ADJ_SING]
+- word: uniforme
+  classes: [~A~uniforme, ADJ_SING]
+- word: universal
+  classes: [~A~universal, ADJ_SING]
+- word: unánime
+  classes: [~A~unánime, ADJ_SING]
+- word: valiente
+  classes: [~A~valiente, ADJ_SING]
+- word: útil
+  classes: [~A~útil, ADJ_SING]
+# Adjectives in ADJ_PLUR
+- word: abundantes
+  classes: [~A~abundante, ADJ_PLUR]
+- word: agradables
+  classes: [~A~agradable, ADJ_PLUR]
+- word: alegres
+  classes: [~A~alegre, ADJ_PLUR]
+- word: amables
+  classes: [~A~amable, ADJ_PLUR]
+- word: anteriores
+  classes: [~A~anterior, ADJ_PLUR]
+- word: apartes
+  classes: [~A~aparte, ADJ_PLUR]
+- word: aplicables
+  classes: [~A~aplicable, ADJ_PLUR]
+- word: ausentes
+  classes: [~A~ausente, ADJ_PLUR]
+- word: bilingües
+  classes: [~A~bilingüe, ADJ_PLUR]
+- word: calientes
+  classes: [~A~caliente, ADJ_PLUR]
+- word: capaces
+  classes: [~A~capaz, ADJ_PLUR]
+- word: centrales
+  classes: [~A~central, ADJ_PLUR]
+- word: chocantes
+  classes: [~A~chocante, ADJ_PLUR]
+- word: criminales
+  classes: [~A~criminal, ADJ_PLUR]
+- word: decentes
+  classes: [~A~decente, ADJ_PLUR]
+- word: despreciables
+  classes: [~A~despreciable, ADJ_PLUR]
+- word: destructibles
+  classes: [~A~destructible, ADJ_PLUR]
+- word: diferentes
+  classes: [~A~diferente, ADJ_PLUR]
+- word: difíciles
+  classes: [~A~difícil, ADJ_PLUR]
+- word: digestibles
+  classes: [~A~digestible, ADJ_PLUR]
+- word: digitales
+  classes: [~A~digital, ADJ_PLUR]
+- word: dominantes
+  classes: [~A~dominante, ADJ_PLUR]
+- word: dulces
+  classes: [~A~dulce, ADJ_PLUR]
+- word: débiles
+  classes: [~A~débil, ADJ_PLUR]
+- word: dóciles
+  classes: [~A~dócil, ADJ_PLUR]
+- word: eficaces
+  classes: [~A~eficaz, ADJ_PLUR]
+- word: egoístas
+  classes: [~A~egoísta, ADJ_PLUR]
+- word: elegantes
+  classes: [~A~elegante, ADJ_PLUR]
+- word: elementales
+  classes: [~A~elemental, ADJ_PLUR]
+- word: elocuentes
+  classes: [~A~elocuente, ADJ_PLUR]
+- word: embarazadas
+  classes: [~A~embarazada, ADJ_PLUR]
+- word: emocionantes
+  classes: [~A~emocionante, ADJ_PLUR]
+- word: enormes
+  classes: [~A~enorme, ADJ_PLUR]
+- word: envidiables
+  classes: [~A~envidiable, ADJ_PLUR]
+- word: especiales
+  classes: [~A~especial, ADJ_PLUR]
+- word: eventuales
+  classes: [~A~eventual, ADJ_PLUR]
+- word: evidentes
+  classes: [~A~evidente, ADJ_PLUR]
+- word: excelentes
+  classes: [~A~excelente, ADJ_PLUR]
+- word: extras
+  classes: [~A~extra, ADJ_PLUR]
+- word: familiares
+  classes: [~A~familiar, ADJ_PLUR]
+- word: fatales
+  classes: [~A~fatal, ADJ_PLUR]
+- word: federales
+  classes: [~A~federal, ADJ_PLUR]
+- word: felices
+  classes: [~A~feliz, ADJ_PLUR]
+- word: fieles
+  classes: [~A~fiel, ADJ_PLUR]
+- word: flagrantes
+  classes: [~A~flagrante, ADJ_PLUR]
+- word: flexibles
+  classes: [~A~flexible, ADJ_PLUR]
+- word: formidables
+  classes: [~A~formidable, ADJ_PLUR]
+- word: fuertes
+  classes: [~A~fuerte, ADJ_PLUR]
+- word: fértiles
+  classes: [~A~fértil, ADJ_PLUR]
+- word: generales
+  classes: [~A~general, ADJ_PLUR]
+- word: grandes
+  classes: [~A~grande, ADJ_PLUR]
+- word: graves
+  classes: [~A~grave, ADJ_PLUR]
+- word: hipócritas
+  classes: [~A~hipócrita, ADJ_PLUR]
+- word: horribles
+  classes: [~A~horrible, ADJ_PLUR]
+- word: hábiles
+  classes: [~A~hábil, ADJ_PLUR]
+- word: ignorantes
+  classes: [~A~ignorante, ADJ_PLUR]
+- word: ilegales
+  classes: [~A~ilegal, ADJ_PLUR]
+- word: ilegibles
+  classes: [~A~ilegible, ADJ_PLUR]
+- word: impacientes
+  classes: [~A~impaciente, ADJ_PLUR]
+- word: imparciales
+  classes: [~A~imparcial, ADJ_PLUR]
+- word: impares
+  classes: [~A~impar, ADJ_PLUR]
+- word: impenetrables
+  classes: [~A~impenetrable, ADJ_PLUR]
+- word: imperdonables
+  classes: [~A~imperdonable, ADJ_PLUR]
+- word: importantes
+  classes: [~A~importante, ADJ_PLUR]
+- word: imprudentes
+  classes: [~A~imprudente, ADJ_PLUR]
+- word: incalculables
+  classes: [~A~incalculable, ADJ_PLUR]
+- word: incoherentes
+  classes: [~A~incoherente, ADJ_PLUR]
+- word: incomparables
+  classes: [~A~incomparable, ADJ_PLUR]
+- word: incompatibles
+  classes: [~A~incompatible, ADJ_PLUR]
+- word: incompetentes
+  classes: [~A~incompetente, ADJ_PLUR]
+- word: inconvenientes
+  classes: [~A~inconveniente, ADJ_PLUR]
+- word: indecentes
+  classes: [~A~indecente, ADJ_PLUR]
+- word: indivisibles
+  classes: [~A~indivisible, ADJ_PLUR]
+- word: indígenas
+  classes: [~A~indígena, ADJ_PLUR]
+- word: infantiles
+  classes: [~A~infantil, ADJ_PLUR]
+- word: infieles
+  classes: [~A~infiel, ADJ_PLUR]
+- word: informales
+  classes: [~A~informal, ADJ_PLUR]
+- word: inteligentes
+  classes: [~A~inteligente, ADJ_PLUR]
+- word: interesantes
+  classes: [~A~interesante, ADJ_PLUR]
+- word: invisibles
+  classes: [~A~invisible, ADJ_PLUR]
+- word: inútiles
+  classes: [~A~inútil, ADJ_PLUR]
+- word: irritables
+  classes: [~A~irritable, ADJ_PLUR]
+- word: joviales
+  classes: [~A~jovial, ADJ_PLUR]
+- word: judiciales
+  classes: [~A~judicial, ADJ_PLUR]
+- word: juguetones
+  classes: [~A~juguetón, ADJ_PLUR]
+- word: juveniles
+  classes: [~A~juvenil, ADJ_PLUR]
+- word: jóvenes
+  classes: [~A~joven, ADJ_PLUR]
+- word: lamentables
+  classes: [~A~lamentable, ADJ_PLUR]
+- word: lavables
+  classes: [~A~lavable, ADJ_PLUR]
+- word: leales
+  classes: [~A~leal, ADJ_PLUR]
+- word: libres
+  classes: [~A~libre, ADJ_PLUR]
+- word: llorones
+  classes: [~A~llorón, ADJ_PLUR]
+- word: locuaces
+  classes: [~A~locuaz, ADJ_PLUR]
+- word: mandones
+  classes: [~A~mandón, ADJ_PLUR]
+- word: manejables
+  classes: [~A~manejable, ADJ_PLUR]
+- word: mayores
+  classes: [~A~mayor, ADJ_PLUR]
+- word: mejores
+  classes: [~A~mejor, ADJ_PLUR]
+- word: menores
+  classes: [~A~menor, ADJ_PLUR]
+- word: musicales
+  classes: [~A~musical, ADJ_PLUR]
+- word: nacionales
+  classes: [~A~nacional, ADJ_PLUR]
+- word: optimistas
+  classes: [~A~optimista, ADJ_PLUR]
+- word: pacientes
+  classes: [~A~paciente, ADJ_PLUR]
+- word: parciales
+  classes: [~A~parcial, ADJ_PLUR]
+- word: particulares
+  classes: [~A~particular, ADJ_PLUR]
+- word: pastorales
+  classes: [~A~pastoral, ADJ_PLUR]
+- word: paternales
+  classes: [~A~paternal, ADJ_PLUR]
+- word: perjudiciales
+  classes: [~A~perjudicial, ADJ_PLUR]
+- word: permanentes
+  classes: [~A~permanente, ADJ_PLUR]
+- word: picantes
+  classes: [~A~picante, ADJ_PLUR]
+- word: pobres
+  classes: [~A~pobre, ADJ_PLUR]
+- word: populares
+  classes: [~A~popular, ADJ_PLUR]
+- word: presentes
+  classes: [~A~presente, ADJ_PLUR]
+- word: puntuales
+  classes: [~A~puntual, ADJ_PLUR]
+- word: radiales
+  classes: [~A~radial, ADJ_PLUR]
+- word: razonables
+  classes: [~A~razonable, ADJ_PLUR]
+- word: rebeldes
+  classes: [~A~rebelde, ADJ_PLUR]
+- word: rebosantes
+  classes: [~A~rebosante, ADJ_PLUR]
+- word: recargables
+  classes: [~A~recargable, ADJ_PLUR]
+- word: reciclables
+  classes: [~A~reciclable, ADJ_PLUR]
+- word: recientes
+  classes: [~A~reciente, ADJ_PLUR]
+- word: recomendables
+  classes: [~A~recomendable, ADJ_PLUR]
+- word: redundantes
+  classes: [~A~redundante, ADJ_PLUR]
+- word: reemplazables
+  classes: [~A~reemplazable, ADJ_PLUR]
+- word: regionales
+  classes: [~A~regional, ADJ_PLUR]
+- word: repugnantes
+  classes: [~A~repugnante, ADJ_PLUR]
+- word: resonantes
+  classes: [~A~resonante, ADJ_PLUR]
+- word: responsables
+  classes: [~A~responsable, ADJ_PLUR]
+- word: reverentes
+  classes: [~A~reverente, ADJ_PLUR]
+- word: saludables
+  classes: [~A~saludable, ADJ_PLUR]
+- word: simples
+  classes: [~A~simple, ADJ_PLUR]
+- word: suaves
+  classes: [~A~suave, ADJ_PLUR]
+- word: superficiales
+  classes: [~A~superficial, ADJ_PLUR]
+- word: tolerantes
+  classes: [~A~tolerante, ADJ_PLUR]
+- word: transparentes
+  classes: [~A~transparente, ADJ_PLUR]
+- word: tristes
+  classes: [~A~triste, ADJ_PLUR]
+- word: uniformes
+  classes: [~A~uniforme, ADJ_PLUR]
+- word: universales
+  classes: [~A~universal, ADJ_PLUR]
+- word: unánimes
+  classes: [~A~unánime, ADJ_PLUR]
+- word: valientes
+  classes: [~A~valiente, ADJ_PLUR]
+- word: útiles
+  classes: [~A~útil, ADJ_PLUR]

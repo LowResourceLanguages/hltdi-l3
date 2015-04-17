@@ -1,0 +1,203 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2012, 2013
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+
+# Guarani verbs
+#
+# 2012.07.22
+# -- Created
+# 2012.09.14
+# -- Verbs that take particular postpositions (started).
+# 2013.03
+# -- Relative clauses.
+
+### Verbs
+- gram: V
+  shared:
+    pos: v
+    # Subject may be empty
+    empty: ['@SJ']
+    id:
+      # Independent: root, dependent: sj, oj, ...
+      ins: {root: '?'} 
+#, rel: '?'}
+      # Verbs have only one mother
+      inmax: 1
+      # Possible outgoing arcs
+      # Assume V is finite, so there must be a subject
+      outs: {sj: '!', oj: '?', pmod: '?', ojp: '?'}
+      # It would be weird to have more than 4 arguments
+      outmax: 4
+      agrs: {sj: [[1,0,0],[0,1,0],[0,0],
+                  [1,0,1],[1,1,1],[0,1,1]],
+             # for now assume "present" (presperf) and "past"
+             # (pretperf)
+             tmp: [[0], [1]],
+             # verbs are relative or non-relative
+             rel: [[0], [1]],
+             # default values when verbs compete with nouns
+#             cas: [[-1]],
+             num: [[-1]]}
+#      govern: {sj: [[cas, 0]]}
+    lp:
+      ins: {root: '?'}
+# relf: '?'}
+      # possible outgoing arcs; at most four arguments/complements
+      outs: {preargf: '?', postargf: '?',    # sujeto, objecto
+             precf: '?', postcf: '?'}
+      outmax: 4
+      order: [[precf, preargf, ^, postargf, postcf]]
+    idlp:
+      # linkingend because arguments have to be daughters
+      # on both ID and LP?
+      # for now, no constraints on position of
+      # sj, oj, ojp, and pmod
+      ldend: {precf: [pmod],
+              postcf: [pmod],
+              preargf: [sj, oj, ojp],
+              postargf: [sj, oj, ojp]}
+#              relpf: [sj, oj]}
+  partition:
+  ## Independent clause verbs
+  # Non-relative subject
+  - part: V_INDEP_SJ_N
+    id:
+      # The syntactic root of the sentence
+      ins: {root: '!'} #, rel: 0}
+      agrs: {rel: 0}
+      agree: [[sj, sj, pn]]
+    lp:
+      ins: {root: '!'} #, relf: 0}
+  # Relative subject agreeing with subject of relative verb
+  - part: V_INDEP_SJSJ_REL
+    id:
+      # The syntactic root of the sentence
+      ins: {root: '!'}
+      agrs: {rel: 0}
+      agree: [[sj, sj, sj]]
+    lp:
+      ins: {root: '!'}
+  ## Dependent clause verbs
+  - part: V_REL
+#    shared:
+#    empty: ['@REL']
+    id:
+      # No incoming root arc; instead incoming rel arc
+#      ins: {root: 0, rel: '!'}
+      # Later also ojp and oblique arguments
+      ins: {root: 0, sj: '?', oj: '?'}
+      outs: {nhead: '!'}
+      agrs: {rel: 1}
+      agree: [[sj, sj, pn]]
+    lp:
+#      ins: {root: 0, relf: '!'}
+      ins: {root: 0, preargf: '?', postargf: '?'}
+      outs: {nheadf: '?'}
+      order: [[nheadf, ^]]
+#      outs: {relpf: '!'}
+    idlp:
+      ldend: {nheadf: [nhead]}
+#      blocks: [sj, oj]
+
+## Transitive verbs
+## 1 Direct objects with no postposition: non-human 3p objects
+## 2 Morphological 1 and 2 person direct objects
+## 3 3p human direct objects with postposition -pe
+## 4 Relative clause verbs with relativized 3p(?) object, human or not
+
+# direct object without -pe
+- gram: V_T_OJ
+  shared:
+    empty: ['@OJ']
+    classes: [V]
+    id:
+      outs: {oj: '!', ojp: 0}
+  partition:
+  # explicit non-human object or no object at all
+  - part: V_T_NOHUM
+#    empty: ['@OJ3']
+    id:
+      ins: {root: '!'}
+      agrs: {oj: [[0,0]]}
+      govern: {oj: [[an, 0]]}
+      agree: [[oj, oj, pn]]
+  # 1 or 2 person morphological object
+  - part: V_T_12
+#    empty: ['@OJ12']
+    id:
+      ins: {root: '!'}
+      agrs: {oj: [[1,0,0],[0,1,0],[1,0,1],[1,1,1],[0,1,1]]}
+      govern: {oj: [[an, 1]]}
+      agree: [[oj, oj, pn]]
+  # relative object "pronoun"
+  # object is subject of relative verb
+  - part: V_T_INDEP_RELOBSB
+    empty: ['@OJ']
+    id:
+      ins: {root: '!'}
+      agrs: {rel: 0}
+      agree: [[oj, oj, sj]]
+#      govern: {oj: [[an, 1]]}
+    lp:
+      ins: {root: '!'}
+#  - part: V_T_REL_OJ
+#    classes: [V_REL]
+##    empty: ['@OJ12']
+#    id:
+#      agrs: {oj: [[0,0]]}
+##      govern: {oj: [[an, 1]]}
+
+# explicit human object, requires postposition -pe
+- gram: V_T_OJP
+  classes: [V]
+  id:
+    outs: {ojp: '!', oj: 0}
+
+## Intransitive verbs
+- gram: V_I
+  shared:
+    classes: [V]
+    id:
+      outs: {oj: 0, ojp: 0}
+  partition:
+  ## independent
+  - part: V_I_INDEP
+    id:
+      agrs: {rel: 0}
+  ## dependent
+  # subject relatives
+  - part: V_I_REL_SJ
+    empty: ['@REL']
+#, '@NHEAD']
+    id:
+      ins: {sj: '!', root: 0, oj: 0}
+      agrs: {rel: 1}
+      agree: [[nhead, sj, pn]]
+  # object relatives
+  - part: V_I_REL_OJ
+    empty: ['@REL']
+# '@NHEAD']
+    id:
+      ins: {oj: '!', root: 0, sj: 0}
+      agrs: {rel: 1}
+      agree: [[nhead, sj, pn]]

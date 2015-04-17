@@ -1,0 +1,243 @@
+#########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2011, 2012 The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+#
+#
+# Verbs for tiny Spanish test grammar
+#
+# 2011.12.18
+#
+# 2012.07.15
+# - copied crosslexes from classes; include only finite verbs
+# 2012.07.31
+# - moved verb classes here
+# 2012.09.22
+# - relative clauses
+# 2012.10.11
+# - copula, predicate nominals and adjectives
+# 2012.12.09
+# - Pleonastic (redundant) pronoun arc (ojpl) added to verbs in ID
+
+### Classes
+
+- gram: V
+  pos: v
+  id:
+    # Independent: root, dependent: rel
+    ins: {root: '?', rel: '?'}
+    # Possible outgoing arcs
+    outs: {sj: '?', ojd: '?', oji: '?', vmain: '?', pmod: '?', ojdp: '?',
+           # pleonastic pronoun
+           ojpl: '?'}
+    # Not really true; nonfinite verbs don't have TAM
+    agrs: {tam: [[0], [1]]}
+  lp:
+    ins: {root: '?', relf: '?'}
+    # possible outgoing arcs
+    outs: {preargf: '?', postargf: '?',
+           precf: '?', postcf: '?',
+           vmainf: '?', relpf: '?',
+           ojprof: '?'}
+    order: [[relpf, precf, preargf, ojprof, ^, vmainf, postargf, postcf]]
+  idlp:
+    # should be LinkingEnd because OJD and OJI may not be immediate
+    # daughters of the finite verb?
+    arg: {precf: [oji, pmod],
+          postcf: [oji, pmod],
+          preargf: [sj, ojd, ojdp],
+          postargf: [sj, ojd, ojdp],
+          ojprof: [ojd, oji, ojr, ojpl],
+          vmainf: [vmain]}
+    # same mothers and daughters (but what about prep phrases with
+    # relative pronouns?)
+    ldend: {relpf: [sj, ojd]}
+
+## Finiteness and (under V_FIN) dependence
+- gram: V_FINITENESS
+  shared:
+    classes: [V]
+  partition:
+
+  # Nonfinite verbs get their TAM from their head;
+  # they have no complement daughters in LP
+  - subpartition: V_NONFIN
+    shared:
+      id:
+        # Assume that all have an AUX head
+        ins: {vmain: '!', root: 0}
+        outs: {sj: 0}
+      lp:
+        ins: {vmainf: '!', root: 0}
+        outs: {precf: 0, postcf: 0, preargf: 0, postargf: 0, relpf: 0}
+    subclasses:
+    # Assume gerundio must be a component of progressive (with estar)
+    # (estoy) cantando
+    - part: V_GER
+      id:
+        agrs: {as: [[1]]}
+    # Assume participio must be a component of perfective (with haber)
+    # (he) cantado
+    - part: V_PART
+      id:
+        agrs: {as: [[2]]}
+
+  - subpartition: V_FIN
+    shared:
+      # Finite verbs have subjects that agree with them
+      # Subject may be empty
+      empty: ['@SJ']
+      id:
+        outs: {sj: '!'}
+        agrs: {sj: [[0,1,0],[1,0,0],[0,0,0],[1,0,1],[0,1,1],[0,0,1]]}
+        agree: [[sj, sj, pn]]
+        govern: {sj: [cas, [0]]}
+    subclasses:
+    # Verbos de clausulas relativas
+    - part: V_REL
+      id:
+        ins: {rel: '!', root: 0}
+      lp:
+        ins: {relf: '!', root: 0}
+        outs: {relpf: '!'}
+      idlp:
+        blocks: [sj, ojd]
+    # Independent clause verbs
+    - part: V_INDEP
+      id:
+        # The syntactic root of the sentence
+        ins: {root: '!', rel: 0}
+      lp:
+        ins: {root: '!', relf: 0}
+        outs: {relpf: 0}
+
+## "Contentness"
+- gram: V_AUX
+  classes: [V]
+  # Requires a main verb
+  id:
+    outs: {vmain: '!'}
+    agree: [[vmain, tam, tam]]
+  lp:
+    outs: {vmainf: '!'}
+
+- gram: V_MAIN
+  shared:
+    classes: [V]
+    id:
+      outs: {vmain: 0}
+    lp:
+      outs: {vmainf: 0}
+  partition:
+  - part: V_MAIN_INDEP
+    classes: [V_INDEP]
+  - part: V_MAIN_REL
+    classes: [V_REL]
+
+- gram: V_T
+  shared:
+    classes: [V_MAIN]
+    id:
+      # fix later
+      outs: {oji: 0}
+      govern: {ojd: [[cas, [1]], [anim, [0]]]}
+  partition:
+  - part: V_T_PERS
+    id:
+      outs: {ojd: 0, ojdp: '!?'}
+  - part: V_T_IMPERS
+    id:
+      outs: {ojd: '!?', ojdp: 0}
+
+- gram: V_I
+  classes: [V_MAIN]
+  id:
+    # fix later: oji and ojpl (for indirect objects)
+    outs: {ojd: 0, oji: 0, ojdp: 0, ojpl: 0}
+
+# reflexive verbs; have a special 'ojr' arc
+# (or should this be the ojd or the oji?)
+- gram: V_REFLX
+  classes: [V_MAIN]
+  id:
+    outs: {ojr: '!', ojd: 0, oji: 0}
+    agree: [[ojr, sj, pn]]
+  lp:
+    # one required, for reflexive pronoun, could be others
+    outs: {ojprof: '+'}
+
+- gram: COP
+  pos: v
+  id:
+    ins: {root: '?', rel: '?'}
+    agrs: {tam: [[0], [1]],
+           sj: [[0,1,0],[1,0,0],[0,0,0],[1,0,1],[0,1,1],[0,0,1]]}
+    agree: [[sj, sj, pn], [npred, tam, tam]]
+    outs: {sj: '?', apred: '?', npred: '?'}
+    # Subject governance only applies for main clause COP
+    govern: {npred: [cas, [0]], sj: [cas, [0]]}
+  lp:
+    ins: {root: '?', relf: '?'}
+    order: [[relpf, preargf, ^, postargf]]
+    outs: {preargf: '?', postargf: '?', relpf: '?'}
+  idlp:
+    ldend: {relpf: [sj]}
+    arg: {preargf: [sj, apred, npred],
+          postargf: [sj, apred, npred]}
+
+# Predicative nominal ser
+- gram: '%ser'
+  shared:
+    cross:
+      sem:
+        lex: ZERO_V
+        bidir: False
+  partition:
+  - lexemepart: ser
+    classes: [COP]
+    root: ser
+    id:
+      outs: {sj: '!'}
+  - morph: '@ser'
+    id:
+      ins: {del: '!', root: 0, rel: 0}
+      outs: {sj: 0, apred: 0, npred: 0}
+      # default features
+      agrs: {sj: [[0,0,0]], tam: [[0]]}
+    lp:
+      ins: {del: '!', root: 0, relf: 0}
+      outs: {preargf: 0, postargf: 0, relpf: 0}
+
+## Specific verbs
+# Auxiliaries
+#- lexeme: estar
+#  classes: [V_AUX, V_FINITENESS]
+#  root: estar
+#  # Deleted in semantics
+#  cross:
+#    sem:
+#      lex: ZERO_VMOD
+#      # This is actually wrong
+#      bidir: False
+
+## ser + N/ADJ, estar + ADJ
+#- lexeme: ser
+#  classes: [V_FINITENESS]

@@ -1,0 +1,183 @@
+# -- 2012.11.29
+#    Added new arc labels to LP to constrain subject-object positions
+
+name: guarani
+
+lang backup: es
+
+seg: a e i o u y á é í ó ú ý ã ẽ ĩ õ ũ ỹ
+     g ĝ h j k l ñ p s t v '
+     A E I O U Y Á É Í Ó Ú Ý Ã Ẽ Ĩ Õ Ũ Ỹ
+     G Ĝ H J K L Ñ P S T V
+     ch m mb n nd nt ng r rr
+     <h <j <ñ <H <J <Ñ
+     Ch M Mb N Nd Nt Ng R Rr
+
+lex: tiny
+
+labels:
+
+  dim: gn-id
+    # ojp: "objeto personal", con PP -pe
+    # 2013.3: nhead agredado para cláusulas relativas (ejemplo de amárico)
+    sj oj ojp rel det pmod pcomp del root antec nhead
+
+  dim: gn-lp
+    # 2013.3: nheadf agregado para cláusulas relativas (ejemplo de amárico)
+    precf postcf preargf postargf detf pcompf relf preaf postaf del root nheadf
+
+morph:
+  pos: va
+    anal:
+      rel=
+        False;      rel=[0]
+        True;       rel=[1]
+#      asp=
+#        # Present relative or habitual non-relative
+#        [+hab];     rel=[1]
+#	*;          rel=[0]
+      tmp=
+        pres;   tmp=[0]
+        pret;   tmp=[1]
+	*;      tmp=[0]
+      sj=
+        [-1,-2];    sj=[0,0]
+        [+1,-2,-p]; sj=[1,0,0]
+        [+1,-2,+p]; sj=[1,0,1]
+        [+1,+2,+p]; sj=[1,1,1]
+        [-1,+2,-p]; sj=[0,1,0]
+        [-1,+2,+p]; sj=[0,1,1]
+      oj=
+        # If trans is False, assign no value to oj
+        !;          trans=False
+        [-1,-2];    oj=[0,0]
+        [+1,-2,-p]; oj=[1,0,0]
+        [+1,-2,+p]; oj=[1,0,1]
+        [+1,+2,+p]; oj=[1,1,1]
+        [-1,+2,-p]; oj=[0,1,0]
+        [-1,+2,+p]; oj=[0,1,1]
+      # Ignore optative and imperative for now
+      mod=
+        opt;        !
+        imp;        !
+    gen:
+      tmp=
+        [0];      tmp=pres
+        [1];      tmp=pret
+	# only one preterite form for now: -'akue
+        [1];      tasp=[+perf]
+      rel=
+        [0];      rel=False
+        [1];      rel=True
+      sj=
+        [0,0];    sj=[-1,-2]
+        [1,0,0];  sj=[+1,-2,-p]
+        [1,0,1];  sj=[+1,-2,+p]
+        [1,1,1];  sj=[+1,+2,+p]
+        [0,1,0];  sj=[-1,+2,-p]
+        [0,1,1];  sj=[-1,+2,+p]
+      oj=
+        [0,0];    oj=[-1,-2]
+        [1,0,0];  oj=[+1,-2,-p]
+        [1,0,1];  oj=[+1,-2,+p]
+        [1,1,1];  oj=[+1,+2,+p]
+        [0,1,0];  oj=[-1,+2,-p]
+        [0,1,1];  oj=[-1,+2,+p]
+  pos: vc
+    anal:
+      rel=
+        False;      rel=[0]
+        True;       rel=[1]
+#      asp=
+#        # Present relative or habitual non-relative
+#        [+hab];     rel=[1]
+#	*;          rel=[0]
+      tmp=
+        pres;   tmp=[0]
+        pret;   tmp=[1]
+      sj=
+        [-1,-2];    sj=[0,0]
+        [+1,-2,-p]; sj=[1,0,0]
+        [+1,-2,+p]; sj=[1,0,1]
+        [+1,+2,+p]; sj=[1,1,1]
+        [-1,+2,-p]; sj=[0,1,0]
+        [-1,+2,+p]; sj=[0,1,1]
+      # Ignore optative and imperative for now
+      mod=
+        opt;        !
+        imp;        !
+    gen:
+      tmp=
+        [0];      tmp=pres
+        [1];      tmp=pret
+	# only one preterite form for now: -'akue
+        [1];      tasp=[+perf]
+      rel=
+        [0];      rel=False
+        [1];      rel=True
+      sj=
+        [0,0];  sj=[-1,-2]
+        [1,0,0];  sj=[+1,-2,-p]
+        [1,0,1];  sj=[+1,-2,+p]
+        [1,1,1];  sj=[+1,+2,+p]
+        [0,1,0];  sj=[-1,+2,-p]
+        [0,1,1];  sj=[-1,+2,+p]
+  pos: n
+    anal:
+      caso=
+#         None;     cas=[0]
+#         pe;       cas=[1]
+#         gui;      cas=[2]
+	 # pe: pospos (2 entradas)
+         pe;       _ id pcomp lp pcompf, pe lex 1 id -> lp ->
+         gui;      _ id pcomp lp pcompf, gui lex 0 id -> lp ->
+         re;       _ id pcomp lp pcompf, rehe lex 0 id -> lp ->
+         # otros
+      poses=
+         None;        pos=[0]
+         # Noun or 1/2 person "possessive" (genitive)
+         ext;         pos=[1]
+         # 3 person possessive prefix
+	 int;   i id det lp detf, _ id -> lp ->
+      pl=
+         True;       num=[2]
+         # non-plural morphology is compatible with both
+	 # plural and singular
+         False;      num=[[1],[2]]
+#        False;      num=[1]
+    gen:
+      pos=
+         [0];     poses=None
+         [1];     poses=ext
+      num=
+         [1];     pl=False
+         [2];     pl=True
+#      cas=
+#         [0];     caso=None
+#         [1];     caso=pe
+#         [2];     caso=gui
+#         [3];     caso=re
+#         # otros
+
+trans:
+  Loading language data from {} = Cargando datos lingüísticos de {0}
+  Loading morphological data for {}... = Cargando datos morfológicos para {}...
+  word = ñe'ẽ
+  root = ñe'ẽrapo
+  syllable = ñe'ẽpehẽ
+  semantics = ñe'ẽpykuaa
+  phonology = ñe'ẽpukuaa
+  syntax = ñe'ẽjoajungatu
+  morphology = ñe'ẽysajakuaa
+  grammar = ñe'ẽtekuaa
+  affix = ñe'ẽpehẽtai
+  verb = ñe'ẽtéva
+  v = ñe'ẽtéva
+  noun = tero
+  adjective = teroja
+  pronoun = terarãngue
+  adverb = ñe'ẽteja
+  agreement = ñembojoja
+  subject = teroñe'ẽ
+  postposition = ñe'ẽriregua
+  POS = CG

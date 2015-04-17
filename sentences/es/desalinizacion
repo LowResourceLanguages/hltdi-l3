@@ -1,0 +1,29 @@
+## from http://www.lamik.com/desalinizacion_1.php
+Las plantas de tratamiento de DESANILIZACION tienen como objetivo principal la eliminación de las sales presentes en el agua con el fin de lograr una reutilización de las mismas en procesos productivos.
+Lamik S.A. como ingeniería del agua mediante el diseño y la fabricación de equipos ha logrado realizar equipos que se amoldan al tratamiento de este tipo de aguas.
+La tecnología utilizada es la evaporación al vacío con las siguientes características:
+Equipos compactos
+Equipos que pueden utilizar como fuente de funcionamiento energías sobrantes (vapor, agua caliente, biogas, biomasa).
+Equipos de fabricación especial para corrosivos
+Dependiendo de la energía de alimentación a utilizar se dispone de distintas variantes :
+Fuente de alimentación agua caliente o vapor : Equipos ELA WWS
+Caudales : 0 -10 m3/h
+Fuente de alimentación electricidad : Equipos ELA S 
+Caudales : 0 - 2 m3/h
+Aplicación en desanilizar: Agua de mar y en sectores industriales:
+Galvánico
+Cerámico
+Alimenticio
+Vertederos e incineradoras
+Rendimientos y ventajas de los equipo de desanilización frente a sistemas convencionales:
+Menor mantenimiento
+Menor producción de rechazo o concentrado obtenido
+Menor problemas de obstrucciones
+Menor efecto de variaciones en las aguas a tratar de contaminantes y concentraciones
+## notes on these sentences
+## they're not all complete sentences: lots of bulleted lists with just noun
+# phrases or even an adjective. Will that be hard to translate just one
+# adjective? Maybe we can take surrounding sentences into account for context.
+## Numbers. There are numbers. How to translate those? Just literally? We
+# probably want a preprocessor to find them ahead of time and replace with a
+# marker.

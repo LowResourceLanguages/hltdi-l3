@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{url}
+
+\title{Title Of The Order Model Paper}
+
+\author{Anonymous \\
+  {\tt foo1@foo.edu} }
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is the abstract of the Order Model Paper.
+\end{abstract}
+
+\section{Introduction}
+L3 is a machine translation system based on synchronous dependency grammars and
+constraint solving, based on a reimplementation of the XDG (``eXtensible
+Dependency Grammar) framework of Debusmann et al.
+\cite{debusmann-EtAl:2004:COLING}. Debusmann describes parsing sentences in a
+single language, producing a dependency multi-graph that covers several
+simultaneous layers of interpretation. However, in L3, XDG has been extended to
+jointly generate a dependency description of text in one or more target
+languages given an input sentence, turning XDG into a system for machine
+translation \cite{gasser:2011:FreeRBMT}.
+
+Here we present continuing work on the L3 system, in which we learn a simple
+probabilistic model for the relative order of words in the target-language
+text, guiding the search for linearizations during generation.
+
+
+Problems that this work addresses include...
+- Exhaustive constraint solving can take an unreasonably long time. We would
+like to speed up the performance of L3.
+
+- We would like to rank solutions such that ``better" translations are produced
+first, and can be distinguished from those with less-likely word orders.
+
+To generate a linearization of the target-language text, the constraint solver
+must assign a position to each output word. While the search for such
+linearizations is constrained by a rule-based grammar for the target language,
+this grammar does not distinguish between orders that are merely permissible
+and those that are more typical.
+
+%% XXX(alexr): it would be good if we could generate legal-but-atypical orderings
+%% programmatically, then show that they have lower scores with the model. In
+%% the current plans, we're just going to permute the words in a dumb way?
+
+Decoding in statistical machine translation systems is often guided by an
+n-gram language model, in which probabilities for observing a word are
+conditioned on the $n-1$ previous observed words. This approach works quite
+well in the SMT case, in which search generally proceeds from left-to-right;
+however during constraint solving in L3, the words to the left of a given word
+may not yet be fixed for a particular search path, so an n-gram model is not
+immediately applicable.
+
+We propose, however, to introduce soft constraints into the MT system, such
+that the constraint solver prefers certain, more typical, orderings.
+
+\section{Related Work}
+
+\section{Order Model}
+
+\subsection{Deriving the Joint Probability of a Whole Sentence}
+
+\section{Evaluation}
+
+\begin{table*}[t!]
+  \begin{center}
+    \begin{tabular}{|r|r|r|r|r|}
+      \hline
+                    &perplexity&tensile strength&f-measure&METEOR/BLEU ratio \\
+      \hline
+      baseline      & & & &  \\
+      order model 1 & & & &  \\
+      order model 2 & & & &  \\
+      \hline
+    \end{tabular}
+  \caption{Order Model results with cross-validation}
+  \label{table:results}
+  \end{center}
+\end{table*}
+
+\section{Evaluation as part of translation}
+We observed a 700x speedup in translation for typical sentences, down to 0.3
+milliseconds on a mobile phone. One hundred human evaluators, all native
+speakers of Czech, were each presented with thirty translations, and in 94.3\%
+of cases they preferred translations generated using the order model.
+
+\section{Conclusion}
+
+\bibliographystyle{plain}
+\bibliography{ordermodel.bib}{}
+\end{document}

@@ -1,0 +1,1167 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2010, 2011, 2012, 2013
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+
+# Tiny grammar for Amharic
+#
+# 2011.02.01
+#
+# 2011.02.06
+# -- En->Sem->Am succeeded
+# 2011.02.25
+# -- @SB and @OB added; they work for transitive verbs with all 4
+#    explicitness options.
+# 2011.02.28
+# -- @PRON class for @SB and @OB, but we still need a way to relate
+#    explicit and empty pronouns
+# 2011.03.04
+# -- Conflict between N and @PRON (lp: ins: compf: 0/!) in translating
+#    into Amharic solved sort of by making compf: 0 explicit in @PRON (since
+#    0 has precedence over !), but there should be a better way.
+# 2011.09.09
+# -- Added COP and ADJ
+# 2011.12.20
+# -- Personal pronouns fixed so that they work in both analysis and generation.
+# 2012.05.14
+# -- Multiple end-of-sentence "words"
+# 2012.07.28
+# -- Need to simplify @SB and @OB so there isn't duplication: eliminate
+#    @PRON.
+# 2012.12.21
+# -- @SB (which now includes empty topics) and @OB fixed. @PRON eliminated.
+# 2012.12.31
+# -- Empty possessive adjectives, realized in semantics.
+# 2013.1
+# -- Subject and object relative clauses.
+
+- lexeme: ROOT
+  id: 
+    outs: {root: '!', del: '*'}
+  lp:
+    outs: {root: '!', del: '*'}
+    order: [[root, ^, del]]
+
+- word: '.'
+  classes: [ROOT]
+  cross:
+    sem:
+      lex: STATEMENT
+      idsem:
+        # sb, ob for relative clause verbs
+        arg: {root: [root, pred, sb, ob]}
+
+#### Grammar
+### Verbs
+- gram: V
+  shared:
+    pos: v
+    id:
+      outs: {sb: '!'}
+      ins: {root: '?'}
+      agrs: {sb: [[1,0,0],[0,1,0,0],[0,1,0,1],[0,0,0,0],[0,0,0,1],[1,0,1],[0,1,1],[0,0,1]],
+             der: [[1,1], [1,3], [2,1], [2,2], [2,3], [3,1], [3,2], [3,3], [4,1], [4,3]],
+             tm: [[0], [1], [2]]}
+      govern: {sb: [rl, [0]]}
+    lp:
+      ins: {root: '?'}
+      outs: {compf: '*'}
+      order: [[compf, ^]]
+    idlp:
+      ldend: {compf: [sb, ob]}
+  partition:
+  - part: V_INDEP_NSB
+    empty: ['@SB']
+    id:
+      ins: {root: '!'}
+      agrs: {rel: 0}
+      agree: [[sb, sb, png]]
+    lp:
+      ins: {root: '!'}
+  - part: V_INDEP_REL_SBSB
+    empty: ['@SB']
+    id:
+      ins: {root: '!'}
+      agrs: {rel: 0}
+      agree: [[sb, sb, sb]]
+    lp:
+      ins: {root: '!'}
+  - part: V_INDEP_REL_SBOB
+    empty: ['@SB']
+    id:
+      ins: {root: '!'}
+      agrs: {rel: 0}
+      agree: [[sb, sb, ob]]
+    lp:
+      ins: {root: '!'}
+  - gram: V_REL
+    id:
+      ins: {sb: '?', ob: '?', root: 0}
+      outs: {nhead: '!'}
+      agrs: {rel: 1}
+      agree: [[sb, sb, png]]
+    lp:
+      ins: {compf: '!', root: 0}
+      outs: {nheadf: '?'}
+      order: [[^, nheadf]]
+    idlp:
+      ldend: {nheadf: [nhead]}
+
+## Valency subcategories
+
+- gram: V_T
+  shared:
+    classes: [V]
+    id:
+      outs: {ob: '!'}
+      agrs: {ob: [[1,0,0],[0,1,0,0],[0,1,0,1],[0,0,0,0],[0,0,0,1],[1,0,1],[0,1,1],[0,0,1]],
+             defob: [[0], [1]],
+             trans: 1}
+      govern: {ob: [rl, [1]]}
+  partition:
+  # noun object
+  - part: V_T_INDEP_NOB
+    empty: ['@OB']
+    id:
+      ins: {root: '!'}
+      agrs: {rel: 0}
+      agree: [[ob, ob, png], [ob, defob, def]]
+    lp:
+      ins: {root: '!'}
+  # object is object of relative verb
+  - part: V_T_INDEP_RELOBOB
+    empty: ['@OB']
+    id:
+      ins: {root: '!'}
+      agrs: {rel: 0}
+      agree: [[ob, ob, ob], [ob, defob, def]]
+    lp:
+      ins: {root: '!'}
+  # object is subject of relative verb
+  - part: V_T_INDEP_RELOBSB
+    empty: ['@OB']
+    id:
+      ins: {root: '!'}
+      agrs: {rel: 0}
+      agree: [[ob, ob, sb]]
+    lp:
+      ins: {root: '!'}
+  # subject relatives
+  - part: V_T_REL_SB
+    empty: ['@REL', '@OB', '@NHEAD']
+    id:
+      ins: {sb: '!', ob: 0, root: 0}
+      agrs: {rel: 1}
+      agree: [[ob, ob, png], [ob, defob, def], [nhead, ob, png]]
+      govern: {ob: [rel, [1]]}
+  # object relatives
+  - part: V_T_REL_OB
+    empty: ['@SB', '@REL', '@NHEAD']
+    id:
+      ins: {ob: '!', sb: 0, root: 0}
+      agrs: {rel: 1}
+      agree: [[ob, ob, png], [ob, defob, def], [nhead, ob, png]]
+      govern: {ob: [rel, [1]]}
+
+- gram: V_I
+  shared:
+    classes: [V]
+    id:
+      outs: {ob: 0}
+      agrs: {defob: 0, trans: 0}
+  partition:
+  # independent
+  - part: V_I_INDEP
+    id:
+      agrs: {rel: 0}
+  # subject relatives
+  - part: V_I_REL_SB
+    empty: ['@REL', '@NHEAD']
+    id:
+      ins: {sb: '!', root: 0, ob: 0}
+      agrs: {rel: 1}
+      agree: [[nhead, sb, png]]
+  # object relatives
+  - part: V_I_REL_OB
+    empty: ['@REL', '@NHEAD']
+    id:
+      ins: {ob: '!', root: 0, sb: 0}
+      agrs: {rel: 1}
+      agree: [[nhead, sb, png]]
+
+## Aktionsart subcategories
+
+- gram: COS
+  classes: [V]
+
+# ሰለቸው etc.
+# later create partition for imperfective (habitual),
+# perfective/comp. gerundive (present),
+# perf. gerundive (past)
+- gram: ANIM_STATE
+  pos: v
+  empty: ['@SB']
+  id:
+    outs: {top: '!'}
+    ins: {root: '!'}
+    # not subordinate
+    agrs: {sb: [[0,0,0,0]],
+           ob: [[1,0,0],[0,1,0,0],[0,1,0,1],[0,0,0,0],[0,0,0,1],[1,0,1],[0,1,1],[0,0,1]],
+           defob: 1,
+           der: [[1,1], [1,3], [2,1], [2,2], [2,3], [3,1], [3,2], [3,3], [4,1], [4,3]],
+           tm: [[1], [2]]}
+    agree: [[top, ob, png]]
+    govern: {top: [rl, [0]]}
+  lp:
+    ins: {root: '!'}
+    outs: {compf: '*'}
+    order: [[compf, ^]]
+  idlp:
+    ldend: {compf: [top, ob]}
+
+## Tenses
+#- gram: V_PRF
+#  classes: [V]
+#  id:
+#    agrs: {tm: 1}
+#  cross:
+#    sem:
+#      lex: PROC_PS
+#- gram: V_IMF
+#  classes: [V]
+#  id:
+#    agrs: {tm: 0}
+#- gram: V_PPF
+#  classes: [V]
+#  id:
+#    agrs: {tm: 2}
+
+## Main clause copulas
+## Adj + Copula
+## lots of duplication with V
+## Children: ne, nebber, others?
+- gram: COP
+  pos: cop
+  root: ne
+  empty: ['@SB']
+  id:
+    ins: {root: '!'}
+    # all possible outs; assume subject is obligatory (only finite clauses)
+    outs: {sb: '!', pred: '!'}
+    # not subordinate
+    agrs: {sub: 0,
+           # newot not yet possible
+           sb: [[1,0,0],[0,1,0,0],[0,1,0,1],[0,0,0,0],[0,0,0,1],[1,0,1],[0,1,1],[0,0,1]],
+           # Tense: for now imperfective (really present) and perfective (really past)
+           tm: [[0], [1]]}
+    # Tense is copied from COP to PRED
+    agree: [[sb, sb, png], [pred, tm, tm]]
+    # Subject: -acc
+    govern: {sb: [rl, [0]]}
+  # everything precedes the verb; pred must come last
+  lp:
+    ins: {root: '!'}
+    # The subject could be zero
+    outs: {compf: '*', predf: '!'}
+    order: [[compf, predf, ^]]
+  idlp:
+    ldend: {compf: [sb], predf: [pred]}
+
+## copula
+
+- lexeme: ne
+  classes: [COP]
+  root: ne
+  cross:
+    sem:
+      lex: ZERO_V
+      bidir: False
+
+### Nouns
+- gram: N
+  pos: n
+  id:
+    # Also obl arguments
+    ins: {sb: '?', ob: '?', top: '?'}
+    agrs: {def: [[0], [1]],
+           rl: [[0], [1], [2]],
+           num: [[0], [1], [2]],
+           # not relative; needed for verb government attribute
+           rel: 0}
+  lp:
+    # Del arc is possible with empty pronouns
+    ins: {compf: '?', del: '?'}
+
+### Common nouns
+## Assumes common nouns are either strictly semantically singular or plural, which is
+## an over-simplification.
+## Common nouns can be possessed.
+- gram: N_C
+  shared:
+    classes: [N]
+    id:
+      # Nouns with modifiers
+      ins: {nhead: '?'}
+      # When the noun is the 'head' of a rel clause, it has a single antecedent
+      outs: {antec: '?'}
+#      agrs: {poss: [[0],[1,0,0]]}
+#    agrs: {num: [[1],[2]], png: [[0,0,0,0], [0,0,0,1], [0,0,1]]}
+    lp:
+      ins: {compf: '?', nheadf: '?', del: 0}
+  partition:
+  - part: N_SG
+    id:
+      agrs: {num: 1, png: [[0,0,0,0], [0,0,0,1]]}
+  - part: N_PL
+    id:
+      agrs: {num: 2, png: [[0,0,1]]}
+
+### Names
+## Names can't be possessed
+- gram: N_NAME
+  classes: [N]
+  lp:
+    ins: {compf: '!', del: 0}
+  id:
+    agrs: {num: 1, png: [[0,0,0,0], [0,0,0,1]],
+           def: 1, prp: 1,
+           poss: 0}
+
+## PRON a separate category from N so that empty, as well as explicit,
+## pronouns can inherit from it.
+- gram: PRON
+  pos: n
+
+- gram: PRON_EXPL
+  classes: [PRON, N]
+  id:
+    agrs: {def: 1}
+
+- gram: PRON_REAL
+  classes: [PRON]
+  id:
+    ins: {sb: '?', ob: '?', top: '?'}
+  lp:
+    ins: {compf: '!', del: 0}
+  
+## Empty pronouns
+## May have a role (non-del in arc) in ID, but not in LP (always an in del arc)
+- gram: '-PRON'
+  classes: [PRON]
+  id:
+    agrs: {def: 1,
+           png: [[1,0,0],[0,1,0,0],[0,1,0,1],[0,0,0,0],[0,0,0,1],[1,0,1],[0,1,1],[0,0,1]],
+           num: [[1],[2]]}
+  lp:
+    ins: {del: '!', compf: 0}
+
+### Adjectives (predicate adj only)
+- gram: ADJ
+  # later change this to 'adj'
+  pos: n
+  id:
+    ins: {pred: '!'}
+    agrs: {def: 0, tm: [[0], [1]]}
+  lp:
+    ins: {predf: '!'}
+
+## Empty
+- word: zero
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO
+#      bidir: False
+- word: zero_gram
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO_GRAM
+#      bidir: False
+- word: zero_nmod
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO_NMOD
+#      bidir: False
+- word: zero_vmod
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO_VMOD
+#      bidir: False
+- word: zero_thing
+  id:
+    ins: {del: '!'}
+    # default values; they don't really mean anything
+    agrs: {num: 1,
+           png: [[0,0,0,0]],
+           def: 1,
+           rl: 0}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO_THING
+#      bidir: False
+
+## Pronouns
+# explicit
+- gram: "'nE+"
+  shared:
+    classes: [PRON_EXPL]
+    id:
+      agrs: {png: [[1,0,0]], num: 1}
+    cross:
+      sem:
+        lex: I
+  partition:
+  - lexemepart: "'nE"
+    classes: [PRON_REAL]
+    root: "'nE"
+  - morph: '0'
+    classes: ['-PRON']
+
+- gram: "'ante+"
+  shared:
+    classes: [PRON_EXPL]
+    id:
+      agrs: {png: [[0,1,0,0]], num: 1}
+    cross:
+      sem:
+        lex: YOU_SING
+  partition:
+  - lexemepart: "'ante"
+    classes: [PRON_REAL]
+    root: "'ante"
+  - morph: '0'
+    classes: ['-PRON']
+
+- gram: "'anci+"
+  shared:
+    classes: [PRON_EXPL]
+    id:
+      agrs: {png: [[0,1,0,1]], num: 1}
+    cross:
+      sem:
+        lex: YOU_SING
+  partition:
+  - lexemepart: "'anci"
+    classes: [PRON_REAL]
+    root: "'anci"
+  - morph: '0'
+    classes: ['-PRON']
+
+- gram: "'n_ante+"
+  shared:
+    classes: [PRON_EXPL]
+    id:
+      agrs: {png: [[0,1,1]], num: 2}
+    cross:
+      sem:
+        lex: YOU_PLUR
+  partition:
+  - lexemepart: "'n_ante"
+    classes: [PRON_REAL]
+    root: "'n_ante"
+  - morph: '0'
+    classes: ['-PRON']
+
+- gram: "'sW_a+"
+  shared:
+    classes: [PRON_EXPL]
+    id:
+      agrs: {png: [[0,0,0,1]], num: 1}
+    cross:
+      sem:
+      - lex: SHE
+      - lex: IT
+  partition:
+  - lexemepart: "'sW_a"
+    classes: [PRON_REAL]
+    root: "'sW_a"
+  - morph: '0'
+    classes: ['-PRON']
+
+- gram: "'s_u+"
+  shared:
+    classes: [PRON_EXPL]
+    id:
+      agrs: {png: [[0,0,0,0]], num: 1}
+    cross:
+      sem:
+        # should include IT as well
+      - lex: HE
+      - lex: IT
+  partition:
+  - lexemepart: "'s_u"
+    classes: [PRON_REAL]
+    root: "'s_u"
+  - morph: '0'
+    classes: ['-PRON']
+
+## Demonstratives
+
+- gram: DEM
+  classes: [N]
+  id:
+    agrs: {def: 1, png: [[0,0,0,0], [0,0,0,1], [0,0,1]]}
+  lp:
+    ins: {compf: '!', del: 0}
+
+- gram: DEM_ADJ
+  classes: [DEM]
+  id:
+    outs: {nhead: '!'}
+    agree: [[nhead, png, png]]
+  lp:
+    outs: {nheadf: '!'}
+    order: [[^, nheadf]]
+  idlp:
+    ldend: {nheadf: [nhead]}
+
+- lexeme: ya
+  classes: [DEM]
+  root: ya
+  id:
+    agrs: {png: [[0,0,0,0],[0,0,1]]}
+  cross:
+    sem:
+    - lex: THAT2
+      idsem:
+        agree: [[num, num]]
+    - lex: THAT3
+      idsem:
+        agree: [[num, num]]
+
+- lexeme: yac_i
+  classes: [DEM]
+  root: ya
+  id:
+    agrs: {png: [[0,0,0,1]]}
+  cross:
+    sem:
+    - lex: THAT2
+      idsem:
+        agree: [[num, num]]
+    - lex: THAT3
+      idsem:
+        agree: [[num, num]]
+
+- lexeme: yh
+  classes: [DEM]
+  root: yh
+  id:
+    agrs: {png: [[0,0,0,0],[0,0,1]]}
+  cross:
+    sem:
+      lex: THIS
+      idsem:
+        agree: [[num, num]]
+
+- lexeme: yc_i
+  classes: [DEM]
+  root: yc_i
+  id:
+    agrs: {png: [[0,0,0,1]]}
+  cross:
+    sem:
+      lex: THIS
+      idsem:
+        agree: [[num, num]]
+
+- lexeme: ya
+  classes: [DEM_ADJ]
+  root: ya
+  id:
+    agrs: {png: [[0,0,0,0],[0,0,1]]}
+  cross:
+    sem:
+    - lex: THAT2_MOD
+    - lex: THAT3_MOD
+
+- lexeme: yac_i
+  classes: [DEM_ADJ]
+  root: ya
+  id:
+    agrs: {png: [[0,0,0,1]]}
+  cross:
+    sem:
+    - lex: THAT2_MOD
+    - lex: THAT3_MOD
+
+- lexeme: yh
+  classes: [DEM_ADJ]
+  root: yh
+  id:
+    agrs: {png: [[0,0,0,0],[0,0,1]]}
+  cross:
+    sem:
+      lex: THIS_MOD
+
+- lexeme: yc_i
+  classes: [DEM_ADJ]
+  root: yc_i
+  id:
+    agrs: {png: [[0,0,0,1]]}
+  cross:
+    sem:
+      lex: THIS_MOD
+
+## Empty arguments
+# Empty subject and topic pronouns
+- lexeme: '@SB'
+  shared:
+    classes: ['-PRON']
+    id:
+      ins: {sb: '?', top: '?'}
+      agrs: {rl: 0, rel: 0}
+  partition:
+  # Class for zero pronouns
+  - lexemepart: '@none_sb'
+    id:
+      ins: {del: '!'}
+      agrs: {num: 1,
+             png: [[0,0,0,0]],
+             def: 1}
+    cross:
+      sem:
+        lex: ZERO_THING
+        bidir: False
+#      en:
+#        lex: zero
+  - lexemepart: "@'nE_sb"
+    id:
+      ins: {del: 0}
+      agrs: {png: [[1,0,0]], num: 1}
+    cross:
+      sem:
+        lex: I
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+  - lexemepart: "@'ante_sb"
+    id:
+      ins: {del: 0}
+      agrs: {png: [[0,1,0,0]], num: 1}
+    cross:
+      sem:
+        lex: YOU_SING
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+  - lexemepart: "@'anci_sb"
+    id:
+      ins: {del: 0}
+      agrs: {png: [[0,1,0,1]], num: 1}
+    cross:
+      sem:
+        lex: YOU_SING
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+  - lexemepart: "@'sWa_sb"
+    id:
+      ins: {del: 0}
+      agrs: {png: [[0,0,0,1]], num: 1}
+    cross:
+      sem:
+        # should include IT as well
+      - lex: SHE
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+      - lex: IT
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+  - lexemepart: "@'su_sb"
+    id:
+      ins: {del: 0}
+      agrs: {png: [[0,0,0,0]], num: 1}
+    cross:
+      sem:
+      - lex: HE
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+      - lex: IT
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+  - lexemepart: "@'Na_sb"
+    id:
+      ins: {del: 0}
+      agrs: {png: [[1,0,1]], num: 2}
+    cross:
+      sem:
+      - lex: WE_EXCL
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+      - lex: WE_INCL
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+  - lexemepart: "@'nante_sb"
+    id:
+      ins: {del: 0}
+      agrs: {png: [[0,1,1]], num: 2}
+    cross:
+      sem:
+        lex: YOU_PLUR
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+  - lexemepart: "@'nesu_sb"
+    id:
+      ins: {del: 0}
+      agrs: {png: [[0,0,1]], num: 2}
+    cross:
+      sem:
+        lex: THEY
+        bidir: False
+        idsem:
+          ldend: {coref: [antec]}
+          agree: [[num, num]]
+
+# Empty object pronouns
+- lexeme: '@OB'
+  shared:
+    classes: ['-PRON']
+    id:
+      ins: {ob: '?'}
+      agrs: {rl: 1, rel: 0}
+  partition:
+  # Class for zero pronouns
+  - lexemepart: '@none_ob'
+    id:
+      ins: {del: '!', ob: 0}
+      agrs: {num: 1,
+             png: [[0,0,0,0]],
+             def: 1}
+    cross:
+      sem:
+        lex: ZERO_THING
+        bidir: False
+  - lexemepart: "@'nE_ob"
+    id:
+      ins: {del: 0, ob: '!'}
+      agrs: {png: [[1,0,0]], num: 1}
+    cross:
+      sem:
+        lex: I
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "@'ante_ob"
+    id:
+      ins: {del: 0, ob: '!'}
+      agrs: {png: [[0,1,0,0]], num: 1}
+    cross:
+      sem:
+        lex: YOU_SING
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "@'anci_ob"
+    id:
+      ins: {del: 0, ob: '!'}
+      agrs: {png: [[0,1,0,1]], num: 1}
+    cross:
+      sem:
+        lex: YOU_SING
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "@'sWa_ob"
+    id:
+      ins: {del: 0, ob: '!'}
+      agrs: {png: [[0,0,0,1]], num: 1}
+    cross:
+      sem:
+      - lex: SHE
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+      - lex: IT
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "@'su_ob"
+    id:
+      ins: {del: 0, ob: '!'}
+      agrs: {png: [[0,0,0,0]], num: 1}
+    cross:
+      sem:
+      - lex: HE
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+      - lex: IT
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "@'Na_ob"
+    id:
+      ins: {del: 0, ob: '!'}
+      agrs: {png: [[1,0,1]], num: 2}
+    cross:
+      sem:
+      - lex: WE_EXCL
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+      - lex: WE_INCL
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "@'nante_ob"
+    id:
+      ins: {del: 0, ob: '!'}
+      agrs: {png: [[0,1,1]], num: 2}
+    cross:
+      sem:
+        lex: YOU_PLUR
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "@'nesu_ob"
+    id:
+      ins: {del: 0, ob: '!'}
+      agrs: {png: [[0,0,1]], num: 2}
+    cross:
+      sem:
+        lex: THEY
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+
+## Relative "pronouns"
+# Empty subject, topic, object relative pronouns
+
+- lexeme: '@REL'
+  shared:
+    classes: ['-PRON']
+    id:
+      ins: {sb: '?', ob: '?', top: '?', antec: '!', del: 0}
+      agrs: {rl: [[0],[1]], rel: 1}
+    cross:
+      sem:
+        lex: REL
+        idsem:
+          agree: [[num, num]]
+  partition:
+  - lexemepart: "@'nE_rel"
+    id:
+      agrs: {png: [[1,0,0]], num: 1}
+  - lexemepart: "@'ante_rel"
+    id:
+      agrs: {png: [[0,1,0,0]], num: 1}
+  - lexemepart: "@'anci_rel"
+    id:
+      agrs: {png: [[0,1,0,1]], num: 1}
+  - lexemepart: "@'sWa_rel"
+    id:
+      agrs: {png: [[0,0,0,1]], num: 1}
+  - lexemepart: "@'su_rel"
+    id:
+      agrs: {png: [[0,0,0,0]], num: 1}
+  - lexemepart: "@'Na_rel"
+    id:
+      agrs: {png: [[1,0,1]], num: 2}
+  - lexemepart: "@'nante_rel"
+    id:
+      agrs: {png: [[0,1,1]], num: 2}
+  - lexemepart: "@'nesu_rel"
+    id:
+      agrs: {png: [[0,0,1]], num: 2}
+ 
+# Empty NP "heads"
+- lexeme: '@NHEAD'
+  shared:
+    classes: ['-PRON']
+    id:
+      ins: {nhead: '?'}
+      outs: {antec: '?'}
+      agrs: {rel: 0}
+  partition:
+  # Class for zero pronouns
+  - lexemepart: '@none_nhead'
+    id:
+      ins: {del: '!', nhead: 0}
+      outs: {antec: 0}
+      agrs: {num: 1,
+             png: [[0,0,0,0]],
+             def: 1}
+    cross:
+      sem:
+        lex: ZERO_THING
+        bidir: False
+  - lexemepart: "@'nE_nhead"
+    id:
+      ins: {del: 0, nhead: '!'}
+      outs: {antec: '!'}
+      agrs: {png: [[1,0,0]], num: 1}
+    cross:
+      sem:
+        lex: I
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+  - lexemepart: "@'ante_nhead"
+    id:
+      ins: {del: 0, nhead: '!'}
+      outs: {antec: '!'}
+      agrs: {png: [[0,1,0,0]], num: 1}
+    cross:
+      sem:
+        lex: YOU_SING
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+  - lexemepart: "@'anci_nhead"
+    id:
+      ins: {del: 0, nhead: '!'}
+      outs: {antec: '!'}
+      agrs: {png: [[0,1,0,1]], num: 1}
+    cross:
+      sem:
+        lex: YOU_SING
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+  - lexemepart: "@'sWa_nhead"
+    id:
+      ins: {del: 0, nhead: '!'}
+      outs: {antec: '!'}
+      agrs: {png: [[0,0,0,1]], num: 1}
+    cross:
+      sem:
+      - lex: SHE
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+      - lex: IT
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+  - lexemepart: "@'su_nhead"
+    id:
+      ins: {del: 0, nhead: '!'}
+      outs: {antec: '!'}
+      agrs: {png: [[0,0,0,0]], num: 1}
+    cross:
+      sem:
+      - lex: HE
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+      - lex: IT
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+  - lexemepart: "@'Na_nhead"
+    id:
+      ins: {del: 0, nhead: '!'}
+      outs: {antec: '!'}
+      agrs: {png: [[1,0,1]], num: 2}
+    cross:
+      sem:
+      - lex: WE_EXCL
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+      - lex: WE_INCL
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+  - lexemepart: "@'nante_nhead"
+    id:
+      ins: {del: 0, nhead: '!'}
+      outs: {antec: '!'}
+      agrs: {png: [[0,1,1]], num: 2}
+    cross:
+      sem:
+        lex: YOU_PLUR
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+  - lexemepart: "@'nesu_nhead"
+    id:
+      ins: {del: 0, nhead: '!'}
+      outs: {antec: '!'}
+      agrs: {png: [[0,0,1]], num: 2}
+    cross:
+      sem:
+        lex: THEY
+        bidir: False
+        idsem:
+          agree: [[num, num]]
+          ldend: {coref: [antec]}
+
+# Empty possessive adjectives
+- lexeme: '@POSS'
+  shared:
+    classes: ['-PRON']
+    id:
+      ins: {poss: '?', del: '?'}
+#      agrs: {rl: 0}
+  partition:
+  # Non-possession
+  - lexemepart: '@none_poss'
+    id:
+      ins: {del: '!', poss: 0}
+      agrs: {num: 1,
+             png: [[0,0,0,0]],
+             def: 1}
+    cross:
+      sem:
+        lex: ZERO_THING
+        bidir: False
+  - lexemepart: '0'
+    id:
+      ins: {poss: '!', del: 0}
+      agrs: {png: [[1,0,0]], num: 1}
+    cross:
+      sem:
+        lex: MY
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "0"
+    id:
+      ins: {poss: '!', del: 0}
+      agrs: {png: [[0,1,0,0]], num: 1}
+    cross:
+      sem:
+        lex: YOUR_SING
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "0"
+    id:
+      ins: {poss: '!', del: 0}
+      agrs: {png: [[0,1,0,1]], num: 1}
+    cross:
+      sem:
+        lex: YOUR_SING
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "0"
+    id:
+      ins: {poss: '!', del: 0}
+      agrs: {png: [[0,0,0,0]], num: 1}
+    cross:
+      sem:
+        # should include ITS as well
+        lex: HIS
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "0"
+    id:
+      ins: {poss: '!', del: 0}
+      agrs: {png: [[0,0,0,1]], num: 1}
+    cross:
+      sem:
+        # should include ITS as well
+        lex: HER
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "0"
+    id:
+      ins: {poss: '!', del: 0}
+      agrs: {png: [[1,0,1]], num: 2}
+    cross:
+      sem:
+      - lex: OUR_EXCL
+        idsem:
+          agree: [[num, num]]
+      - lex: OUR_INCL
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "0"
+    id:
+      ins: {poss: '!', del: 0}
+      agrs: {png: [[0,1,1]], num: 2}
+    cross:
+      sem:
+        lex: YOUR_PLUR
+        idsem:
+          agree: [[num, num]]
+  - lexemepart: "0"
+    id:
+      ins: {poss: '!', del: 0}
+      agrs: {png: [[0,0,1]], num: 2}
+    cross:
+      sem:
+        lex: THEIR
+        idsem:
+          agree: [[num, num]]
+
+## Adjectives
+- lexeme: qoxaxa
+  classes: [ADJ]
+  root: qoxaxa
+  cross:
+    sem:
+    - lex: DIRTY
+      idsem:
+        arg: {arg1: [sb]}
+        agree: [[reltime, tm]]
+    - revempty: true
+      inslex: 'COP'
+      arc: pred
+      rel: [mother]
+
+- sublexicon: n_tiny
+- sublexicon: v_tiny

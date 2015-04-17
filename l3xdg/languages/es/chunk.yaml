@@ -1,0 +1,1092 @@
+#######################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2012, 2013, 2014
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+
+# Chunk grammar for Spanish
+#
+# 2012.11.15
+#
+# 2013.03.22
+# -- Agreement
+# -- Adjectives
+#
+# 2013.04.02
+# -- Quantifiers, negation, auxiliary verbs
+#
+# 2013.04.16
+# -- Translation of perf and cont verbs
+# 2013.05.13
+# -- Direct object and reflexive pronouns in verb chunk.
+# 2013.05.20
+# -- Direct object and reflexive pronouns translated to Gn.
+# 2013.05.27
+# -- "Reflexive" verbs like morirse that translate as
+#    non-reflexive verbs in Gn.
+# 2013.06.02
+# -- Gn chunk order constrained to be Es order (see . entry).
+# 2013.06.06
+# -- Conjoined nouns
+# 2013.06.09
+# -- Added POS agreement features.
+#    0: noun, 1: verb, 2: adj, 3: adv, 4: prep: 10: other
+# 2013.08
+# -- LexClasses for verbs and nouns
+# -- Reorganized with main verbs as heads of all verb phrases
+# 2013.10
+# -- LexClasses for adjectives
+# -- Predicate adjectives
+
+#### End-of-sentence punctuation
+
+#- lexeme: ROOT
+#  syn:
+#    agrs: {pos: 10}
+#    outs: {root: '*', del: '*', '?': '*'}
+#    order: [[root, ^, del]]
+
+- word: '.'
+#  classes: [ROOT]
+  syn:
+    agrs: {pos: 10}
+    outs: {root: '*', del: '*', '?': '*'}
+    order: [[root, ^, del]]
+  cross:
+    gn:
+      lex: '.'
+      synsyn:
+        arg: {root: [root, del, pcomp, apred, npred]}
+        ordereq: [root, '?']
+
+### Unknown words
+
+- word: '*'
+  syn:
+    ins: {'?': '!'}
+
+### Deleted nodes
+
+- word: zero
+  syn:
+    ins: {del: '!'}
+
+### Verbs
+
+- gram: V
+  pos: v
+  syn:
+    agrs: {sj: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[0,1,1],[0,0,1]],
+           tam: [[0],[1]],
+           prf: [[0],[1]],
+           cont: [[0],[1]],
+           inf: [[0],[1]],
+           fin: [[0],[1]],
+           neg: [[0],[1]],
+           pos: 1}
+    # new: 2013.08.20
+    agree: [[aux,sj,sj],[aux,tam,tam],[aux,prf,prf],[aux,cont,cont]]
+    arcagree: {neg: [neg, [0], [1]]}
+    ins: {root: '!'}
+    outs: {neg: '?', aux: '*', pron: '*'}
+    order: [[neg, pron, aux, ^]]
+
+- gram: V_AUX
+  classes: [V]
+  syn:
+    outs: {aux: '+'}
+    agrs: {fin: 0}
+
+- gram: V_MAIN
+  classes: [V]
+  syn:
+    outs: {aux: 0}
+    agrs: {fin: 1}
+
+- lexeme: querer
+  classes: [V_AUX]
+
+#- lexeme: querer
+#  classes: [V_MAIN]
+
+# reflexive verb
+#- lexeme: arrodillar
+#  classes: [V]
+#  syn:
+#    # redundant
+#    outs: {pron: '!'}
+#    agrs: {oj: -1, rfl: 1}
+#    agree: [[pron,sj,pn],[pron,rfl,rfl]]
+
+# Auxiliary verbs, daughters of main verbs
+
+- gram: AUX
+  pos: v
+  syn:
+    ins: {aux: '!'}
+    agrs: {sj: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[0,1,1],[0,0,1]],
+           tam: [[0],[1]],
+           prf: [[0],[1]],
+           cont: [[0],[1]],
+           pos: 1}
+
+# Auxiliary for progressive; we also need imperfect: estaba, etc.
+- lexeme: '%PROG_AUX'
+  shared:
+    classes: [AUX]
+    syn:
+      agrs: {prf: 0, cont: 1}
+  partition:
+  - morph: estoy
+    syn:
+      agrs: {sj: [[1,0,0]], tam: 0}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: estás
+    syn:
+      agrs: {sj: [[0,1,0]], tam: 0}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: está
+    syn:
+      agrs: {sj: [[0,0,0]], tam: 0}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: estamos
+    syn:
+      agrs: {sj: [[1,0,1]], tam: 0}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: están
+    syn:
+      agrs: {sj: [[0,1,1],[0,0,1]], tam: 0}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+
+# Auxiliary for perfective; we also need imperfect: había, etc.
+- lexeme: '%PRF_AUX'
+  shared:
+    classes: [AUX]
+    syn:
+      agrs: {prf: 1, cont: 0}
+  partition:
+  - morph: he
+    syn:
+      agrs: {sj: [[1,0,0]], tam: 0}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: has
+    syn:
+      agrs: {sj: [[0,1,0]], tam: 0}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: ha
+    syn:
+      agrs: {sj: [[0,0,0]], tam: 0}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: hemos
+    syn:
+      agrs: {sj: [[1,0,1]], tam: 0}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: han
+    syn:
+      agrs: {sj: [[0,1,1],[0,0,1]], tam: 0}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+
+## Main verb estar
+
+# estar + pred adj
+- lexeme: estar
+  pos: v
+  root: estar
+  syn:
+    agrs: {sj: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[0,1,1],[0,0,1]],
+           oj: -1,
+           tam: [[0],[1]],
+           prf: [[0],[1]],
+           cont: 0,
+           inf: [[0],[1]],
+           fin: [[0],[1]],
+           neg: [[0],[1]],
+           pos: 1}
+    agree: [[aux,sj,sj],[aux,tam,tam],[aux,prf,prf],[aux,cont,cont],[apred,tam,tam],[apred,neg,neg],[apred,sj,sj]]
+    arcagree: {neg: [neg, [0], [1]]}
+    ins: {root: '!'}
+    outs: {neg: '?', aux: '*', apred: '!'}
+    # in es-py, apred can colloquially precede estar: lindo está
+    order: [[neg, aux, ^, apred]]
+  cross:
+    gn:
+      lex: zero
+      bidir: false
+
+# estar + prepositional phrase
+- lexeme: estar
+  pos: v
+  root: estar
+  syn:
+    agrs: {sj: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[0,1,1],[0,0,1]],
+           oj: -1,
+           tam: [[0],[1]],
+           prf: [[0],[1]],
+           cont: 0,
+           inf: [[0],[1]],
+           fin: [[0],[1]],
+           neg: [[0],[1]],
+           pos: 1}
+    agree: [[aux,sj,sj],[aux,tam,tam],[aux,prf,prf],[aux,cont,cont]]
+    arcagree: {neg: [neg, [0], [1]]}
+    ins: {root: '!'}
+    outs: {neg: '?', aux: '*', ppred: '!'}
+    # in es-py, ppred can colloquially precede estar?: en la casa estamos
+    order: [[neg, aux, ^, ppred]]
+  cross:
+    gn:
+      lex: zero
+      bidir: false
+
+## Main verb ser
+
+# ser + pred adj
+- lexeme: ser
+  pos: v
+  root: ser
+  syn:
+    agrs: {sj: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[0,1,1],[0,0,1]],
+           oj: -1,
+           tam: [[0],[1]],
+           prf: [[0],[1]],
+           cont: 0,
+           inf: [[0],[1]],
+           fin: [[0],[1]],
+           neg: [[0],[1]],
+           pos: 1}
+    agree: [[aux,sj,sj],[aux,tam,tam],[aux,prf,prf],[aux,cont,cont],[apred,tam,tam],[apred,neg,neg],[apred,sj,sj]]
+    arcagree: {neg: [neg, [0], [1]]}
+    ins: {root: '!'}
+    outs: {neg: '?', aux: '*', apred: '!'}
+    # in es-py, apred can colloquially precede es: lindo es
+    order: [[neg, aux, ^, apred]]
+  cross:
+    gn:
+      lex: zero
+      bidir: false
+
+# ser + pred nom
+- lexeme: ser
+  pos: v
+  root: ser
+  syn:
+    agrs: {sj: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[0,1,1],[0,0,1]],
+           oj: -1,
+           tam: [[0],[1]],
+           prf: [[0],[1]],
+           cont: 0,
+           inf: [[0],[1]],
+           fin: [[0],[1]],
+           neg: [[0],[1]],
+           pos: 1}
+    agree: [[aux,sj,sj],[aux,tam,tam],[aux,prf,prf],[aux,cont,cont]]
+    arcagree: {neg: [neg, [0], [1]]}
+    ins: {root: '!'}
+    outs: {neg: '?', aux: '*', npred: '!'}
+    order: [[neg, aux, ^, npred]]
+  cross:
+    gn:
+      lex: zero
+      bidir: false
+
+### Nouns
+
+- gram: SUS
+  pos: n
+  syn:
+    ins: {root: '?', pcomp: '?', arg: '?', conj1: '?', conj2: '?'}
+    outs: {det: '?', preadj: '*', postadj: '*', cuan: '?'}
+    order: [[det, cuan, preadj, ^, postadj]]
+    agrs: {pos: 0}
+    # gender-number agreement
+    agree: [[det,ng,ng], [preadj,ng,ng], [postadj,ng,ng], [cuan,ng,ng]]
+
+### Adverbs
+
+#- gram: ADV
+#  pos: adv
+#  syn:
+#    agrs: {pos: 3}
+
+- word: 'no'
+#  classes: [ADV]
+  pos: adv
+  syn:
+    agrs: {pos: 3}
+    ins: {'neg': '!'}
+  cross:
+    gn:
+      lex: zero
+      bidir: false
+
+### Quantifiers
+
+#- gram: CUAN
+#  pos: adj
+#  syn:
+#    ins: {cuan: '?'}
+#    agrs: {pos: 2}
+
+- word: dos
+  pos: adj
+#  classes: [CUAN]
+  syn:
+    ins: {cuan: '?'}
+    agrs: {pos: 2, ng: [[1,0],[1,1]]}
+
+- word: tres
+  pos: adj
+#  classes: [CUAN]
+  syn:
+    ins: {cuan: '?'}
+    agrs: {pos: 2, ng: [[1,0],[1,1]]}
+
+- word: algunos
+  pos: adj
+#  classes: [CUAN]
+  syn:
+    ins: {cuan: '?'}
+    agrs: {pos: 2, ng: [[1,0]]}
+
+- word: algunas
+  pos: adj
+#  classes: [CUAN]
+  syn:
+    ins: {cuan: '?'}
+    agrs: {pos: 2, ng: [[1,1]]}
+
+### Adjectives
+
+# Get rid of this later
+- gram: ADJ
+  pos: adj
+  syn:
+    ins: {preadj: '?', postadj: '?', apred: '?'}
+    agrs: {pos: 2}
+
+## Irregular adjectives: buen(o), gran(de), algun(o), primer(o), tercer(o), ningun(o)
+# bueno: pred adj 
+#- word: bueno
+#  pos: adj
+#  syn:
+#    ins: {apred: '!'}
+#    agrs: {pos: 2,
+#           ng: [[0,0]], tam: [[0],[1]], neg: [[0],[1]],
+#           cont: 0, prf: 0,
+#           sj: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[0,1,1],[0,0,1]]}
+#  cross:
+#    gn:
+#      lex: porã:vc
+#      synsyn:
+#        agree: [[tmp, tam], [cont, cont], [prf, prf], [neg, neg], [sj, sj]]
+# buen: before noun
+- word: buen
+  pos: adj
+  syn:
+    ins: {preadj: '!'}
+    agrs: {ng: [[0,0]]}
+  cross:
+    gn:
+      lex: porã:adj
+
+#- word: buena
+#  classes: [ADJ]
+#  syn:
+#    ins: {preadj: '!'}
+#    agrs: {ng: [[0,1]]}
+#  cross:
+#    gn:
+#      lex: porã
+#- word: buenos
+#  classes: [ADJ]
+#  syn:
+#    ins: {preadj: '!'}
+#    agrs: {ng: [[1,0]]}
+#  cross:
+#    gn:
+#      lex: porã
+#- word: buenas
+#  classes: [ADJ]
+#  syn:
+#    ins: {preadj: '!'}
+#    agrs: {ng: [[1,1]]}
+#  cross:
+#    gn:
+#      lex: porã
+
+### Prepositions
+
+- gram: PREP
+  pos: prep
+  syn:
+    # either root or the complement of estar
+    ins: {root: '?', ppred: '?'}
+    outs: {pcomp: '!'}
+    agrs: {pos: 4}
+    order: [[^, pcomp]]
+
+- word: en
+  classes: [PREP]
+  cross:
+    gn:
+    - lex: pe:posp
+- word: con
+  classes: [PREP]
+- word: de
+  classes: [PREP]
+- word: a
+  classes: [PREP]
+  cross:
+    gn:
+    - lex: pe:posp
+
+### Determiners
+
+#- gram: DET
+#  pos: det
+#  syn:
+#    ins: {det: '!'}
+#    agrs: {pos: 10}
+
+- word: este
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,0]]}
+  cross:
+    gn:
+      lex: ko
+- word: esta
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,1]]}
+  cross:
+    gn:
+      lex: ko
+- word: ese
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,0]]}
+  cross:
+    gn:
+    - lex: pe:det
+    - lex: upe
+- word: esa
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,1]]}
+  cross:
+    gn:
+    - lex: pe:det
+    - lex: upe
+- word: aquel
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,0]]}
+  cross:
+    gn:
+    - lex: amo
+    - lex: ako
+- word: aquella
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,1]]}
+  cross:
+    gn:
+    - lex: amo
+    - lex: ako
+- word: estos
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,0]]}
+  cross:
+    gn:
+      lex: "ko'ã"
+- word: estas
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,1]]}
+  cross:
+    gn:
+      lex: "ko'ã"
+- word: esos
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,0]]}
+  cross:
+    gn:
+      lex: umi
+- word: esas
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,1]]}
+  cross:
+    gn:
+      lex: umi
+- word: aquellos
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,0]]}
+  cross:
+    gn:
+      lex: umi
+- word: aquellas
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,1]]}
+  cross:
+    gn:
+      lex: umi
+- word: la
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,1]]}
+  # also 0
+  cross:
+    gn:
+      lex: ku
+- word: las
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,1]]}
+  cross:
+    gn:
+      lex: umi
+- word: el
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,0]]}
+  cross:
+    gn:
+      lex: ku
+- word: los
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,0]]}
+  cross:
+    gn:
+      lex: umi
+- word: una
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,1]]}
+  cross:
+    gn:
+      lex: peteĩ
+- word: un
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,0]]}
+  cross:
+    gn:
+      lex: peteĩ
+
+# Possessive adjectives
+- word: mi
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,0],[0,1]]}
+  cross:
+    gn:
+    - lex: che:det
+- word: mis
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,0],[1,1]]}
+  cross:
+    gn:
+    - lex: che:det
+- word: tu
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,0],[0,1]]}
+  cross:
+    gn:
+    - lex: nde:det
+    - lex: ne
+- word: tus
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,0],[1,1]]}
+  cross:
+    gn:
+    - lex: nde:det
+    - lex: ne
+- word: su
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,0],[0,1]]}
+  cross:
+    gn:
+    - lex: i
+    - lex: pende:det
+    - lex: pene
+- word: sus
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,0],[1,1]]}
+  cross:
+    gn:
+    - lex: i
+    - lex: pende:det
+    - lex: pene
+- word: nuestro
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,0]]}
+  cross:
+    gn:
+    - lex: ñande:det
+    - lex: ñane
+    - lex: ore:det
+- word: nuestros
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,0]]}
+  cross:
+    gn:
+    - lex: ñande:det
+    - lex: ñane
+    - lex: ore:det
+- word: nuestra
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[0,1]]}
+  cross:
+    gn:
+    - lex: ñande:det
+    - lex: ñane
+    - lex: ore:det
+- word: nuestras
+  pos: det
+#  classes: [DET]
+  syn:
+    ins: {det: '!'}
+    agrs: {pos: 10, ng: [[1,1]]}
+  cross:
+    gn:
+    - lex: ñande:det
+    - lex: ñane
+    - lex: ore:det
+
+## Pronombres
+
+#- gram: PRON
+#  pos: n
+
+# Subject, like nouns without any children
+
+- gram: SJ_PRON
+  pos: n
+#  classes: [PRON]
+  syn:
+    ins: {root: '!'}
+
+- word: yo
+  classes: [SJ_PRON]
+  cross:
+    gn:
+      lex: che:n
+- word: tú
+  classes: [SJ_PRON]
+  cross:
+    gn:
+    - lex: nde:n
+- word: él
+  classes: [SJ_PRON]
+  cross:
+    gn:
+      lex: "ha'e"
+- word: ella
+  classes: [SJ_PRON]
+  cross:
+    gn:
+      lex: "ha'e"
+- word: nosotros
+  classes: [SJ_PRON]
+  cross:
+    gn:
+    - lex: ñande:n
+    - lex: ore:n
+- word: nosotras
+  classes: [SJ_PRON]
+  cross:
+    gn:
+    - lex: ñande:n
+    - lex: ore:n
+- word: ustedes
+  classes: [SJ_PRON]
+  cross:
+    gn:
+    - lex: pende:n
+- word: ellos
+  classes: [SJ_PRON]
+  cross:
+    gn:
+      lex: "ha'ekuéra"
+- word: ellas
+  classes: [SJ_PRON]
+  cross:
+    gn:
+      lex: "ha'ekuéra"
+
+# Prepositional object pronouns
+- lexeme: '%PRON_OJP'
+  shared:
+    pos: n
+    syn:
+      ins: {pcomp: '!'}
+      agrs: {rfl: 0, pos: 0}
+  partition:
+  - morph: mí
+    syn:
+      agrs: {pn: [[1,0,0]]}
+    cross:
+      gn:
+        lex: che:n
+  - morph: ti
+    syn:
+      agrs: {pn: [[0,1,0]]}
+    cross:
+      gn:
+        lex: nde:n
+  - morph: vos
+    syn:
+      agrs: {pn: [[0,1,0]]}
+    cross:
+      gn:
+        lex: nde:n
+  # gender not accounted for in 3s
+  - morph: él
+    syn:
+      agrs: {pn: [[0,0,0]]}
+    cross:
+      gn:
+      # ??
+      - lex: "ha'e"
+  - morph: ella
+    syn:
+      agrs: {pn: [[0,0,0]]}
+    cross:
+      gn:
+      # ??
+      - lex: "ha'e"
+# also nosotras
+  - morph: nosotros
+    syn:
+      agrs: {pn: [[1,0,1]]}
+    cross:
+      gn:
+      - lex: ñande:n
+      - lex: ore:n
+#  - morph: vosotros
+#    syn:
+#      agrs: {pn: [[0,1,1]]}
+#    cross:
+#      gn:
+#        lex: pende:n
+  - morph: ustedes
+    syn:
+      agrs: {pn: [[0,1,1]]}
+    cross:
+      gn:
+      - lex: pende:n
+  - morph: ellos
+    syn:
+      agrs: {pn: [[0,0,1]]}
+    cross:
+      gn:
+      # ??
+      - lex: "ha'ekuéra"
+  - morph: ellas
+    syn:
+      agrs: {pn: [[0,0,1]]}
+    cross:
+      gn:
+      # ??
+      - lex: "ha'ekuéra"
+
+# Just direct and reflexive; no gender
+
+- lexeme: '%PRON_OJ'
+  shared:
+    pos: n
+#    classes: [PRON]
+    syn:
+      ins: {pron: '!'}
+      agrs: {rfl: 0, pos: 0}
+  partition:
+  - morph: me
+    syn:
+      agrs: {pn: [[1,0,0]]}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: te
+    syn:
+      agrs: {pn: [[0,1,0]]}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  # gender not accounted for in 3s
+  - morph: lo
+    syn:
+      agrs: {pn: [[0,0,0]]}
+    cross:
+      gn:
+      - lex: zero
+        bidir: false
+      - lex: chupe
+        bidir: false
+  - morph: la
+    syn:
+      agrs: {pn: [[0,0,0]]}
+    cross:
+      gn:
+      - lex: zero
+        bidir: false
+      - lex: chupe
+        bidir: false
+  - morph: nos
+    syn:
+      agrs: {pn: [[1,0,1]]}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+#  - morph: os
+#    syn:
+#      agrs: {pn: [[0,1,1]]}
+#    cross:
+#      gn:
+#        lex: zero
+#        bidir: false
+  # gender not accounted for in 3p, 2p
+  - morph: los
+    syn:
+      agrs: {pn: [[0,0,1], [0,1,1]]}
+    cross:
+      gn:
+      - lex: zero
+        bidir: false
+      - lex: chupekuéra
+        bidir: false
+  - morph: las
+    syn:
+      agrs: {pn: [[0,0,1], [0,1,1]]}
+    cross:
+      gn:
+      - lex: zero
+        bidir: false
+      - lex: chupekuéra
+        bidir: false
+
+## Reflexive
+- lexeme: '%PRON_REFL'
+  shared:
+    pos: n
+#    classes: [PRON]
+    syn:
+      ins: {pron: '!'}
+      agrs: {rfl: 1, pos: 0}
+  partition:
+  - morph: me
+    syn:
+      agrs: {pn: [[1,0,0]]}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: te
+    syn:
+      agrs: {pn: [[0,1,0]]}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: se
+    syn:
+      agrs: {pn: [[0,0,0],[0,0,1],[0,1,1]]}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+  - morph: nos
+    syn:
+      agrs: {pn: [[1,0,1]]}
+    cross:
+      gn:
+        lex: zero
+        bidir: false
+# Spain
+#  - morph: os
+#    syn:
+#      agrs: {pn: [[0,1,1]]}
+#    cross:
+#      gn:
+#        lex: zero
+#        bidir: false
+
+## Conjunctions
+#- gram: CONJ
+#  pos: conj
+#  syn:
+#    outs: {conj1: '!', conj2: '!'}
+#    ins: {root: '!'}
+#    order: [[conj1, ^, conj2]]
+
+# noun conjunction
+- word: "y"
+#  classes: [CONJ]
+  pos: conj
+  syn:
+    govern: {conj1: [pos, [0]], conj2: [pos, [0]]}
+    outs: {conj1: '!', conj2: '!'}
+    ins: {root: '!'}
+    order: [[conj1, ^, conj2]]
+  cross:
+    gn:
+      lex: ha
+      synsyn:
+        ldend: {conj1: [conj1], conj2: [conj2]}
+
+### Groups
+#- group: a_mi_casa
+#  words:
+#  - word: a
+#    classes: [PREP]
+#    head: true
+#    syn:
+#      groupouts: [pcomp]
+#    cross:
+#      gn:
+#        lex: zero
+#        bidir: false
+#  - word: casa
+#    classes: [SUS]
+#    thead: {gn: '^'}
+#    cross:
+#      gn:
+#        lex: rógape
+#        bidir: false
+#        synsyn:
+#          ldend: {det: [det]}
+#  - word: mi
+#    classes: [DET]
+#    cross:
+#      gn:
+#        lex: che
+#        bidir: false
+
+# class definitions must precede instantiations
+- lexclasses: chunk
+
+# instantiations of verb classes
+- classinst: v_chunk
+# instantiations of noun classes
+- classinst: n_chunk
+# instantiations of adjective classes
+- classinst: a_chunk

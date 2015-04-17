@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+weighting = UNIFICATION
+
+### Special characters
+# _: boundary between vowels that are not diphthongs
+# ': accent next vowel
+# `: accent last vowel
+
+### Stringsets
+## Vowels
+V = {a, e, i, o, u, á, é, í, ó, ú, ü, E, O, I, U, !}
+V0 = {a, e, i, o, u, E, I, O, U, !}
+V1 = {á, é, í, ó, ú}
+V2 = {a, e, i, o, u, á, é, í, ó, ú, ü}
+V3 = {E, O, I, U, !}
+V4 = {a, e, i, o, u}
+## Consonants
+X = {b, c, ch, d, f, g, h, j, k, l, ll, m, n, ñ, p, qu, r, rr, s, t, v, w, x, y, z, C, G, J, K, Z}
+Q = {', `, _}
+
+### FSTs
+>CV< 
+>ll_nyiV< 
+>jie<
+>yi<
+>ViV<
+>Vacc<
+>Vacc1<
+>OE<
+>V_ui<     
+>ui_V<
+>IU<
+>VV<
+>acc_last<
+>v_mtax<

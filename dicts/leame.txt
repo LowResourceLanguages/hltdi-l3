@@ -1,0 +1,39 @@
+DICCIONARIOS L3
+
+NOMBRES DE ARCHIVOS
+
+...n.txt: sustantivos
+...v.txt: verbos
+...prep.txt, posp.txt: posposiciones/preposiciones, conjunciones
+...a.txt: adjetivos
+...misc.txt: adverbios, conjunciones, frases
+
+REPRESENTACIÓN DE RAÍCES GUARANÍES
+
+<h: carácter triforme (h, r, t)
+
+FORMATO DE ENTRADAS
+
+1. n, prep, posp, a, misc
+
+palabra || traducciones
+
+Alternativas ortográficas se separan con "/". Traducciones se separan
+con ";".
+
+2. v: gn_es
+
+palabra_gn || categoría || traducciones_es
+
+Categorías morfológicas guaraníes:
+a: areal
+ai: aireal
+ague: areal con "gue" en algunas formas (oguereko)
+c: chendal
+
+3. v: es_gn
+
+palabra_es || traducciones_gn
+
+Cada traducción guaraní
+palabra_gn:categoría (ver 2.)

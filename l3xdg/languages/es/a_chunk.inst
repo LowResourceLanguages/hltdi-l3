@@ -1,0 +1,381 @@
+^adj2
+& abundante pl= abundantes
+& agradable pl= agradables
+& alegre pl= alegres
+& amable pl= amables
+& anterior pl= anteriores
+& aparte pl= apartes
+& aplicable pl= aplicables
+& ausente pl= ausentes
+& bilingüe pl= bilingües
+& caliente pl= calientes
+& capaz pl= capaces
+& central pl= centrales
+& chocante pl= chocantes
+& criminal pl= criminales
+& decente pl= decentes
+& despreciable pl= despreciables
+& diferente pl= diferentes
+& difícil pl= difíciles
+& digital pl= digitales
+& dominante pl= dominantes
+& dulce pl= dulces
+& débil pl= débiles
+& dócil pl= dóciles
+& eficaz pl= eficaces
+& egoísta pl= egoístas
+& elegante pl= elegantes
+& elemental pl= elementales
+& elocuente pl= elocuentes
+& embarazada pl= embarazadas
+& emocionante pl= emocionantes
+& enorme pl= enormes
+& envidiable pl= envidiables
+& especial pl= especiales
+& eventual pl= eventuales
+& evidente pl= evidentes
+& excelente pl= excelentes
+& extra pl= extras
+& familiar pl= familiares
+& fatal pl= fatales
+& federal pl= federales
+& feliz pl= felices
+& fiel pl= fieles
+& flagrante pl= flagrantes
+& flexible pl= flexibles
+& formidable pl= formidables
+& fuerte pl= fuertes  gna=mbarete:adj gnv=mbarete:vc
+& fértil pl= fértiles
+& general pl= generales
+& grande pl= grandes
+& grave pl= graves
+& hipócrita pl= hipócritas
+& horrible pl= horribles
+& hábil pl= hábiles
+& ignorante pl= ignorantes
+& ilegal pl= ilegales
+& ilegible pl= ilegibles
+& impaciente pl= impacientes
+& imparcial pl= imparciales
+& impenetrable pl= impenetrables
+& imperdonable pl= imperdonables
+& importante pl= importantes
+& imprudente pl= imprudentes
+& incalculable pl= incalculables
+& incoherente pl= incoherentes
+& incomparable pl= incomparables
+& incompatible pl= incompatibles
+& incompetente pl= incompetentes
+& inconveniente pl= inconvenientes
+& indecente pl= indecentes
+& indivisible pl= indivisibles
+& indígena pl= indígenas
+& infantil pl= infantiles
+& infiel pl= infieles
+& informal pl= informales
+& inteligente pl= inteligentes
+& interesante pl= interesantes
+& invisible pl= invisibles
+& inútil pl= inútiles
+& joven pl= jóvenes
+& jovial pl= joviales
+& judicial pl= judiciales
+& juvenil pl= juveniles
+& lamentable pl= lamentables
+& leal pl= leales
+& libre pl= libres
+& manejable pl= manejables
+& mayor pl= mayores
+& mejor pl= mejores
+& menor pl= menores
+& musical pl= musicales
+& nacional pl= nacionales
+& optimista pl= optimistas
+& paciente pl= pacientes
+& parcial pl= parciales
+& particular pl= particulares
+& pastoral pl= pastorales
+& paternal pl= paternales
+& perjudicial pl= perjudiciales
+& permanente pl= permanentes
+& pobre pl= pobres
+& popular pl= populares
+& presente pl= presentes
+& puntual pl= puntuales
+& radial pl= radiales
+& razonable pl= razonables
+& rebelde pl= rebeldes
+& rebosante pl= rebosantes
+& recargable pl= recargables
+& reciclable pl= reciclables
+& reciente pl= recientes
+& recomendable pl= recomendables
+& redundante pl= redundantes
+& regional pl= regionales
+& repugnante pl= repugnantes
+& resonante pl= resonantes
+& responsable pl= responsables
+& saludable pl= saludables
+& simple pl= simples
+& suave pl= suaves
+& superficial pl= superficiales
+& tolerante pl= tolerantes
+& transparente pl= transparentes
+& triste pl= tristes
+& uniforme pl= uniformes
+& universal pl= universales
+& unánime pl= unánimes
+& valiente pl= valientes
+& útil pl= útiles
+
+^adj4
+& abierto fs=abierta mp=abiertos fp=abiertas
+& aburrido fs=aburrida mp=aburridos fp=aburridas
+& activo fs=activa mp=activos fp=activas
+& afligido fs=afligida mp=afligidos fp=afligidas
+& agradecido fs=agradecida mp=agradecidos fp=agradecidas
+& alto fs=alta mp=altos fp=altas
+& amargo fs=amarga mp=amargos fp=amargas
+& ancho fs=ancha mp=anchos fp=anchas
+& anciano fs=anciana mp=ancianos fp=ancianas
+& angosto fs=angosta mp=angostos fp=angostas
+& antiguo fs=antigua mp=antiguos fp=antiguas
+& apenado fs=apenada mp=apenados fp=apenadas
+& apetitoso fs=apetitosa mp=apetitosos fp=apetitosas
+& apropiado fs=apropiada mp=apropiados fp=apropiadas
+& apto fs=apta mp=aptos fp=aptas
+& aterrador fs=aterradoa mp=aterradores fp=aterradoas
+& atrevido fs=atrevida mp=atrevidos fp=atrevidas
+& auténtico fs=auténtica mp=auténticos fp=auténticas
+& avaro fs=avara mp=avaros fp=avaras
+& azulado fs=azulada mp=azulados fp=azuladas
+& bajo fs=baja mp=bajos fp=bajas
+& barato fs=barata mp=baratos fp=baratas
+& bienvenido fs=bienvenida mp=bienvenidos fp=bienvenidas
+& blando fs=blanda mp=blandos fp=blandas
+& bonito fs=bonita mp=bonitos fp=bonitas
+& bruto fs=bruta mp=brutos fp=brutas
+& bueno fs=buena mp=buenos fp=buenas
+& cansado fs=cansada mp=cansados fp=cansadas
+& caprichoso fs=caprichosa mp=caprichosos fp=caprichosas
+& caro fs=cara mp=caros fp=caras
+& casado fs=casada mp=casados fp=casadas
+& cercano fs=cercana mp=cercanos fp=cercanas
+& cerrado fs=cerrada mp=cerrados fp=cerradas
+& chico fs=chica mp=chicos fp=chicas
+& civilizado fs=civilizada mp=civilizados fp=civilizadas
+& claro fs=clara mp=claros fp=claras
+& clásico fs=clásica mp=clásicos fp=clásicas
+& complejo fs=compleja mp=complejos fp=complejas
+& confundido fs=confundida mp=confundidos fp=confundidas
+& conocido fs=conocida mp=conocidos fp=conocidas
+& contento fs=contenta mp=contentos fp=contentas
+& correcto fs=correcta mp=correctos fp=correctas
+& corto fs=corta mp=cortos fp=cortas
+& cuidadoso fs=cuidadosa mp=cuidadosos fp=cuidadosas
+& cálido fs=cálida mp=cálidos fp=cálidas
+& cándido fs=cándida mp=cándidos fp=cándidas
+& cíclico fs=cíclica mp=cíclicos fp=cíclicas
+& cívico fs=cívica mp=cívicos fp=cívicas
+& cómico fs=cómica mp=cómicos fp=cómicas
+& cómodo fs=cómoda mp=cómodos fp=cómodas
+& delgado fs=delgada mp=delgados fp=delgadas
+& delicioso fs=deliciosa mp=deliciosos fp=deliciosas
+& derecho fs=derecha mp=derechos fp=derechas
+& desconocido fs=desconocida mp=desconocidos fp=desconocidas
+& descubierto fs=descubierta mp=descubiertos fp=descubiertas
+& despierto fs=despierta mp=despiertos fp=despiertas
+& digno fs=digna mp=dignos fp=dignas
+& divertido fs=divertida mp=divertidos fp=divertidas
+& divino fs=divina mp=divinos fp=divinas
+& dogmático fs=dogmática mp=dogmáticos fp=dogmáticas
+& doloroso fs=dolorosa mp=dolorosos fp=dolorosas
+& dormido fs=dormida mp=dormidos fp=dormidas
+& duro fs=dura mp=duros fp=duras
+& económico fs=económica mp=económicos fp=económicas
+& educado fs=educada mp=educados fp=educadas
+& elevado fs=elevada mp=elevados fp=elevadas
+& elusivo fs=elusiva mp=elusivos fp=elusivas
+& encantado fs=encantada mp=encantados fp=encantadas
+& encerrado fs=encerrada mp=encerrados fp=encerradas
+& enfermo fs=enferma mp=enfermos fp=enfermas
+& enérgico fs=enérgica mp=enérgicos fp=enérgicas
+& enojado fs=enojada mp=enojados fp=enojadas
+& equivocado fs=equivocada mp=equivocados fp=equivocadas
+& escaso fs=escasa mp=escasos fp=escasas
+& escrito fs=escrita mp=escritos fp=escritas
+& espantoso fs=espantosa mp=espantosos fp=espantosas
+& espeso fs=espesa mp=espesos fp=espesas
+& espontáneo fs=espontánea mp=espontáneos fp=espontáneas
+& estupendo fs=estupenda mp=estupendos fp=estupendas
+& estúpido fs=estúpida mp=estúpidos fp=estúpidas
+& exquisito fs=exquisita mp=exquisitos fp=exquisitas
+& extranjero fs=extranjera mp=extranjeros fp=extranjeras
+& extremo fs=extrema mp=extremos fp=extremas
+& fabuloso fs=fabulosa mp=fabulosos fp=fabulosas
+& falso fs=falsa mp=falsos fp=falsas
+& famoso fs=famosa mp=famosos fp=famosas
+& fantástico fs=fantástica mp=fantásticos fp=fantásticas
+& favorito fs=favorita mp=favoritos fp=favoritas
+& fecundo fs=fecunda mp=fecundos fp=fecundas
+& femenino fs=femenina mp=femeninos fp=femeninas
+& feo fs=fea mp=feos fp=feas
+& financiero fs=financiera mp=financieros fp=financieras
+& fino fs=fina mp=finos fp=finas
+& flaco fs=flaca mp=flacos fp=flacas
+& flojo fs=floja mp=flojos fp=flojas
+& franco fs=franca mp=francos fp=francas
+& fresco fs=fresca mp=frescos fp=frescas
+& frito fs=frita mp=fritos fp=fritas
+& frío fs=fría mp=fríos fp=frías
+& frívolo fs=frívola mp=frívolos fp=frívolas
+& fundido fs=fundida mp=fundidos fp=fundidas
+& gastado fs=gastada mp=gastados fp=gastadas
+& generoso fs=generosa mp=generosos fp=generosas
+& genio fs=genia mp=genios fp=genias
+& genérico fs=genérica mp=genéricos fp=genéricas
+& genético fs=genética mp=genéticos fp=genéticas
+& geriátrico fs=geriátrica mp=geriátricos fp=geriátricas
+& glorioso fs=gloriosa mp=gloriosos fp=gloriosas
+& gordo fs=gorda mp=gordos fp=gordas
+& grosero fs=grosera mp=groseros fp=groseras
+& grueso fs=gruesa mp=gruesos fp=gruesas
+& hablado fs=hablada mp=hablados fp=habladas
+& hambriento fs=hambrienta mp=hambrientos fp=hambrientas
+& helado fs=helada mp=helados fp=heladas
+& hermoso fs=hermosa mp=hermosos fp=hermosas
+& hermético fs=hermética mp=herméticos fp=herméticas
+& hinchado fs=hinchada mp=hinchados fp=hinchadas
+& histórico fs=histórica mp=históricos fp=históricas
+& honesto fs=honesta mp=honestos fp=honestas
+& humano fs=humana mp=humanos fp=humanas
+& húmedo fs=húmeda mp=húmedos fp=húmedas
+& iluminado fs=iluminada mp=iluminados fp=iluminadas
+& ilógico fs=ilógica mp=ilógicos fp=ilógicas
+& imaginario fs=imaginaria mp=imaginarios fp=imaginarias
+& inalámbrico fs=inalámbrica mp=inalámbricos fp=inalámbricas
+& incompleto fs=incompleta mp=incompletos fp=incompletas
+& incorrecto fs=incorrecta mp=incorrectos fp=incorrectas
+& incrédulo fs=incrédula mp=incrédulos fp=incrédulas
+& incómodo fs=incómoda mp=incómodos fp=incómodas
+& indebido fs=indebida mp=indebidos fp=indebidas
+& indefinido fs=indefinida mp=indefinidos fp=indefinidas
+& inepto fs=inepta mp=ineptos fp=ineptas
+& infeccioso fs=infecciosa mp=infecciosos fp=infecciosas
+& injusto fs=injusta mp=injustos fp=injustas
+& inquieto fs=inquieta mp=inquietos fp=inquietas
+& inédito fs=inédita mp=inéditos fp=inéditas
+& izquierdo fs=izquierda mp=izquierdos fp=izquierdas
+& juicioso fs=juiciosa mp=juiciosos fp=juiciosas
+& junto fs=junta mp=juntos fp=juntas
+& jurado fs=jurada mp=jurados fp=juradas
+& justo fs=justa mp=justos fp=justas
+& largo fs=larga mp=largos fp=largas
+& lejano fs=lejana mp=lejanos fp=lejanas
+& lento fs=lenta mp=lentos fp=lentas
+& limpio fs=limpia mp=limpios fp=limpias
+& liso fs=lisa mp=lisos fp=lisas
+& listo fs=lista mp=listos fp=listas
+& liviano fs=liviana mp=livianos fp=livianas
+& llamativo fs=llamativa mp=llamativos fp=llamativas
+& llano fs=llana mp=llanos fp=llanas
+& lleno fs=llena mp=llenos fp=llenas
+& lluvioso fs=lluviosa mp=lluviosos fp=lluviosas
+& loco fs=loca mp=locos fp=locas
+& luminoso fs=luminosa mp=luminosos fp=luminosas
+& lunático fs=lunática mp=lunáticos fp=lunáticas
+& lógico fs=lógica mp=lógicos fp=lógicas
+& maduro fs=madura mp=maduros fp=maduras
+& magnético fs=magnética mp=magnéticos fp=magnéticas
+& magnífico fs=magnífica mp=magníficos fp=magníficas
+& maligno fs=maligna mp=malignos fp=malignas
+& malvado fs=malvada mp=malvados fp=malvadas
+& manuscrito fs=manuscrita mp=manuscritos fp=manuscritas
+& marino fs=marina mp=marinos fp=marinas
+& mismo fs=misma mp=mismos fp=mismas
+& mojado fs=mojada mp=mojados fp=mojadas
+& moreno fs=morena mp=morenos fp=morenas
+& mucho fs=mucha mp=muchos fp=muchas
+& muerto fs=muerta mp=muertos fp=muertas
+& mínimo fs=mínima mp=mínimos fp=mínimas
+& necesario fs=necesaria mp=necesarios fp=necesarias
+& necio fs=necia mp=necios fp=necias
+& novato fs=novata mp=novatos fp=novatas
+& novedoso fs=novedosa mp=novedosos fp=novedosas
+& nublado fs=nublada mp=nublados fp=nubladas
+& nuevo fs=nueva mp=nuevos fp=nuevas
+& obstinado fs=obstinada mp=obstinados fp=obstinadas
+& ocupado fs=ocupada mp=ocupados fp=ocupadas
+& pagado fs=pagada mp=pagados fp=pagadas
+& paralelo fs=paralela mp=paralelos fp=paralelas
+& parecido fs=parecida mp=parecidos fp=parecidas
+& pasado fs=pasada mp=pasados fp=pasadas
+& pasajero fs=pasajera mp=pasajeros fp=pasajeras
+& patológico fs=patológica mp=patológicos fp=patológicas
+& patriótico fs=patriótica mp=patrióticos fp=patrióticas
+& peligroso fs=peligrosa mp=peligrosos fp=peligrosas
+& penoso fs=penosa mp=penosos fp=penosas
+& pequeño fs=pequeña mp=pequeños fp=pequeñas
+& perezoso fs=perezosa mp=perezosos fp=perezosas
+& perfecto fs=perfecta mp=perfectos fp=perfectas
+& persuasivo fs=persuasiva mp=persuasivos fp=persuasivas
+& pesado fs=pesada mp=pesados fp=pesadas
+& piadoso fs=piadosa mp=piadosos fp=piadosas
+& pintoresco fs=pintoresca mp=pintorescos fp=pintorescas
+& plano fs=plana mp=planos fp=planas
+& plácido fs=plácida mp=plácidos fp=plácidas
+& poco fs=poca mp=pocos fp=pocas
+& podrido fs=podrida mp=podridos fp=podridas
+& policiaco fs=policiaca mp=policiacos fp=policiacas
+& poético fs=poética mp=poéticos fp=poéticas
+& precavido fs=precavida mp=precavidos fp=precavidas
+& preferido fs=preferida mp=preferidos fp=preferidas
+& preocupado fs=preocupada mp=preocupados fp=preocupadas
+& preparado fs=preparada mp=preparados fp=preparadas
+& privado fs=privada mp=privados fp=privadas
+& privilegiado fs=privilegiada mp=privilegiados fp=privilegiadas
+& profundo fs=profunda mp=profundos fp=profundas
+& puro fs=pura mp=puros fp=puras
+& quebrado fs=quebrada mp=quebrados fp=quebradas
+& quemado fs=quemada mp=quemados fp=quemadas
+& querido fs=querida mp=queridos fp=queridas
+& quieto fs=quieta mp=quietos fp=quietas
+& rabioso fs=rabiosa mp=rabiosos fp=rabiosas
+& rancio fs=rancia mp=rancios fp=rancias
+& receptivo fs=receptiva mp=receptivos fp=receptivas
+& reconocido fs=reconocida mp=reconocidos fp=reconocidas
+& refinado fs=refinada mp=refinados fp=refinadas
+& respetuoso fs=respetuosa mp=respetuosos fp=respetuosas
+& rico fs=rica mp=ricos fp=ricas
+& ridículo fs=ridícula mp=ridículos fp=ridículas
+& robusto fs=robusta mp=robustos fp=robustas
+& romántico fs=romántica mp=románticos fp=románticas
+& rubio fs=rubia mp=rubios fp=rubias
+& rápido fs=rápida mp=rápidos fp=rápidas
+& sabroso fs=sabrosa mp=sabrosos fp=sabrosas
+& sangriento fs=sangrienta mp=sangrientos fp=sangrientas
+& santo fs=santa mp=santos fp=santas
+& seco fs=seca mp=secos fp=secas
+& seguro fs=segura mp=seguros fp=seguras
+& selecto fs=selecta mp=selectos fp=selectas
+& serio fs=seria mp=serios fp=serias
+& simpático fs=simpática mp=simpáticos fp=simpáticas
+& solo fs=sola mp=solos fp=solas
+& soltero fs=soltera mp=solteros fp=solteras
+& sucio fs=sucia mp=sucios fp=sucias
+& sólido fs=sólida mp=sólidos fp=sólidas
+& tacaño fs=tacaña mp=tacaños fp=tacañas
+& todo fs=toda mp=todos fp=todas
+& tonto fs=tonta mp=tontos fp=tontas
+& torcido fs=torcida mp=torcidos fp=torcidas
+& turbio fs=turbia mp=turbios fp=turbias
+& turbulento fs=turbulenta mp=turbulentos fp=turbulentas
+& usurero fs=usurera mp=usureros fp=usureras
+& vacío fs=vacía mp=vacíos fp=vacías
+& verdadero fs=verdadera mp=verdaderos fp=verdaderas
+& viejo fs=vieja mp=viejos fp=viejas
+& vigoroso fs=vigorosa mp=vigorosos fp=vigorosas
+& violento fs=violenta mp=violentos fp=violentas
+& vivo fs=viva mp=vivos fp=vivas
+& áspero fs=áspera mp=ásperos fp=ásperas
+& único fs=única mp=únicos fp=únicas

@@ -1,0 +1,658 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2012, 2013
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+
+# Guarani noun lexicon
+#
+# 2012.07.22
+# -- Created
+# 2012.07.25
+# -- Nasality and animacy features added.
+#    an: [0] inanimate, [1] animate, non-human, [2] human
+# 2012.08.13
+# -- Split off common nouns (which can have determiners
+#    and/or relative clauses)
+# -- Noun morphology
+# 2012.08.24
+# -- Common nouns partitioned into those with determiners
+#    and those without.
+# 2012.08.28
+# -- Introduced noun case.
+# caso morfológico     caso sintáctico
+#   None                 0
+#   pe                   1
+#   gui                  2
+#   re                   3
+#?  rã                   4
+#   ỹ                    5
+#   icha                 6
+#   vo                   7
+#   gua                  8
+#   ve                   9
+# 2012.08.31
+# -- Animacy (humanness) category simplified to 0, 1.
+#    Could this be handled completely within semantics?
+# 2012.09.02
+# -- Introduced noun possession features and corresponding
+#    partition of nouns.
+#   None;        pos=[0]
+#   [+3,-pron];  pos=[1]
+#   [-3,+pron];  pos=[2]
+#   [+3,+pron];  pos=[3]
+# 2012.09.17
+# -- Eliminated case. Postpositions will all be
+#    separated and have their own pp feature, so case
+#    seems not to be needed; in fact, it gets in the
+#    way.
+# 2012.10-11
+# -- Simplification of noun subclasses.
+# 2012.11.12
+# -- Changed to ngram_tiny. Lexical entries moved to n_tiny.lex.
+# 2013.3
+# -- "Heads" of relative clauses.
+
+# unused empty node for nouns (part of @SJ, @OJ, and @REL partition)
+- morph: '@none'
+  pos: n
+  id:
+    ins: {del: '!', antec: 0}
+    # default values
+    agrs: {cas: -1, an: 0}
+  lp:
+    ins: {del: '!'}
+  cross:
+    sem:
+      lex: ZERO_THING
+
+- gram: N
+  shared:
+    pos: n
+    id:
+      ins: {sj: '?', oj: '?', pcomp: '?', nhead: '?'}
+      outs: {antec: '?'}
+      agrs: {
+             pn: [[1,0,0],[0,1,0],[0,0],
+                  [1,0,1],[1,1,1],[0,1,1]],
+             num: [[1], [2]],
+             # animacy needed for direct object case marker
+             an: [[0], [1]]
+#            rel: [[0], [1]]
+             }
+    lp:
+      ins: {preargf: '?', postargf: '?', pcompf: '?', nheadf: '?'}
+  partition:
+  # "head" of relative clause
+  - part: N_REL
+    id:
+      ins: {nhead: '!', sj: 0, oj: 0, pcomp: 0}
+      outs: {antec: '!'}
+      # Relative pronouns (zero in Gn) agree with their antecedents in
+      # number and animacy
+      agree: [[antec, num, num], [antec, an, an]]
+    lp:
+      ins: {nheadf: '!', preargf: 0, postargf: 0, pcompf: 0}
+      order: [[^, relf]]
+#    idlp:
+#      lbend: {relf: [antec]}
+  # not "head" of relative clause
+  - part: N_NO_REL
+    id:
+      ins: {nhead: 0}
+      outs: {antec: 0}
+    lp:
+      ins: {nheadf: 0}
+#  ## predicate nominals
+#  - part: N_PRED
+#    # or should it be verb?
+#    id:
+#      # what about relative clauses?
+#      ins: {root: '!'}
+#      outs: {sj: '!'}
+#      agrs: {an: [[0],[1]],
+#             # for now assume "present"
+#             tmp: 0,
+#             # non-relative
+#             rel: 0,
+#             num: [[1],[2]]}
+#    lp:
+#      ins: {root: '?'}
+#      outs: {precf: '!'}
+#      order: [[precf, ^]]
+#    idlp:
+#      # linkingend because arguments have to be daughters
+#      # on both ID and LP?
+#      # for now, no constraints on position of
+#      # sj, oj, ojp, and pmod
+#      ldend: {precf: [sj]}
+
+# common nouns: always 3 person;
+# can have determiners and relative clauses
+# possessive complicates things: we need 5 partition classes, it seems
+
+- gram: N_COM
+  shared:
+    classes: [N]
+    id:
+      # when this is the "head" of a relative clause
+      ins: {nhead: '?'}
+      agrs: {pn: [[0,0]],
+             # nasality needed for agreement with poss adj
+             nas: [[0], [1]]}
+    lp:
+      ins: {nheadf: '?', del: 0}
+      outs: {detf: '?'} #relf: '?'}
+      order: [[detf, ^]]
+    idlp:
+      ldend: {detf: [det]}
+  partition:
+  # nouns with demonstratives: always definite?
+  - part: N_DEM
+    id:
+      agrs: {def: 1, pos: 0}
+      # doesn't handle the possibility of article + possessive
+      # antec when this is the "head" of a relative clause
+      outs: {det: '!', antec: '?'}
+      # Def agreement required also if determined nouns
+      # can also be indefinite
+      agree: [[det,num,num]]
+      govern: {det: [[pos, 0]]}
+    lp:
+      outs: {detf: '!'} #, relf: '?'}
+  # possessives
+  - part: N_POS
+    id:
+      agrs: {def: 1, pos: 1}
+      # doesn't handle the possibility of article + possessive
+      outs: {det: '!', antec: '?'}
+      # Nasal agreement required for 1 and 2 p poss adjs
+      # (nde/ne, ñande/ñane, pende/pene)
+      agree: [[det,nas,nas]]
+      govern: {det: [[pos, 1]]}
+    lp:
+      outs: {detf: '!'} #, relf: '?'}
+  - part: N_NO_DET
+    id:
+      # no possessive
+      # are nouns with no determiners always indefinite?
+      agrs: {pos: 0, def: [[0],[1]]}
+      outs: {det: 0, antec: '?'}
+    lp:
+      outs: {detf: 0} #, relf: '?'}
+## Nouns with noun possessors
+#  - part: N_N_POSS
+#    id:
+#      # noun possessive
+#      agrs: {def: 0, pos: [[1]]}
+#      outs: {gen: '!', det: 0} #, rel: '?'}
+#    lp:
+#      outs: {detf: 1} #, relf: '?'}
+
+- gram: N_NAME
+  classes: [N]
+  id:
+    outs: {det: 0}
+    agrs: {num: 1, pn: [[0,0]]}
+  lp:
+    outs: {detf: 0}
+
+## PRON a separate category from N so that empty, as well as explicit,
+## pronouns can inherit from it.
+- gram: PRON
+  pos: n
+
+- gram: PRON_EXPL
+  classes: [PRON, N]
+  id:
+    inmax: 1
+#    agrs: {def: [[1]]}
+#    # Pronouns have no determiners, relative clauses, or adjectives.
+#    outs: {det: 0, rel: 0}
+#  lp:
+#    outs: {detf: 0, relf: 0}
+
+# Empty subject pronouns
+#- lexeme: '@SJ'
+#  classes: ['@PRON']
+#  id:
+#    ins: {sj: '?'}
+#    agrs: {case: 0}
+
+## Pronouns
+# explicit subject
+- word: che
+  classes: [PRON_EXPL]
+  id:
+    ins: {sj: '!'}
+    agrs: {pn: [[1,0,0]],
+           num: 1,
+#           cas: 0,
+           nas: 0,
+           an: 1}
+  cross:
+    sem:
+      lex: I
+- word: nde
+  classes: [PRON_EXPL]
+  id:
+    ins: {sj: '!'}
+    agrs: {pn: [[0,1,0]], num: 1,
+#           cas: 0,
+           nas: 1, an: 1}
+  cross:
+    sem:
+      lex: YOU_SING
+- word: "ha'e"
+  classes: [PRON_EXPL]
+  id:
+    ins: {sj: '!'}
+    agrs: {pn: [[0,0]], num: 1,
+#           cas: 0,
+           nas: 0, an: 1}
+  cross:
+    sem:
+    - lex: SHE
+    - lex: HE
+- word: ñande
+  classes: [PRON_EXPL]
+  id:
+    ins: {sj: '!'}
+    agrs: {pn: [[1,1,1]], num: 2,
+#           cas: 0,
+           nas: 1, an: 1}
+  cross:
+    sem:
+    - lex: WE_INCL
+- word: ore
+  classes: [PRON_EXPL]
+  id:
+    ins: {sj: '!'}
+    agrs: {pn: [[1,0,1]], num: 2,
+#           cas: 0,
+           nas: 0, an: 1}
+  cross:
+    sem:
+    - lex: WE_EXCL
+- word: peẽ
+  classes: [PRON_EXPL]
+  id:
+    ins: {sj: '!'}
+    agrs: {pn: [[0,1,1]], num: 2,
+#           cas: 0,
+           nas: 1, an: 1}
+  cross:
+    sem:
+      lex: YOU_PLUR
+- word: "ha'ekuéra"
+  classes: [PRON_EXPL]
+  id:
+    ins: {sj: '!'}
+    # animacy may also be [1]?
+    agrs: {pn: [[0,0]], num: 2,
+#           cas: 0,
+           nas: 0, an: 1}
+  cross:
+    sem:
+      lex: THEY
+
+## empty: partition of class @SJ
+
+- lexeme: "@SJ"
+  shared:
+    classes: [PRON]
+    id:
+      ins: {sj: '?', oj: 0}
+#      agrs: {cas: 0}
+    lp:
+      ins: {del: '!', postargf: 0, preargf: 0, pcompf: 0}
+  partition:
+  # Class for "unused" zero pronouns (there is an explicit subject)
+  - morph*: '@none'
+  # Classes for "used" empty pronouns (functioning as subjects of verbs)
+  - morph: '@che'
+    id:
+      ins: {del: 0, sj: '!'}
+      inmax: 1
+      agrs: {num: 1, pn: [[1,0,0]], an: 1}
+    cross:
+      sem:
+        lex: I
+  - morph: '@nde'
+    id:
+      ins: {del: 0, sj: '!'}
+      inmax: 1
+      agrs: {num: 1, pn: [[0,1,0]], an: 1}
+    cross:
+      sem:
+        lex: YOU_SING
+  - morph: "@ha'e_SHE"
+    id:
+      ins: {del: 0, sj: '!'}
+      inmax: 1
+      agrs: {num: 1, pn: [[0,0]], an: 1}
+    cross:
+      sem:
+      - lex: SHE
+  - morph: "@ha'e_HE"
+    id:
+      ins: {del: 0, sj: '!'}
+      inmax: 1
+      agrs: {num: 1, pn: [[0,0]], an: 1}
+    cross:
+      sem:
+      - lex: HE
+  - morph: "@ha'e_IT"
+    id:
+      ins: {del: 0, sj: '!'}
+      inmax: 1
+      agrs: {num: 1, pn: [[0,0]], an: 0}
+    cross:
+      sem:
+      - lex: IT
+  - morph: '@ñande'
+    id:
+      ins: {del: 0, sj: '!'}
+      inmax: 1
+      agrs: {num: 2, pn: [[1,1,1]], an: 1}
+    cross:
+      sem:
+      - lex: WE_INCL
+  - morph: '@ore'
+    id:
+      ins: {del: 0, sj: '!'}
+      inmax: 1
+      agrs: {num: 2, pn: [[1,0,1]], an: 1}
+    cross:
+      sem:
+      - lex: WE_EXCL
+  - morph: '@peẽ'
+    id:
+      ins: {del: 0, sj: '!'}
+      inmax: 1
+      agrs: {num: 2, pn: [[0,1,1]], an: 1}
+    cross:
+      sem:
+        lex: YOU_PLUR
+  # only human so far
+  - morph: "@ha'ekuéra"
+    id:
+      ins: {del: 0, sj: '!'}
+      inmax: 1
+      agrs: {num: 2, pn: [[0,0]], an: 1}
+    cross:
+      sem:
+      - lex: THEY
+#  - morph: "@rel_sj"
+#    id:
+#      ins: {del: 0, sj: '!', antec: '!'}
+#      inmax: 2
+#      agrs: {num: [[1],[2]], pn: [[0,0]], an: [[0],[1]]}
+#    cross:
+#      sem:
+#      - lex: REL
+#        idsem:
+#          agree: [[num, num]]
+
+## object pronouns: 0 for 1 and 2 person, explicit for 3 person
+
+- word: chu
+  classes: [PRON_EXPL]
+  id:
+    ins: {ojp: '!', oj: 0, sj: 0}
+    # always animate
+    agrs: {pn: [[0,0]], num: 1,
+           nas: 0, an: 1}
+  lp:
+    ins: {preargf: 0, postargf: '!'}
+  cross:
+    sem:
+    - lex: SHE
+    - lex: HE
+- word: chukuéra
+  classes: [PRON_EXPL]
+  id:
+    ins: {pcomp: '!', oj: 0, sj: 0}
+    # always animate
+    agrs: {pn: [[0,0]], num: 2,
+           nas: 0, an: 1}
+  lp:
+    ins: {pcompf: '!', preargf: 0, postargf: 0}
+  cross:
+    sem:
+      lex: THEY
+
+# either direct or indirect
+#- word: "ichupe"
+#  classes: [PRON_EXPL]
+#  id:
+#    ins: {oj: '?', sj: 0}
+#    # always animate?
+#    agrs: {pn: [[0,0]], num: 1,
+#           nas: 0, an: 1}
+#  lp:
+#    ins: {preargf: 0, postargf: '!'}
+#  cross:
+#    sem:
+#    - lex: SHE
+#    - lex: HE
+#
+#- word: "ichupekuéra"
+#  classes: [PRON_EXPL]
+#  id:
+#    ins: {oj: '?', sj: 0}
+#    # always animate?
+#    agrs: {pn: [[0,0]], num: 2,
+#           nas: 0, an: 1}
+#  lp:
+#    ins: {preargf: 0, postargf: '!'}
+#  cross:
+#    sem:
+#    - lex: THEY
+
+## 0 object pronouns
+- lexeme: "@OJ"
+  shared:
+    classes: [PRON]
+    id:
+      ins: {oj: '?', sj: 0}
+      # case reserved for empty objects
+#      agrs: {cas: [[-1]]}
+    lp:
+      ins: {del: '!', postargf: 0, preargf: 0, pcompf: 0}
+  partition:
+  # Class for "unused" zero pronouns (there is an explicit object).
+  # This is the same entry as for empty subjects.
+  - morph*: '@none'
+  # Classes for "used" empty pronouns (functioning as objects of verbs,
+  # appearing as prefixes on the verb for 1 and 2 person).
+  - morph: "@OJ_3S_NH"
+    id:
+      ins: {del: 0, oj: '!', antec: 0}
+      agrs: {num: 1, pn: [[0,0]], an: 0}
+    cross:
+      sem:
+        lex: IT
+  - morph: "@OJ_3P_NH"
+    id:
+      ins: {del: 0, oj: '!', antec: 0}
+      agrs: {num: 2, pn: [[0,0]], an: 0}
+    cross:
+      sem:
+        lex: THEY
+#  - morph: "@rel_oj"
+#    id:
+#      ins: {del: 0, oj: '!', antec: '!'}
+#      agrs: {num: [[1],[2]], pn: [[0,0]], an: [[0],[1]]}
+#    cross:
+#      sem:
+#      - lex: REL
+#        idsem:
+#          agree: [[num, num]]
+## 0 1,2p object pronouns
+  - morph: '@cheO'
+    id:
+      ins: {del: 0, oj: '!', antec: 0}
+      agrs: {num: 1, pn: [[1,0,0]], an: 1}
+    cross:
+      sem:
+        lex: I
+  - morph: '@ndeO'
+    id:
+      ins: {del: 0, oj: '!', antec: 0}
+      agrs: {num: 1, pn: [[0,1,0]], an: 1}
+    cross:
+      sem:
+        lex: YOU_SING
+  - morph: '@ñandeO'
+    id:
+      ins: {del: 0, oj: '!', antec: 0}
+      agrs: {num: 2, pn: [[1,1,1]], an: 1}
+    cross:
+      sem:
+        lex: WE_INCL
+  - morph: '@oreO'
+    id:
+      ins: {del: 0, oj: '!', antec: 0}
+      agrs: {num: 2, pn: [[1,0,1]], an: 1}
+    cross:
+      sem:
+        lex: WE_EXCL
+  - morph: '@peẽO'
+    id:
+      ins: {del: 0, oj: '!', antec: 0}
+      agrs: {num: 2, pn: [[0,1,1]], an: 1}
+    cross:
+      sem:
+        lex: YOU_PLUR
+
+- lexeme: '@REL'
+  shared:
+    classes: [PRON]
+    id:
+      ins: {sj: '?', oj: '?', ojp: '?', antec: '!', del: 0}
+#      agrs: {rl: [[0],[1]], rel: 1}
+    lp:
+      ins: {del: '!', postargf: 0, preargf: 0, pcompf: 0}
+    cross:
+      sem:
+        lex: REL
+        idsem:
+          agree: [[num, num]]
+  partition:
+  - lexemepart: "@che_rel"
+    id:
+      agrs: {pn: [[1,0,0]], num: 1, an: 1}
+  - lexemepart: "@nde_rel"
+    id:
+      agrs: {pn: [[0,1,0]], num: 1, an: 1}
+  - lexemepart: "@ha'e_rel"
+    id:
+      agrs: {pn: [[0,0]], num: 1, an: [[0],[1]]}
+  - lexemepart: "@ha'ekuéra_rel"
+    id:
+      agrs: {pn: [[0,0]], num: 2, an: [[0],[1]]}
+
+#- lexeme: "@REL"
+#  shared:
+#    classes: [PRON]
+#    id:
+#      ins: {oj: '?', sj: '?', antec: '?'}
+#    lp:
+#      ins: {del: '!', postargf: 0, preargf: 0, pcompf: 0}
+#  partition:
+#  # Class for "unused" zero pronouns (there is an explicit subject/object)
+#  - morph*: '@none'
+#  # Classes for "used" empty pronouns (functioning as subjects or objects
+#  # of relative verbs)
+#  - morph: "@rel_sj"
+#    id:
+#      ins: {del: 0, sj: '!', antec: '!'}
+#  - morph: "@rel_oj"
+#    id:
+#      ins: {del: 0, oj: '!', antec: '!'}
+
+## Possessive adjectives
+
+- gram: ADJ_POS
+  pos: det
+  id:
+    ins: {det: '!'}
+    agrs: {pos: 1, an: 1}
+#           def: 1, nas: [[0],[1]], num: [[1], [2]],
+#           pos: 1}
+#           pn: [[1,0,0],[0,1,0],[0,0],
+#                [1,0,1],[1,1,1],[0,1,1]]}
+  lp:
+    ins: {detf: '!'}
+
+#- word: "@POS3"
+#  classes: [ADJ_POS]
+#  id:
+#    agrs: {pn: [[0,0,0]], num: 1}
+#  lp:
+#    # override ADJ_POS
+#    ins: {detf: 0, del: '!'}
+#  cross:
+#    sem:
+#    - lex: HIS
+#    - lex: HER
+#    - lex: THEIR
+
+# separate from noun in pre-preprocessing
+- word: i
+  classes: [ADJ_POS]
+  id:
+    agrs: {pn: [[0,0,0]], num: 1,
+           nas: [[0],[1]]}
+  cross:
+    sem:
+    - lex: HIS
+    - lex: HER
+    - lex: THEIR
+
+- word: che
+  classes: [ADJ_POS]
+  id:
+    agrs: {pn: [[1,0,0]], num: 1,
+           nas: [[0],[1]]}
+  cross:
+    sem:
+      lex: MY
+
+- word: nde
+  classes: [ADJ_POS]
+  id:
+    agrs: {pn: [[0,1,0]], num: 1,
+           nas: 0}
+  cross:
+    sem:
+      lex: YOUR_SING
+
+- word: ne
+  classes: [ADJ_POS]
+  id:
+    agrs: {pn: [[0,1,0]], num: 1,
+           nas: 1}
+  cross:
+    sem:
+      lex: YOUR_SING
+

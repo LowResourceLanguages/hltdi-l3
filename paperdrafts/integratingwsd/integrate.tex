@@ -1,0 +1,120 @@
+%
+% File amta08.tex
+%
+% Contact: nasmith@cs.cmu.edu
+
+\documentclass[11pt]{article}
+\usepackage{acl08}
+\usepackage{times}
+\usepackage{latexsym}
+\setlength\titlebox{6.5cm}    % Expanding the titlebox
+
+\title{L3, now with classifiers for WSD}
+
+\author{
+  Anonymous A \\
+  School of Semiotic Countermeasures\\
+  Foo University \\
+  Anytowne \\
+  {\tt anona@sc.foou.edu}\And
+  Anonymous B \\
+  School of Semiotic Countermeasures\\
+  Foo University \\
+  Anytowne \\
+  {\tt anonb@sc.foou.edu}}
+
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+  This document contains the instructions for preparing a camera-ready
+  manuscript for the proceedings of AMTA-2010. The document itself conforms to
+  its own specifications, and is therefore an example of what your manuscript
+  should look like.  Authors are asked to conform to all the directions
+  reported in this document.
+\end{abstract}
+
+
+\section{Introduction}
+In this paper we describe extensions to the L3 translation system for
+under-resourced languages.
+
+L3 seeks to address the problem of the Linguistic Digital Divide.
+
+* why is ambiguity a problem for RBMT?
+
+
+* background with XDG
+
+
+* how to integrate classifiers with L3
+
+
+* add possible output words as features (does that help? we think it shouldn’t,
+and can demonstrate with this experiment that ...)
+
+
+SMT systems have used classifiers for CL-WSD and CL-PSD with varying success;
+it seems to help somewhat. The language model for the target language is
+helpful in local disambiguations, largely due to the left-to-right decoding
+process.
+
+However, in a rule-based system, and particularly in the case of translation
+for under-resourced languages...
+
+\section{Cross-Language Word Sense Disambiguation}
+CL-WSD is distinct from the well-studied monolingual case, in that in the
+cross-language case, the senses of a word in the target language are taken to
+be only those that are distinct word types in the target language. Thus, for
+example, if a word in the source language is always translated as the same word
+in the target language, then there is no ambiguity to resolve, even if 
+
+This approach has a long history in the translation literature, dating back to
+Brown et al 1991...
+
+More recently, Carpuat and Wu have integrated this into modern phrase-based SMT
+systems ...  \cite{carpuatpsd} \cite{improvingsmtwsd}
+
+\section{Classifier development}
+For these experiments, we generated XXX sentences of English/Amharic bitext
+from a simple grammar with lexical preferences baked in, such as those shown in
+Figure XX, then trained 
+
+\section{Classifier integration}
+
+\section{Results}
+The classifiers were able to learn the appropriate lexical preferences with
+XX\% accuracy. They differed from the most frequent sense in XX\% of the time,
+showing that they in fact were able to learn something useful.
+
+On a modern desktop computer, the system took XXX seconds to return the first
+translation. As judged by one of the authors, the most preferable translation
+was produced as the top-scored translation, and first, in XX of the cases.
+
+\section{Ongoing Work}
+Clearly in the future our classifiers should be trained on real-world data
+instead of a generated toy corpus. We would like to continue generalizing this
+work to apply to other languages instead of just English/Amharic ...
+
+
+In the medium term, we will integrate our RBMT system with interfaces for
+computer-aided translation (CAT) in order to produce documents in
+under-resourced languages 
+
+\section{Conclusions}
+Here we have presented  ...
+
+more things to reference:
+
+Gasser 2012: Toward a Rule-Based System for English-Amharic Translation
+Rudnick 2011: Towards CL-WSD for Quechua
+
+\section*{Acknowledgments}
+
+Do not number the acknowledgment section.
+
+\bibliographystyle{acl}
+\bibliography{integrate.bib}{}
+
+\end{document}

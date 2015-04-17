@@ -1,0 +1,109 @@
+name: español
+abbrev: spa
+
+groups:
+  patear_:
+  - words: [patear_, $concreto]
+  estirar_:
+  - words: [estirar_, la, pata]
+  es:
+  - words: [es]
+  fin:
+  - words: [el, fin, del, mundo]
+  cantar_:
+  # cantar las cuarenta (with pronoun indirect object)
+  - words: [$algnp, cantar_, las, cuarenta]
+    trans:
+      eng:
+      - [read_.$sbd.the.riot.act,
+         {align: [1, 0, 2, 3],
+          agr: [false, {tmp: tns, num: num, prs: prs}, false, false]}]
+      - [give_.$sbd.a.piece.of.possadj_.mind,
+         {align: [1, 0, 2, 3],
+          agr: [false, {tmp: tns, num: num, prs: prs}, false, false]}]
+  # cantar (una canción)
+  - words: [cantar_, $cantable]
+    trans:
+      eng:
+      - [sing_.$singable,
+         {align: [0, 1],
+          agr: [{tmp: tns, num: num, prs: prs}, false]}]
+  canción:
+  - words: [una, canción]
+    trans:
+      eng:
+      - [a.song]
+  canciones:
+  - words: [canciones]
+  les:
+  - words: [les]
+    trans:
+      eng:
+      - [them]
+  su:
+  - words: [su]
+  adjpos_:
+  - words: [adjpos_]
+  muchacho:
+  - words: [el, muchacho]
+    trans:
+      eng:
+      - [the.boy]
+  balde:
+  - words: [el, balde]
+
+forms:
+  balde:
+    root: balde
+    features: {num: 0, prs: 3, gen: 0}
+    cats: [$algo, $concreto]
+  pateó:
+    root: patear_
+    features: {num: 0, prs: 3, tmp: prt}
+  estiró:
+    root: estirar_
+    features: {num: 0, prs: 3, tmp: prt}
+  canción:
+    root: canción_
+    features: {num: 0, prs: 3}
+    cats: [$cantable, $algo]
+  canciones:
+    root: canción_
+    features: {num: 1, prs: 3}
+    cats: [$cantable, $algo]
+  les:
+    root: ellos
+    features: {num: 1, prs: 3, case: i}
+    cats: [$algnp]
+  nos:
+    root: nosotros
+    features: {num: 1, prs: 1, case: i}
+  su:
+    root: adjpos_
+    features: {prs: 3, modnum: 0}
+  sus:
+    root: adjpos_
+    features: {prs: 3, modnum: 1}
+  mi:
+    root: adjpos_
+    features: {prs: 1, num: 1, modnum: 0}
+  mis:
+    root: adjpos_
+    features: {prs: 1, num: 1, modnum: 1}
+  cantó:
+    root: cantar_
+    features: {num: 0, prs: 3, tmp: prt}
+  canta:
+    root: cantar_
+    features: {num: 0, prs: 3, tmp: prs}
+  canté:
+    root: cantar_
+    features: {num: 0, prs: 1, tmp: prt}
+  muchacho:
+    root: muchacho_
+    features: {num: 0, prs: 3, gen: 0}
+    cats: [$algn]
+
+
+
+  

@@ -1,0 +1,62 @@
+name: አማርኛ
+abbrev: amh
+groups:
+  በላ_:
+  - words: [$food, በላ_]
+    features: [{case: acc}, False]
+    trans:
+      orm:
+      - [$food.nyaate_,
+         {agr: [false, {sp: prs, sn: num, sg: gen}]}]
+  አወቀ_:
+  - words: [$vb, አወቀ_]
+    features: [{tam: ger}, {tam: imf, pol: neg}]
+    agr: [[0, 1, [sp, sp], [sn, sn], [sg, sg]]]
+    name: ^አድርጎ.^አያውቅም
+    trans:
+      orm:
+      - [^godhe.hin^beeku,
+         {align: [0, 2],
+          agr: [{sp: prs, sn: num, sg: gen},
+                {sp: prs, sn: num, sg: gen}]}]
+  - words: [$fact, አወቀ_]
+    trans:
+      orm:
+      - [$fact.beeke_,
+         {agr: [False, {sp: prs, sn: num, sg: gen}]}]
+  አሳ_:
+  - words: [አሳ_]
+    trans:
+      orm:
+      - [qurxummii_]
+      - [kalluuna_]
+
+forms:
+  ያውቃል:
+    root: አወቀ_
+    features: {tam: imf, pol: aff, sp: 3, sn: 0, sg: 0}
+    cats: [$vb]
+  አያውቅም:
+    root: አወቀ_
+    features: {tam: imf, pol: neg, sp: 3, sn: 0, sg: 0}
+    cats: [$vb]
+  በልቶ:
+    root: በላ_
+    features: {tam: ger, sp: 3, sn: 0, sg: 0}
+    cats: [$vb]
+  በልተው:
+    root: በላ_
+    features: {tam: ger, sp: 3, sn: 1}
+    cats: [$vb]
+  በላ:
+    root: በላ_
+    features: {tam: prf, sp: 3, sn: 0, sg: 0}
+    cats: [$vb]
+  ድንች:
+    root: ድንች_
+    features: {num: 0, poss: 0, def: 0}
+    cats: [$food, $thing]
+  አሳ:
+    root: አሳ_
+    features: {num: 0, poss: 0, def: 0}
+    cats: [$food, $animal, $thing]

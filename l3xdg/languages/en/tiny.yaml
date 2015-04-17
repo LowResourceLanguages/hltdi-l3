@@ -1,0 +1,795 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2010, 2011, 2012
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+#
+#
+# Tiny English test grammar
+
+# 2011.01.29
+#
+# 2011.02.06
+# -- En->Sem->Am succeeded
+# 2011.02.16
+# -- png agreement features changed to match Semantics new features
+# 2011.03.20
+# -- finite and non-finite verbs, auxiliary and main verbs added
+# 2011.09.14
+# -- added COP and ADJ
+# 2011.10.06
+# -- V_3SG, V_NON3SG, V_PS made partition of V_FIN
+# -- Verb forms made partition of lexemes.
+#    Solves problem of forced selection of wordform when English is output language.
+# 2011.12.03
+# -- PREP, modifying nouns, added
+# 2011.12.5-9
+# -- A lot of work on determiners and nouns; indefinite and definite articles now
+#    work in both directions.
+# 2012.05.14
+# -- Multiple end-of-sentence "words".
+# 2012.07.15
+# -- All hierarchy for crosslexes eliminated (simplifying flattening)
+
+#### End-of-sentence node
+-  lexeme: ROOT
+   id: 
+      outs: {root: '!', del: '*'}
+   lp:
+      outs: {root: '!', del: '*'}
+      order: [[root, ^, del]]
+#   cross:
+#      sem:
+#         lex: ROOT
+#         idsem:
+#            arg: {root: [root, vmain, padj]}
+#      am:
+#         lex: ROOT
+#         idid: {root: [root]}
+
+-  word: '.'
+   classes: [ROOT]
+   cross:
+      sem:
+         lex: STATEMENT
+         idsem:
+            arg: {root: [root, vmain, padj]}
+      am:
+         lex: ።
+         idid: {root: [root]}
+
+#### Null in other languages
+-  lexeme: ISOLATE
+   cross:
+      sem:
+         lex: ZERO
+         bidir: False
+      am:
+         lex: zero
+         bidir: False
+
+#### Grammar
+### Verbs
+-  gram: V
+   pos: v
+   id:
+      ins: {root: '!'}
+      outs: {sb: '?', ob: '?', vmain: '?', pmod: '*'}
+      # All verbs have tense (not really right)
+      agrs: {tns: [[0], [1]]}
+   lp:
+      ins: {root: '!'}
+      outs: {vf: '?', mf2: '?', lbf: '?', padvf: '*'}
+      order: [[vf, ^, lbf, mf2, padvf]]
+   idlp:
+      arg: {mf2: [ob], lbf: [vmain], padvf: [pmod]}
+      ldend: {vf: [sb]}
+
+## Finiteness
+-  gram: V_FINITENESS
+   shared:
+      classes: [V]
+   partition:
+
+   # Nonfinite verbs get their TAM from their head;
+   # they have no sbj complement daughters in LP
+   -  subpartition: V_NONFIN
+      shared:
+         id:
+           # Assume that all have an AUX head
+            ins: {vmain: '!', root: 0}
+            outs: {sb: 0}
+         lp:
+            # Link in from AUX
+            ins: {lbf: '!', root: 0}
+            # No subject or object slots
+            outs: {mf2: 0, vf: 0}
+      subclasses:
+      # Assume pres part must be a component of progressive (with be)
+      -  part: V_PRSPART
+#         id:
+#            agrs: {as: [[1]]}
+      # Assume past part must be a component of perfective (with have)
+      -  part: V_PSTPART
+#         id:
+#            agrs: {as: [[2]]}
+
+   -  subpartition: V_FIN
+      shared: 
+      # Finite verbs have subjects that agree with them
+         id:
+            ins: {root: '!'}
+            # For NP chunking (forests), this should be '?'
+            outs: {sb: '!'}
+         lp:
+            ins: {root: '!'}
+            # For NP chunking (forests), this should be '?'
+            outs: {vf: '!'}
+      subclasses:
+      # subclasses of finite verbs for particular tenses
+      # present tense has sb-v agreement
+      -  part: V_3SG
+         id:
+            agree: [[sb, sb, pn]]
+            agrs: {sb:  [[0,0,0]],
+                   tns: [[0]]}
+      -  part: V_NON3SG
+         id:
+            agree: [[sb, sb, pn]]
+            # 1 pers, 2 pers, 3 pers pl
+            agrs: {sb:  [[1,0,0], [1,0,1], [0,1,0], [0,1,1], [0,0,1]],
+                   tns: [[0]]}
+      -  part: V_PS
+         id:
+            agrs: {sb:  [[0,0,0]],   # default (it doesn't matter)
+                   tns: [[1]]}
+
+## Contentness
+-  gram: V_CONTENT
+   shared:
+      classes: [V]
+   partition:
+   -  part: V_AUX
+      # Requires a main verb
+      id:
+         outs: {vmain: '!'}
+         # Tense is copied from AUX to MAIN
+         agree: [[vmain, tns, tns]]
+      lp:
+         outs: {lbf: '!'}
+      # Copied to lexeme
+#      cross:
+#         sem:
+#            lex: ZERO_VMOD
+   -  subpartition: V_MAIN
+      shared:
+         id:
+            outs: {vmain: 0}
+         lp:
+            outs: {lbf: 0}
+      subclasses:
+      -  part: V_MAIN_FIN
+         classes: [V_FIN]
+         # copied to lexemes
+#         cross:
+#            sem:
+#               lex: PROC
+#               idsem:
+#                  arg: {arg1: [sb]}
+#                  agree: [[reltime, tns]]
+#            am:
+#               lex: V
+#               idid:
+#                  arg: {sb: [sb]}
+#                  agree: [[tm, tns]]
+      -  part: V_MAIN_NONFIN
+         classes: [V_NONFIN]
+
+#   -  part: V_MAIN
+#      cross:
+#         sem:
+#            lex: PROC
+#            idsem:
+#               arg: {arg1: [sb]}
+#               agree: [[reltime, tns]]
+
+## Verb valency classes, subclasses of V_MAIN
+-  gram: V_T
+   # Inefficient because V_CONTENT includes V_AUX in its partition
+   classes: [V_CONTENT]
+   id:
+      outs: {ob: '!', vmain: 0}
+   lp:
+      outs: {lbf: 0}
+   # copied to lexemes
+#   cross:
+#      sem:
+#         lex: PROC_T
+#         idsem:
+#            ldend: {arg2: [ob]}
+#      am:
+#         lex: V_T
+#         idid:
+#            ldend: {ob: [ob]}
+
+-  gram: V_I
+   classes: [V_CONTENT]
+   id:
+      outs: {ob: 0, vmain: 0}
+   lp:
+      outs: {lbf: 0}
+
+## Copula (for now always adj complement; LP won't work for questions)
+-  gram: COP
+   pos: cop
+   id:
+      ins: {root: '!'}
+      # All verbs have tense (not really right)
+      agrs: {tns: [[0], [1]]}
+      outs: {sb: '?', padj: '!', ob: 0, vmain: 0}
+   lp:
+      ins: {root: '!'}
+      order: [[vf, ^, mf2]]
+      outs: {vf: '?', mf2: '!', lbf: 0}
+   idlp:
+      ldend: {vf: [sb]}
+      arg: {mf2: [padj]}
+   # Copied to morph entries
+#   cross:
+#      sem:
+#         bidir: False
+#         lex: ZERO_V
+
+-  lexeme: '%COP_FIN'
+   shared:
+      classes: [COP]
+      id:
+         outs: {sb: '!'}
+         # Agreement in all tenses for copula (not just present)
+         # Tns is copied from copula to pred adj
+         agrs: {sb: [[1,0,1], [0,1,0], [0,1,1], [0,0,1], [0,0,0]]}
+         agree: [[sb, sb, pn], [padj, tns, tns]]
+      lp:
+         ins: {root: '!'}
+         outs: {vf: '!'}
+   partition:
+   -  morph: is
+      id:
+         agrs: {sb:  [[0,0,0]], tns: [[0]]}
+      # Deleted in semantics (like V_AUX)
+      cross:
+         sem:
+            bidir: False
+            lex: ZERO_V
+   -  morph: am
+      id:
+         agrs: {sb:  [[1,0,0]], tns: [[0]]}
+      cross:
+         sem:
+            bidir: False
+            lex: ZERO_V
+   -  morph: are
+      id:
+         agrs: {sb:  [[1,0,1], [0,1,0], [0,1,1], [0,0,1]],
+                tns: [[0]]}
+      cross:
+         sem:
+            bidir: False
+            lex: ZERO_V
+   -  morph: was
+      id:
+         agrs: {sb:  [[1,0,0], [0,0,0]], tns: [[1]]}
+      cross:
+         sem:
+            bidir: False
+            lex: ZERO_V
+   -  morph: were
+      id:
+         agrs: {sb:  [[1,0,1], [0,1,0], [0,1,1], [0,0,1]],
+                tns: [[1]]}
+      cross:
+         sem:
+            bidir: False
+            lex: ZERO_V
+
+# For now, only predicate adjectives
+-  gram: ADJ
+   pos: adj
+   id:
+      # from copula
+      ins: {padj: '!'}
+      agrs: {tns: [[0], [1]]}
+   lp:
+      # from copula
+      ins: {mf2: '!'}
+    # copied to adj word entries
+#   cross:
+#      sem:
+#      -  lex: STATE
+#         idsem:
+#            arg: {arg1: [sb]}
+#            agree: [[reltime, tns]]
+#      -  revempty: true
+#         inslex: '%COP_FIN'
+#         ifdim: en-idsem
+#         arc: padj
+#         rel: [mother]
+#-  gram: ADJ_ATT
+#   classes: [ADJ]
+#   id:
+#      ins: {'adj': '!'}
+#   lp:
+#      ins: {'adjf': '!'}
+
+### Nouns
+-  gram: N
+   pos: n
+   id:
+      ins: {sb: '?', ob: '?', pcomp: '?'}
+      outs: {det: '?', pmod: '*'}
+      agrs: {def: [[0], [1]], num: [[1], [2]]}
+   lp:
+      ins: {vf: '?', mf2: '?', pcompf: '?'}
+      outs: {detf: '?', 'padjf': '*'}
+      order: [[detf, ^]]
+   idlp:
+      ldend: {detf: [det], padjf: [pmod]}
+      blocks: [det, pmod]  # and rel later
+   # copied to lexeme entries
+#   cross:
+#      sem:
+#         lex: THING
+#         # Copy definiteness from id to sem (or vice versa)
+#         idsem:
+#            agree: [[def, def], [num, num]]
+#      am:
+#         lex: N
+#         idid:
+#            agree: [[def, def], [num, num]]
+
+# Pronouns: no det, adj, rel, pmod
+-  gram: PRO
+   classes: [N]
+   id:
+      outs: {det: 0}
+      agrs: {def: [[1]]}
+   lp:
+      outs: {detf: 0}
+
+-  gram: N_DEF
+   classes: [N]
+   id:
+      outs: {det: '!'}
+      agrs: {def: [[1]]}
+-  gram: N_INDEF
+   classes: [N]
+   id:
+      agrs: {def: [[0]]}
+
+# Common nouns
+-  gram: N_C
+   shared:
+      classes: [N]
+      id:
+         agree: [[det, def, def], [det, num, num]]
+      # copied to lexemes
+#      cross:
+#         sem:
+#         -  revempty: true
+#            inslex: '%DET'
+#            ifdim: en-idsem
+#            arc: det
+#         am:
+#         -  revempty: true
+#            elex: zero
+#            inslex: '%DET'
+#            ifdim: en-idid
+#            arc: det
+   partition:
+   # Singular nouns: 3s agreement
+   -  part: N_SG
+      id:
+         outs: {det: '!'}
+         agrs: {num: [[1]], pn: [[0,0,0]]}
+# Without a lexdim, does this do anything?
+#      cross:
+#         am:
+#            lex: N_SG
+   # Plural nouns: 3p agreement
+   -  subpartition: N_PL
+      shared:
+         id:
+            agrs: {num: [[2]], pn: [[0,0,1]]}
+      subclasses:
+      -  part: N_PL_DEF
+         classes: [N_DEF]
+      -  part: N_PL_INDEF
+         classes: [N_INDEF]
+
+# Mass nouns
+-  gram: N_MS
+   shared:
+      classes: [N]
+      id:
+         agrs: {num: [[1]], pn: [[0,0,0]]}
+         agree: [[det, num, num]]
+   partition:
+   -  part: N_MS_DEF
+      classes: [N_DEF]
+   # Generic mass nouns: no determiner
+   -  part: N_MS_GEN
+      classes: [N_INDEF]
+      id:
+         outs: {det: 0}
+
+# Names
+-  gram: N_NAME
+   classes: [N]
+   id:
+      outs: {det: 0}
+      agrs: {def: [[1]], num: [[1]], pn: [[0,0,0]]}
+   lp:
+      outs: {detf: 0}
+
+# Personal pronouns
+-  gram: PRO_PRS
+   classes: [PRO]
+
+### Articles
+-  lexeme: '%DET'
+   shared:
+      pos: det
+      id:
+         ins: {det: '!'}
+         agrs: {def: [[0], [1]], num: [[1], [2]]}
+      lp:
+         ins: {detf: '!'}
+      cross:
+         sem:
+            lex: ZERO
+            bidir: False
+         am:
+            lex: zero
+            bidir: False
+   partition:
+   -  morph: '@DET'
+     # Deleted determiner
+      id:
+         ins: {del: '!', det: 0}
+         # Arbitrary values for the agreement features
+         agrs: {def: [[0]], num: [[1]]}
+      lp:
+         ins: {del: '!', detf: 0}
+   -  morph: the
+      count: 100
+      id:
+         agrs: {def: [[1]], num: [[1], [2]]}
+   -  morph: a
+      id:
+         agrs: {def: [[0]], num: [[1]]}
+   -  morph: an
+      id:
+         agrs: {def: [[0]], num: [[1]]}
+
+### Prepositions
+-  gram: PREP
+   pos: prep
+   id:
+      # Works for either V or N modifiers;
+      # later include pob1 and pob2 as well
+      ins: {pmod: '!'}
+      # Prepositional complement
+      outs: {pcomp: '!'}
+      # Case of pronouns handled in pronoun entries?
+   lp:
+      outs: {pcompf: '?'}      # ? because the prpc may end up elsewhere
+      order: [[^, pcompf]]
+   idlp:
+      # Is it always ldend? Or is arg necessary?
+      ldend: {pcompf: [pcomp]}
+
+# Later have a PMOD subclass (see water.yaml)?
+-  gram: PADJ
+   classes: [PREP]
+   lp:
+      ins: {padjf: '!'}      # ? in Diss: ch. 9
+      # Object always in PComp slot
+      outs: {pcompf: '!'}
+    # copied to word entries
+#   cross:
+#      sem:
+#         lex: PROC_T
+#         sem:
+#            # A subordinate process in semantics
+#            ins: {sub: '!'}
+#            agrs: {reltime: [[0]]}
+#         idsem:
+#            ldend: {arg2: [pcomp]}
+#            mod: {arg1: [pmod]}
+-  gram: PADV
+   classes: [PREP]
+   lp:
+      # Other possibilities in D: {padvf: '?', vvf: '?', rprof: '?'}
+      ins: {padvf: '!'}
+      # How to handle cases where the object ends up elsewhere in LP?
+      outs: {pcompf: '!'}
+
+## Possessive adjectives
+## Currently no difference from articles
+
+-  gram: POSS_ADJ
+   pos: det
+   id:
+      ins: {det: '!'}
+      agrs: {def: 1, num: [[1],[2]]}
+   lp:
+      ins: {detf: '!'}
+
+-  word: my
+   classes: [POSS_ADJ]
+   cross:
+      sem:
+         lex: MY
+
+-  word: your
+   classes: [POSS_ADJ]
+   cross:
+      sem:
+      -  lex: YOUR_SING
+      -  lex: YOUR_PLUR
+
+-  word: his
+   classes: [POSS_ADJ]
+   cross:
+      sem:
+         lex: HIS
+
+-  word: her
+   classes: [POSS_ADJ]
+   cross:
+      sem:
+         lex: HER
+
+-  word: our
+   classes: [POSS_ADJ]
+   cross:
+      sem:
+      -  lex: OUR_EXCL
+      -  lex: OUR_INCL
+
+-  word: their
+   classes: [POSS_ADJ]
+   cross:
+      sem:
+         lex: THEIR
+
+#### Lexemes and words
+
+### zero: needed to handle words in other languages that
+### correspond to zero in English
+-  word: zero
+   id:
+      ins: {del: '!'}
+      agrs: {def: [[1]],
+             num: [[1]],
+             pn: [[0,0,0]]}
+   lp:
+      ins: {del: '!'}
+   cross:
+      sem:
+      - lex: ZERO_THING
+      - lex: ZERO
+      am:
+      - lex: zero
+
+### Pronouns
+-  word: I
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '!', ob: 0}
+      agrs: {pn: [[1,0,0]], num: [[1]]}
+   lp:
+      ins: {vf: '?'}
+   cross:
+      sem:
+         lex: I
+      am:
+         lex: "'nE+"
+         index: [0,1]
+-  word: we
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '!', ob: 0}
+      agrs: {pn: [[1,0,1]], num: [[2]]}
+   lp:
+      ins: {vf: '?'}
+   cross:
+      sem:
+      - lex: WE_EXCL
+      - lex: WE_INCL
+-  word: you
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '?', ob: '?'}
+      agrs: {pn: [[0,1,0]], num: [[1]]}
+   lp:
+      ins: {vf: '?', mf2: '?'}
+   cross:
+      sem:
+         lex: YOU_SING
+-  word: you
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '?', ob: '?'}
+      agrs: {pn: [[0,1,1]], num: [[2]]}
+   lp:
+      ins: {vf: '?', mf2: '?'}
+   cross:
+      sem:
+         lex: YOU_PLUR
+-  word: me
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: 0, ob: '?'}
+      agrs: {pn: [[1,0,0]], num: [[1]]}
+   lp:
+      ins: {mf2: '?'}
+   cross:
+      sem:
+         lex: I
+      am:
+         lex: "'nE+"
+-  word: she
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '!', ob: 0}
+      agrs: {pn: [[0,0,0]], num: [[1]]}
+   lp:
+      ins: {vf: '?'}
+   cross:
+      sem:
+         lex: SHE
+-  word: he
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '!', ob: 0}
+      agrs: {pn: [[0,0,0]], num: [[1]]}
+   lp:
+      ins: {vf: '?'}
+   cross:
+      sem:
+         lex: HE
+# Pronoun 'her' (not possessive)
+-  word: her
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: 0, ob: '!'}
+      agrs: {pn: [[0,0,0]], num: [[1]]}
+   lp:
+      ins: {mf2: '?'}
+   cross:
+      sem:
+         lex: SHE
+-  word: him
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: 0, ob: '!'}
+      agrs: {pn: [[0,0,0]], num: [[1]]}
+   lp:
+      ins: {mf2: '?'}
+   cross:
+      sem:
+         lex: HE
+-  word: it
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '?', ob: '?'}
+      agrs: {pn: [[0,0,0]], num: [[1]]}
+   lp:
+      ins: {vf: '?', mf2: '?'}
+   cross:
+      sem:
+         lex: IT
+-  word: they
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '!', ob: 0}
+      agrs: {pn: [[0,0,1]], num: [[2]]}
+   lp:
+      ins: {vf: '?'}
+   cross:
+      sem:
+         lex: THEY
+
+### Aux
+# This has to be a gram so that it doesn't get an entry in the flattened
+# lexicon
+-  gram: ~V~be
+   classes: [V_AUX, V_FINITENESS]
+-  word: is
+   classes: [~V~be, V_FIN]
+   id:
+      agrs: {sb: [[0,0,0]], tns: [[0]]}
+   # Deleted in semantics
+   cross:
+      sem:
+         lex: ZERO_VMOD
+-  word: am
+   classes: [~V~be, V_FIN]
+   id:
+      agrs: {sb: [[1,0,0]], tns: [[0]]}
+   # Deleted in semantics
+   cross:
+      sem:
+         lex: ZERO_VMOD
+-  word: are
+   classes: [~V~be, V_FIN]
+   id:
+      agrs: {sb: [[0,1,0],[1,0,1],[0,1,1],[0,0,1]], tns: [[0]]}
+   # Deleted in semantics
+   cross:
+      sem:
+         lex: ZERO_VMOD
+
+### Prepositions
+-  word: "in"
+   classes: [PADV]
+   cross:
+      sem:
+         # not really right; should be more specific
+         lex: LOC_GEN
+         idsem:
+            ldend: {arg1: [pcomp]}
+-  word: "in"
+   classes: [PADJ]
+   cross:
+      sem:
+         lex: BE_IN
+         sem:
+            # A subordinate process in semantics
+            ins: {sub: '!'}
+            agrs: {reltime: [[0]]}
+         idsem:
+            ldend: {arg2: [pcomp]}
+            mod: {arg1: [pmod]}
+-  word: "on"
+   classes: [PADJ]
+   cross:
+      sem:
+         lex: BE_ON
+         sem:
+            # A subordinate process in semantics
+            ins: {sub: '!'}
+            agrs: {reltime: [[0]]}
+         idsem:
+            ldend: {arg2: [pcomp]}
+            mod: {arg1: [pmod]}
+-  word: through
+   classes: [PADV]
+
+### Verbs
+-  sublexicon: v_tiny
+### Nouns
+-  sublexicon: n_tiny
+### Adjectives
+-  sublexicon: a_tiny
+### Groups
+-  sublexicon: g_tiny

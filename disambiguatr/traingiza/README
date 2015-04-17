@@ -1,0 +1,9 @@
+In this directory sv-text is the Quechua bible (Source)
+and da-text is the Spanish bible. (Target).
+
+The usage of da, I dunno what that means.
+
+Use ../sentencealignbibles.py to generate source_text.txt and target_text.txt.
+
+Following this procedure.
+http://wiki.apertium.org/wiki/Using_GIZA%2B%2B

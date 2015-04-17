@@ -1,0 +1,67 @@
+## Complete forms
+ser
+soy
+fui
+fue
+eres
+es
+somos
+sois
+son
+sé
+siendo
+
+ir
+voy
+fui
+fue
+yendo
+
+oír
+oigo
+
+dar
+doy
+dé
+
+estar
+estoy
+esté
+estás
+estés
+está
+estamos
+estemos
+están
+estén
+
+caer
+caigo
+
+asg  asir person    [tam=[+sub,-prt,-fut]]
+salg salir person    [tam=[+sub,-prt,-fut]]
+valg valer person    [tam=[+sub,-prt,-fut]]
+ve   ver   person    [tam=[+sub,-prt,-fut]]
+caig caer person    [tam=[+sub,-prt,-fut]]
+
+anduv andar   irr_prt   [tam=[+prt]]
+estuv estar   irr_prt   [tam=[+prt]]
+hub haber   irr_prt   [tam=[+prt]]
+hay haber   person    [tam=[+sub,-prt,-fut]]
+habr' haber   fut       [tam=[+fut,-prt,-sub]]
+quis querer   irr_prt   [tam=[+prt]]
+querr' querer   fut       [tam=[+fut,-prt,-sub]]
+tuv tener   irr_prt   [tam=[+prt]]
+teng tener   person    [tam=[+sub,-prt,-fut]]
+tendr' tener   fut       [tam=[+fut,-prt,-sub]]
+vin vener   irr_prt   [tam=[+prt]]
+veng venir   person    [tam=[+sub,-prt,-fut]]
+vendr' venir   fut       [tam=[+fut,-prt,-sub]]
+traj traer   irr_prt   [tam=[+prt]]
+traig traer   person    [tam=[+sub,-prt,-fut]]
+yag yacer   person    [tam=[+sub,-prt,-fut]]
+## ??
+esté estar +[subj] v-pers1
+había haber+[impf] v-pers1
+trayendo trayéndo traer
+veía v-e-+[impf] v-pers1

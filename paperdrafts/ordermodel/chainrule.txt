@@ -1,0 +1,80 @@
+Say we want to get the probability of the sentence: A B C D E
+
+... and all the events we know about are w1/w2, by which we mean w1 comes
+before w2.
+
+So all of the events here are...
+
+A/B A/C A/D A/E
+B/C B/D B/E
+C/D C/E
+D/E
+
+We can sort these by distance. A/E has a distance of 4, for example. (four
+steps from A to E). In fact, the columns above happen to be sorted by distance.
+Convenient!!
+
+4: A/E
+3: A/D B/E
+2: A/C B/D C/E
+1: A/B B/C C/D D/E
+
+Recall the probability chain rule:
+P(A,B,C) = P(A | B,C) * P(B | C) * P(C)
+
+So if we want the joint probability:
+
+P(A/E, A/D, B/E, A/C, B/D, C/E, A/B, B/C, C/D, D/E)
+
+Then this is equal to:
+
+P(A/E | A/D, B/E, A/C, B/D, C/E, A/B, B/C, C/D, D/E) *
+P(A/D | B/E, A/C, B/D, C/E, A/B, B/C, C/D, D/E) *
+P(B/E | A/C, B/D, C/E, A/B, B/C, C/D, D/E) *
+P(A/C | B/D, C/E, A/B, B/C, C/D, D/E) *
+P(B/D | C/E, A/B, B/C, C/D, D/E) *
+P(C/E | A/B, B/C, C/D, D/E) *
+P(A/B | B/C, C/D, D/E) *
+P(B/C | C/D, D/E) *
+P(C/D | D/E) *
+P(D/E)
+
+Now let's consider the term to see if we can simplify it.
+P(A/E | A/D, B/E, A/C, B/D, C/E, A/B, B/C, C/D, D/E)
+
+P(A/E | A/D ... D/E)
+
+Given that A is before D and D is before E, what's the probability that A is
+before E? "before" is transitive, so A *must* be before E. 
+P(A/E | A/D, B/E, A/C, B/D, C/E, A/B, B/C, C/D, D/E) = 1.
+
+Likewise:
+P(A/D | B/E, A/C, B/D, C/E, A/B, B/C, C/D, D/E) = P(A/D | P(B/D ... A/B) = 1
+P(B/E | A/C, B/D, C/E, A/B, B/C, C/D, D/E) = P(B/E | B/D ... D/E) = 1
+P(A/C | B/D, C/E, A/B, B/C, C/D, D/E) = P(A/C | A/B ... B/C) = 1
+P(B/D | C/E, A/B, B/C, C/D, D/E) = P(B/D | B/C ... C/D) = 1
+P(C/E | A/B, B/C, C/D, D/E) = P(C/E | C/D ... D/E) = 1
+
+Now we're only left with the distance-1 events, since all the other events have
+a probability of 1 and cancelled out.
+
+P(A/E, A/D, B/E, A/C, B/D, C/E, A/B, B/C, C/D, D/E) = 
+  P(A/B | B/C, C/D, D/E) *
+  P(B/C | C/D, D/E) *
+  P(C/D | D/E) *
+  P(D/E)
+
+Can we say anything about P(A/B | B/C, C/D, D/E)?
+
+Well, not on the face of it? We could have been keeping track of B/C vs C/B to
+help us predict A/B, but we didn't record that in our current implementation.
+And furthermore, it's consistent for B/A and all of these other ones to still
+be true.
+
+So *as far as we know*, these events are independent, and we can (maybe?) make
+the independence assumption, approximating:
+
+P(A/E, A/D, B/E, A/C, B/D, C/E, A/B, B/C, C/D, D/E) = P(A/B) * P(B/C) * P(C/D) * P(D/E)
+
+Is it comforting that this model seems to collapse to a bigram model, when we
+consider a whole sentence at once?

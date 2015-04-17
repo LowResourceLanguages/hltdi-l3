@@ -1,0 +1,13 @@
+This directory contains useful notes and figures for helping L3 developers
+understand what they're trying to do.
+
+linking3.jpg:
+Graphical representation of the different linking principles used in
+Debusmann's dissertation.
+
+differences:
+Differences between XDG, as described in Debusmann's dissertation, and
+XDG in L3.
+
+There are also useful notes on the wiki at:
+http://code.google.com/p/hltdi-l3/wiki

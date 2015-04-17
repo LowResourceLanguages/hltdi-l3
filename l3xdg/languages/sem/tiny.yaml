@@ -1,0 +1,170 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2010, 2011 The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+#
+# Lexicon for Semantics
+#
+# Tiny grammar
+#
+# 2011.01.29
+#
+# 2011.02.06
+# -- Added tense categories (no features yet though).
+# 2011.02.15
+# -- PNG features changed to
+#    (1p, 2p, plr, fem)
+#    though not all possibilities are yet included.
+# 2011.02.25
+# -- ZERO png value set to -2, apparently solving some
+#    problems.
+# -- PNG features extended to include some needed for Amharic but not
+#    for Quechua: (0,0,0,0), (0,0,0,1)
+# 2011.03.10
+# -- HOUSE is masculine. Not the right solution.
+# 2011.03
+# -- Gender is gone. Person and number are separated.
+# 2011.05.09
+# -- Added two peripheral roles: inst and loc
+# 2011.05.12
+# -- Peripheral roles replaces by peripheral lexes (like adpositions)
+# 2011.06.01
+# -- Semantic categories added.
+#    0: unspecified
+#    1: person
+#    2: place
+#    3: condition (e.g., disease)
+#    4: inanimate physical object
+# 2011.06.02
+# -- Time:
+#      reltime: 0, 1, (2)
+#      aspect:
+#        perfective
+#        imperfective
+#          iterative, habitual
+#          ongoing, progressive
+# 2011.10.05
+# -- Hierarchy of ZERO "words" and "grams",
+#    preventing some spurious cross-lingual
+#    inheritance (may not be necessary if links
+#    are not bidirectional)
+# 2012.02.24
+# -- Some aktionsart PROC subcategories
+# 2012.05.14
+# -- Multiple end-of-sentence types
+# 2012.08.13
+# -- Demonstrative "adjectives"
+
+#### End-of-sentence nodes
+-  lexeme: ROOT
+   sem:
+      # There must be one or more root processes and
+      # can be 0 or more subordinate processes
+      outs: {root: '+', sub: '*', del: '*'}
+
+-  word: STATEMENT
+   classes: [ROOT]
+
+-  word: QUESTION
+   classes: [ROOT]
+
+-  word: EXCLAMATION
+   classes: [ROOT]
+
+#### Grammar
+### Demonstrative "adjectives"
+
+-  gram: DEM_MOD
+   pos: dem
+   sem:
+      ins: {dem: '!'}
+
+-  word: THIS_MOD
+   classes: [DEM_MOD]
+
+# ese
+-  word: THAT2_MOD
+   classes: [DEM_MOD]
+
+# aquel
+-  word: THAT3_MOD
+   classes: [DEM_MOD]
+
+### Peripheral arguments, corresponding to prepositions/postpositions
+### in languages
+
+-  gram: PERIF
+   pos: prep
+   sem:
+      ins: {perif: '!'}
+      outs: {arg1: '!'}
+
+### Empty stuff
+# Miscellaneous
+-  lexeme: ZERO
+   sem:
+      agrs: {pers: [[0,0]], # [[1,0],[0,1],[1,1],[0,0]],
+             def: 1, # [0]
+             cat: 0, #,[1],[2],[3],[4]],
+             num: 1} #,[1],[2]]}
+      ins: {del: '!'}
+# Pronouns
+-  word: ZERO_THING
+   sem:
+      ins: {del: '!'}
+      # default values
+      agrs: {pers: [[0,0]], # [[1,0],[0,1],[1,1],[0,0]],
+             def: 1, # [0]
+             cat: 0, #,[1],[2],[3],[4]],
+             num: 1} #,[1],[2]]}
+# Grammatical word in some language; no semantic content
+-  word: ZERO_GRAM
+   classes: [ZERO]
+# Articles
+-  word: ZERO_NMOD
+   sem:
+      ins: {del: '!'}
+      agrs: {pers: [[0,0]]}  # [[1,0],[0,1],[1,1],[0,0]]}
+# [[-2]]}
+#   classes: [ZERO]
+# Auxiliaries
+-  word: ZERO_VMOD
+   classes: [ZERO]
+# Copula
+-  word: ZERO_V
+   classes: [ZERO]
+
+### Peripheral arguments
+-  gram: LOC
+   classes: [PERIF]
+-  word: LOC_GEN
+   classes: [LOC]
+-  word: LOC_IN
+   classes: [LOC]
+-  word: LOC_ON
+   classes: [LOC]
+-  word: INSTR
+   classes: [PERIF]
+
+-  sublexicon: ngram_tiny
+-  sublexicon: n_tiny
+-  sublexicon: vgram_tiny
+-  sublexicon: v_tiny

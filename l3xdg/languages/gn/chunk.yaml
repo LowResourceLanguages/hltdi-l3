@@ -1,0 +1,536 @@
+#######################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2012, 2013
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+
+# Chunk grammar for Guarani
+#
+# 2012.11.15
+#
+# 2013.04.02
+# -- Numerals, adjectives
+# 2013.06.06
+# -- Conjoined nouns
+# 2013.07.02
+# -- POS agreement: 0: noun, 1: verb, 2: adj, 3: postposition, 10: misc
+# 2013.08.05
+# -- Negative verbs have condition for creation of "no" empty node for
+#    ->es translation
+# 2013.08
+# -- Empty nodes for ->Es translation: neg, oj, prog
+# -- V + hikuái, chupe(kuéra); oj agreement
+# -- subject pronouns
+# -- possessive nasal agreement
+# 2013.10
+# -- Reflexive verbs
+
+#### End-of-sentence punctuation
+
+#- gram: ROOT
+#  syn: 
+#    outs: {root: '*', del: '*', '?': '*'}
+#    order: [[root, ^, del],['?', ^, del]]
+#  cross:
+#    sem:
+#      lex: ROOT
+#      idsem:
+#        arg: {root: [root, vmain, rel]}
+
+- word: '.'
+#  classes: [ROOT]
+  syn: 
+    outs: {root: '*', del: '*', '?': '*'}
+    order: [[root, ^, del],['?', ^, del]]
+
+### Unknown words
+
+- word: '*'
+  syn:
+    ins: {'?': '!'}
+
+### Deleted nodes
+
+- word: zero
+  syn:
+    ins: {del: '!'}
+
+### Verbs: no syntax in this grammar
+
+- gram: VERB
+  pos: v
+  syn:
+    ins: {root: '!'}
+    outs: {plur: '?', arg: '?'}
+    agrs: {sj: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[1,1,1],[0,1,1],[0,0,1]],
+           oj: [[1,0,0],[0,1,0],[0,0,0],[1,0,1],[1,1,1],[0,1,1],[0,0,1]],
+           rfl: [[0],[1]],
+           tmp: [[0],[1]],
+           prf: [[0],[1]],
+           cont: [[0],[1]],
+           neg: [[0],[1]],
+           pos: 1
+           }
+    agree: [[plur,sj,sj],[arg,oj,oj]]
+    order: [[^, plur, arg]]
+
+### Nouns
+
+#- gram: SUS
+#  pos: n
+#  syn:
+#    agrs: {pos: 0, pl: [[0], [1]], poses: [[0],[1]]}
+#    ins: {root: '?', pcomp: '?', arg: '?', conj1: '?', conj2: '?'}
+#    arcagree: {poses: [poses, [0], [1]]}
+#    agree: [[poses,nas,nas]]
+#    outs: {det: '?', adj: '*', 'cuan': '?', poses: '?'}
+#    order: [[det, poses, cuan, ^, adj]]
+
+#- gram: PRON
+#  pos: n
+#  syn:
+#    agrs: {pos: 0, pl: [[0], [1]]}
+#    ins: {root: '?', pcomp: '?', arg: '?', conj1: '?', conj2: '?'}
+
+- word: che
+#  classes: [PRON]
+  pos: n
+  syn:
+    agrs: {pos: 0, pl: 0}
+    ins: {root: '?', pcomp: '?', arg: '?', conj1: '?', conj2: '?'}
+- word: nde
+#  classes: [PRON]
+  pos: n
+  syn:
+    agrs: {pos: 0, pl: 0}
+    ins: {root: '?', pcomp: '?', arg: '?', conj1: '?', conj2: '?'}
+- word: "ha'e"
+#  classes: [PRON]
+  pos: n
+  syn:
+    agrs: {pos: 0, pl: 0}
+    ins: {root: '?', pcomp: '?', arg: '?', conj1: '?', conj2: '?'}
+- word: ñande
+#  classes: [PRON]
+  pos: n
+  syn:
+    agrs: {pos: 0, pl: 1}
+    ins: {root: '?', pcomp: '?', arg: '?', conj1: '?', conj2: '?'}
+- word: ore
+#  classes: [PRON]
+  pos: n
+  syn:
+    agrs: {pos: 0, pl: 1}
+    ins: {root: '?', pcomp: '?', arg: '?', conj1: '?', conj2: '?'}
+- word: pende
+#  classes: [PRON]
+  pos: n
+  syn:
+    agrs: {pos: 0, pl: 1}
+    ins: {root: '?', pcomp: '?', arg: '?', conj1: '?', conj2: '?'}
+- word: "ha'ekuéra"
+#  classes: [PRON]
+  pos: n
+  syn:
+    agrs: {pos: 0, pl: 1}
+    ins: {root: '?', pcomp: '?', arg: '?', conj1: '?', conj2: '?'}
+
+### Quantifiers
+
+- word: mokõi
+  pos: adj
+  syn:
+    agrs: {pos: 2}
+    ins: {cuan: '?'}
+
+- word: mbohapy
+  pos: adj
+  syn:
+    agrs: {pos: 2}
+    ins: {cuan: '?'}
+
+### Adjectives
+# See cls file
+
+#- gram: ADJ
+#  pos: adj
+#  syn:
+#    agrs: {pos: 2}
+#    ins: {adj: '!'}
+
+#- word: porã
+#  classes: [ADJ]
+
+#- word: vai
+#  classes: [ADJ]
+
+### Postpositions
+
+#- gram: POSP
+#  pos: posp
+#  syn:
+#    agrs: {pos: 3}
+#    ins: {root: '!', arg: '?'}
+#    outs: {pcomp: '!'}
+#    order: [[pcomp, ^]]
+
+## Postpositions
+- word: rehe
+#  classes: [POSP]
+  pos: posp
+  syn:
+    agrs: {pos: 3}
+    ins: {root: '!', arg: '?'}
+    outs: {pcomp: '!'}
+    order: [[pcomp, ^]]
+- word: ndive
+#  classes: [POSP]
+  pos: posp
+  syn:
+    agrs: {pos: 3}
+    ins: {root: '!', arg: '?'}
+    outs: {pcomp: '!'}
+    order: [[pcomp, ^]]
+- word: ári
+#  classes: [POSP]
+  pos: posp
+  syn:
+    agrs: {pos: 3}
+    ins: {root: '!', arg: '?'}
+    outs: {pcomp: '!'}
+    order: [[pcomp, ^]]
+- word: guive
+#  classes: [POSP]
+  pos: posp
+  syn:
+    agrs: {pos: 3}
+    ins: {root: '!', arg: '?'}
+    outs: {pcomp: '!'}
+    order: [[pcomp, ^]]
+- word: rupi
+#  classes: [POSP]
+  pos: posp
+  syn:
+    agrs: {pos: 3}
+    ins: {root: '!', arg: '?'}
+    outs: {pcomp: '!'}
+    order: [[pcomp, ^]]
+- word: peve
+#  classes: [POSP]
+  pos: posp
+  syn:
+    agrs: {pos: 3}
+    ins: {root: '!', arg: '?'}
+    outs: {pcomp: '!'}
+    order: [[pcomp, ^]]
+- word: rire
+#  classes: [POSP]
+  pos: posp
+  syn:
+    agrs: {pos: 3}
+    ins: {root: '!', arg: '?'}
+    outs: {pcomp: '!'}
+    order: [[pcomp, ^]]
+# treated as separate word to simplify syntax
+- word: pe
+#  classes: [POSP]
+  pos: posp
+  syn:
+    agrs: {pos: 3}
+    ins: {root: '!', arg: '?'}
+    outs: {pcomp: '!'}
+    order: [[pcomp, ^]]
+  cross:
+    es:
+    - lex: a
+    - lex: en
+
+### Determiners
+
+- gram: DET
+  pos: det
+  syn:
+    agrs: {pos: 10}
+    ins: {det: '!'}
+
+- word: ko
+  classes: [DET]
+  syn:
+    agrs: {poses: 0}
+- word: pe
+  classes: [DET]
+  syn:
+    agrs: {poses: 0}
+- word: upe
+  classes: [DET]
+  syn:
+    agrs: {poses: 0}
+- word: amo
+  classes: [DET]
+  syn:
+    agrs: {poses: 0}
+- word: ako
+  classes: [DET]
+  syn:
+    agrs: {poses: 0}
+- word: "ko'ã"
+  classes: [DET]
+  syn:
+    agrs: {poses: 0}
+- word: ku
+  classes: [DET]
+  syn:
+    agrs: {poses: 0}
+- word: umi
+  classes: [DET]
+  syn:
+    agrs: {poses: 0}
+- word: peteĩ
+  classes: [DET]
+  syn:
+    agrs: {poses: 0}
+
+- gram: POSES
+  pos: det
+  syn:
+    agrs: {pos: 10}
+    ins: {poses: '!'}
+
+- word: che
+  classes: [POSES]
+  syn:
+    agrs: {nas: [[0],[1]]}
+- word: nde
+  classes: [POSES]
+  syn:
+    agrs: {nas: 0}
+- word: ne
+  classes: [POSES]
+  syn:
+    agrs: {nas: 1}
+- word: i
+  classes: [POSES]
+  syn:
+    agrs: {nas: [[0],[1]]}
+- word: ñande
+  classes: [POSES]
+  syn:
+    agrs: {nas: 0}
+- word: ñane
+  classes: [POSES]
+  syn:
+    agrs: {nas: 1}
+- word: ore
+  classes: [POSES]
+  syn:
+    agrs: {nas: [[0],[1]]}
+- word: pende
+  classes: [POSES]
+  syn:
+    agrs: {nas: 0}
+- word: pene
+  classes: [POSES]
+  syn:
+    agrs: {nas: 1}
+
+- word: hikuái
+  pos: n
+  syn:
+    ins: {plur: '!'}
+    agrs: {sj: [[0,0,1]]}
+
+- word: chupe
+  pos: n
+  syn:
+    ins: {arg: '!', root: 0}
+    agrs: {oj: [[0,0,0]]}
+  cross:
+    es:
+      lex: zero
+#    - lex: lo
+#    - lex: la
+#      index: 1
+
+- word: chupekuéra
+  pos: n
+  syn:
+    ins: {arg: '!'}
+    agrs: {oj: [[0,0,1]]}
+  cross:
+    es:
+      lex: zero
+#    - lex: los
+#      index: 1
+#    - lex: la
+#      index: 1
+
+## Conjunctions
+
+#- gram: CONJ
+#  syn:
+#    agrs: {pos: 10}
+#    outs: {conj1: '!', conj2: '!'}
+#    ins: {root: '!'}
+#    order: [[conj1, ^, conj2]]
+
+- word: ha
+  syn:
+    agrs: {pos: 10}
+    outs: {conj1: '!', conj2: '!'}
+    ins: {root: '!'}
+    order: [[conj1, ^, conj2]]
+
+## Verbs
+
+#- lexeme: "mba'apo"
+#  classes: [VERB]
+#  pos: va
+#- lexeme: "ñembo'e"
+#  classes: [VERB]
+#  pos: va
+#- lexeme: poreno
+#  classes: [VERB]
+#  pos: va
+
+- lexeme: jogua
+  classes: [VERB]
+  pos: va
+  syn:
+    # Can't be reflexive
+    agrs: {rfl: 0}
+  cross:
+    es:
+    - empty: true
+      tlex: '%PRON_OJ'
+      tindex: -1
+      rel: [daughter, pron, [pron]]
+    - empty: true
+      tlex: "no"
+      tindex: 0
+      cond: [neg, 1]
+      rel: [daughter, neg, [neg]]
+    - lex: comprar
+      bidir: false
+      synsyn:
+        agree: [[sj,sj],[tam,tmp],[cont,cont],[prf,prf],[neg,neg],[oj,oj]]
+
+- lexeme: "'a"
+  classes: [VERB]
+  pos: va
+  syn:
+    # Can't be reflexive
+    agrs: {rfl: 0}
+  cross:
+    es:
+    - empty: true
+      # caerse: reflexive in spanish; empty reflexive pronoun
+      tlex: '%PRON_REFL'
+      tindex: -1
+      rel: [daughter, pron, [pron]]
+    - empty: true
+      # empty negative "no"
+      tlex: "no"
+      tindex: 0
+      cond: [neg, 1]
+      rel: [daughter, neg, [neg]]
+    - lex: caer
+      bidir: false
+      synsyn:
+        agree: [[sj,sj],[tam,tmp],[cont,cont],[prf,prf],[neg,neg],[oj,oj]]
+
+- word: pota
+  classes: [VERB]
+  pos: va
+  syn:
+    # Can't be reflexive
+    agrs: {'rfl': 0}
+  cross:
+    es:
+    - empty: true
+#      slex: zero
+      tlex: "no"
+      tindex: 0
+      cond: [neg, 1]
+      rel: [daughter, neg, [neg]]
+    - lex: querer
+      bidir: false
+      synsyn:
+        agree: [[sj,sj],[tam,tmp],[cont,cont],[prf,prf],[neg,neg],[oj,oj]]
+
+
+### Groups: should follow instantiations so that lexemes can be referenced
+
+- group: ñande_róga
+  words:
+  - word: ñande
+    pos: det
+    ins: {det: '!'}
+    cross:
+      es:
+        lex: nuestra
+        bidir: false
+  - word: róga
+    pos: n
+    head: true
+    syn:
+      groupouts: [det]
+      agrs: {pos: 0, pl: 0, poses: 1}
+      ins: {root: '!'}
+      outs: {det: '!'}
+      order: [[det, ^]]
+    cross:
+      es:
+        lex: casa
+        bidir: false
+        synsyn:
+          ldend: {det: [det]}
+
+#- group: ñane_retãme
+#  words:
+#  - word: ñane
+#    classes: [DET]
+#    cross:
+#      es:
+#        lex: nuestro
+#        bidir: false
+#  - word: retãme
+#    classes: [<hetã]
+#    head: true
+#    thead: {es: mother}
+#    syn:
+#      groupouts: [det]
+#    cross:
+#      es:
+#      - empty: true
+#        tlex: a
+#        tindex: 0
+#        rel: [mother, pcomp, [arg, root]]
+#      - lex: país
+#        bidir: false
+#        synsyn:
+#          ldend: {det: [det]}
+
+# classes
+- lexclasses: chunk
+
+# instantiations
+- classinst: v_chunk
+- classinst: n_chunk

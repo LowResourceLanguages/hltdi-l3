@@ -1,0 +1,660 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2010 The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+#
+#
+# 2010.01.30:
+# -- Added barrier restriction on relative clause verbs
+# 2010.01.31
+# -- New relative pronouns, including constraints on that, who, whom
+# 2010.10.24
+# -- Still not implemented in new XDG: blocks, lb12s, govern
+# -- Temporarily replaced lb12s with ldend
+# -- Subj-V agreement only for present tense
+# 2010.11.08
+# -- Noun '^' agr feature replaced with 'pn' (person-number), later
+#    others ('gen', 'hum')
+# 2010.12.28
+# -- N -> det agreement on 'def' feature
+# -- N idsem agreement on 'def' feature
+# 2011.01.12
+# -- Added COP + pred adj
+# 2011.01.29
+# -- Removed semantics
+
+#### End-of-sentence node
+-  lexeme: ROOT
+   id: 
+      outs: {root: '!', del: '*'}
+   lp:
+      outs: {root: '!', del: '*'}
+      order: [[root, del, ^]]
+
+#### Grammar
+### Verbs
+-  gram: V
+   pos: v
+   idlp:
+      # Slots for subject, dir object, ind object
+      arg: {mf1: [iob], mf2: [ob]}
+      ldend: {vf: [sb]}
+
+-  gram: V_MAIN
+   classes: [V]
+   id:
+      outs: {adv: '*', pob1: '?', pmod: '*'}
+   lp:
+      order: [[compf, rprof, vvf, vf, fadvf, ^, lbf, mf1, mf2, rbf, padvf, tadvf, nf]]
+
+-  gram: V_AUX
+   classes: [V]
+   id:
+      outs: {vbse: '?', vpspt: '?', vprog: '?', vinf: '?'}
+   lp:
+      order: [[compf, rprof, vvf, vf, ^, fadvf, lbf, mf1, mf2, rbf, padvf, tadvf, nf]]
+-  gram: V_QAUX
+   classes: [V]
+   id:
+      outs: {vbse: '?', vpspt: '?', vprog: '?', vinf: '?'}   # what about progressive -ing?
+   lp:
+      # Has to have a PRO_WH in the vvf slot
+      outs: {vvf: '!'}
+      order: [[compf, rprof, vvf, ^, vf, fadvf, lbf, mf1, mf2, rbf, padvf, tadvf, nf]]
+-  gram: V_FIN
+   classes: [V]
+   id:
+      outs: {sb: '!'}
+   lp:
+      outs: {lbf: '?', fadvf: '*', mf1: '?', mf2: '?', rbf: '*', padvf: '*', tadvf: '*', nf: '?'}
+   idlp:
+      blocks: [adv, comp, pmod, sub, vbse, vinf, vprog, vpspt]
+-  gram: V_FIN_ROOT
+   classes: [V_FIN]
+   id:
+      ins: {root: '!'}    # '?' in Diss: ch. 9
+   lp:
+      ins: {root: '!'}    # '?' in Diss: ch. 9
+      outs: {vvf: '?', vf: '!'}
+-  gram: V_FIN_REL
+   classes: [V_FIN]
+   id:
+      ins: {rel: '!'}     # '?' in Diss: ch. 9
+   lp:
+      ins: {relf: '!'}    # '?' in Diss: ch. 9
+      outs: {rprof: '!', vf: '?'}  # Doesn't handle the case of no relpro
+   idlp:
+      blocks: [sb, ob]
+-  gram: V_FIN_SUB
+   classes: [V_FIN]
+   id:
+      ins: {sub: '!'}     # '?' in Diss: ch. 9
+      outs: {comp: '?'}
+   lp:
+      ins: {vvf: '?', nf: '?'}
+      outs: {compf: '?', vf: '?'}
+-  gram: V_AUX_FIN
+   label: V_AUX_FIN_ROOT
+   classes: [V_AUX, V_FIN_ROOT]
+-  gram: V_AUX_FIN
+   label: V_AUX_FIN_REL
+   classes: [V_AUX, V_FIN_REL]
+-  gram: V_MAIN_FIN
+   label: V_MAIN_FIN_ROOT
+   classes: [V_MAIN, V_FIN_ROOT]
+-  gram: V_MAIN_FIN
+   label: V_MAIN_FIN_REL
+   classes: [V_MAIN, V_FIN_REL]
+-  gram: V_MAIN_FIN
+   label: V_MAIN_FIN_SUB
+   classes: [V_MAIN, V_FIN_SUB]
+-  gram: V_NONFIN
+   classes: [V]
+# Base form infinitives
+-  gram: V_BSE
+   classes: [V_NONFIN]
+   id:
+      ins: {vbse: '!'}
+   lp:
+      ins: {lbf: '?'}
+      outs: {lbf: '?'}
+# Full infinitives
+-  gram: V_INF
+   classes: [V_NONFIN]
+   id:
+      ins: {vinf: '!'}
+      outs: {part: '!'}
+   lp:
+      ins: {rbf: '?'}
+      outs: {vvf: '!', lbf: '?', fadvf: '*', mf1: '?', mf2: '?', rbf: '*', padvf: '*', tadvf: '*', nf: '?'}
+# Past participles; later split into (adverbial) participles and passive participles
+-  gram: V_PSPT
+   classes: [V_NONFIN]
+   id:
+      ins: {vpspt: '!'}
+   lp:
+      ins: {lbf: '?'}
+      outs: {lbf: '?'}
+# gerunds
+-  gram: V_ING
+   classes: [V_NONFIN]
+   label: V_GER
+# progressive -ing
+-  gram: V_ING
+   classes: [V_NONFIN]
+   label: V_PROG
+   id:
+      ins: {vprog: '!'}
+   lp:
+      ins: {lbf: '?'}
+      outs: {lbf: '?'}
+# adverbial present participles (where do these go in LP?)
+-  gram: V_ING
+   classes: [V_NONFIN]
+   label: V_PRPT
+## Verb valency classes
+-  gram: V_T
+   classes: [V_MAIN]
+   id:
+      outs: {ob: '!'}
+   lp:
+      outs: {mf2: '!'}
+-  gram: V_TI
+   classes: [V_MAIN]
+   id:
+      outs: {ob: '?', iob: 0}
+## Ditransitive verbs; inherit from transitive to get object
+-  gram: V_DT
+   classes: [V_T]
+   id:
+      outs: {iob: '!'}
+   lp:
+      outs: {mf1: '!'}
+## Intransitive verbs: no object
+-  gram: V_I
+   classes: [V_MAIN]
+   id:
+      outs: {ob: 0, iob: 0}
+## Complement verbs
+-  gram: V_SUBC
+   classes: [V_I]
+   id:
+      outs: {sub: '!'}
+## Passive verbs (complete later; for now just a place to keep pob2)
+-  gram: V_PAS
+   id:
+      outs: {pob2: '?'}
+## Copula (for now always adj complement; LP won't work for questions)
+-  gram: COP
+   classes: [V]
+   id:
+      outs: {padj: '!', sb: '!'}
+   lp:
+      outs: {mf2: '!', vf: '!'}
+      order: [[compf, rprof, vvf, vf, fadvf, ^, mf2, padvf, tadvf]]
+   idlp:
+      arg: {mf2: [padj]}
+-  gram: COP_MAIN_FIN
+   classes: [COP]
+   id:
+      ins: {root: '!'}
+      outs: {sb: '!'}
+      agree: [[sb, sb, pn]]
+   lp:
+      ins: {root: '!'}
+
+# subclasses of finite verbs for particular tenses
+# present tense has sb-v agreement
+-  gram: V_3SG
+   classes: [V_MAIN_FIN]
+   id:
+      agree: [[sb, sb, pn]]
+      agrs: {sb:  [[3,1]],
+             tns: [[0]]}
+-  gram: V_NON3SG
+   classes: [V_MAIN_FIN]
+   id:
+      agree: [[sb, sb, pn]]
+      agrs: {sb:  [[1], [2], [3,2]],
+             tns: [[0]]}
+-  gram: V_PS
+   classes: [V_MAIN_FIN]
+   id:
+      agrs: {tns: [[1]]}
+## ambiguity of verb stem
+-  gram: V_STEM
+   label: V_STEM_FIN
+   classes: [V_NON3SG]
+-  gram: V_STEM
+   label: V_STEM_BSE
+   classes: [V_BSE]
+-  gram: V_STEM
+   label: V_STEM_INF
+   classes: [V_INF]
+
+### Nouns
+### Features
+### {person, number, humanness, gender}
+###  person: 1,2,3; number: 1,2; humanness: 0,1; gender: 1,2
+# N: all possible arcs
+-  gram: N
+   pos: n
+   id:
+      ins: {sb: '?', ob: '?', iob: '?', prpc: '?'}
+      outs: {adj: '*', det: '?', rel: '*', pmod: '*'}
+      agrs: {def: [[0], [1]]}
+   lp:
+      ins: {vvf: '?', vf: '?', mf1: '?', mf2: '?', prpcf: '?'}
+      outs: {detf: '?', adjf: '*', padjf: '?', relf: '?'}
+      order: [[detf, adjf, ^, padjf, relf]]
+   idlp:
+      arg: {detf: [det], adjf: [adj], padjf: [pmod], relf: [rel]}
+      blocks: [det, adj, pmod, rel]
+# Pronouns: no det, adj, rel, pmod
+-  gram: PRO
+   classes: [N]
+   id:
+      outs: {adj: 0, rel: 0, det: 0, pmod: 0}
+      agrs: {def: [[1]]}
+   lp:
+      outs: {adjf: 0, relf: 0, detf: 0, padjf: 0}
+# Proper nouns: no det, adj, or pmod NORMALLY
+-  gram: N_P
+   classes: [N]
+   id:
+      outs: {det: 0, adj: 0}
+      agrs: {pn: [[3,1]], def: [[1]]}
+   lp:
+      outs: {detf: 0, adjf: 0}
+# Common nouns
+-  gram: N_C
+   classes: [N]
+   id:
+      agree: [[det, def, def]]
+# Count nouns
+-  gram: N_CT
+   classes: [N_C]
+# Adjectives behaving like nouns: "the rich"; how to constrain det?
+-  gram: N_ADJ
+   classes: [N]
+   id:
+      # Almost always for people
+      agrs: {pn: [[3,2]]}
+      outs: {det: '!', rel: 0, adj: 0, pmod: 0}
+   lp:
+      outs: {detf: '!', relf: 0, adjf: 0, padjf: 0}
+## PRO -> {PRO_PRS, PRO_REL, PRO_WH}
+-  gram: PRO_PRS
+   classes: [PRO]
+-  gram: PRO_REL
+   classes: [PRO]
+   lp:
+      ins: {rprof: '?', prepcf: '?', vvf: 0, vf: 0, mf1: 0, mf2: 0}
+   idlp:
+      # Relative pronoun slot is for obj or subj or prep comp
+      arg: {rprof: [sb, ob, iob, prpc]}
+# who, whom, what (inherit some of this from N later)
+-  gram: PRO_WH
+   classes: [PRO]
+   lp:
+      ins: {vvf: '?', vf: '?', prepcf: '?'}
+# Plural nouns: 3p agreement
+-  gram: N_PL
+   classes: [N_CT]
+   id:
+      agrs: {pn: [[3,2]]}
+# Singular nouns: 3s agreement
+-  gram: N_SG
+   classes: [N_C]
+   id:
+      agrs: {pn: [[3,1]]}
+# Mass noun with determiner; definite or indefinite
+-  gram: N_MS
+   label: N_MS_DET
+   classes: [N_SG]
+   id:
+      # Singular
+      agrs: {pn: [[3,1]]}
+      outs: {det: '!'}
+# Mass noun with no determiner; indefinite
+-  gram: N_MS
+   label: N_MS_BARE
+   classes: [N_SG]
+   id:
+      # Singular
+      agrs: {pn: [[3,1]], def: [[0]]}
+      outs: {det: 0}
+# Singular count nouns: must have a determiner
+-  gram: N_SG_CT
+   classes: [N_SG, N_CT]
+   id:
+      outs: {det: '!'}
+      agrs: {pn: [[3,1]]}
+   lp:
+      outs: {detf: '!'}
+# place names
+-  gram: N_P_PLC
+   classes: [N_P]
+   id:
+      agrs: {pn: [[3,1]]}
+# human names
+-  gram: N_P_HUM
+   classes: [N_P]
+   id:
+      # Human
+      agrs: {pn: [[3,1]]}
+
+### Adverbs
+-  gram: ADV
+   pos: adv
+   id:
+      ins: {adv: '!'}
+# frequency: often, etc.
+-  gram: ADV_F
+   classes: [ADV]
+   lp:
+      ins: {fadvf: '!'}
+   idlp:
+      arg: {fadvf: [adv]}   # or ldend??
+# "time": now, etc.
+-  gram: ADV_T
+   classes: [ADV]
+   lp:
+      ins: {tadvf: '!'}
+   idlp:
+      arg: {tadvf: [adv]}   # or ldend??
+# place or manner: carefully, etc.
+-  gram: ADV_P
+   classes: [ADV]
+   lp:
+      ins: {padvf: '!'}
+   idlp:
+      arg: {padvf: [adv]}   # or ldend??
+
+### Adjectives
+-  gram: ADJ
+   pos: adj
+   label: ADJ_ATT
+   id:
+      ins: {adj: '!'}
+   lp:
+      ins: {adjf: '!'}
+# For now, assume this is main clause pred adj, root is adj
+-  gram: ADJ
+   pos: adj
+   label: ADJ_PRED
+   id:
+      ins: {padj: '!'}
+   lp:
+      ins: {mf2: '!'}
+-  gram: ADJer
+   classes: [ADJ]
+-  gram: ADJest
+   classes: [ADJ]
+# Change-of-state adjectives (semantic feature?)
+-  gram: ADJ_COS
+   classes: [ADJ]
+
+### Prepositions (include pob2?)
+-  gram: PREP
+   pos: prep
+   id:
+      ins: {pob1: '?', pob2: '?', pmod: '?'}
+      outs: {prpc: '!'}
+   lp:
+      outs: {prpcf: '?'}      # ? because the pcomp may end up elsewhere
+      order: [[^, prpcf]]
+   idlp:
+      # Slot for prep comp
+      arg: {prpcf: [prpc]}
+   # Let all prepositions be handled by case, etc.
+-  gram: POBJ
+   classes: [PREP]
+   id:
+      ins: {pob1: '?', pob2: '?', pmod: 0}
+   lp:
+      ins: {rbf: '?', vvf: '?', rprof: '?'}
+-  gram: PMOD
+   classes: [PREP]
+   id:
+      ins: {pmod: '!', pob1: 0, pob2: 0}
+-  gram: PADJ
+   classes: [PMOD]
+   lp:
+      ins: {padjf: '!'}      # ? in Diss: ch. 9
+-  gram: PADV
+   classes: [PMOD]
+   lp:
+      ins: {padvf: '?', vvf: '?', rprof: '?'}
+
+### Determiners
+-  gram: DET
+   pos: det
+   id:
+      ins: {det: '!'}
+   lp:
+      ins: {detf: '!'}
+
+### Particles
+-  gram: PART
+   pos: part
+   id:
+      ins: {part: '!'}
+# infinitive "to"
+-  word: to
+   classes: [PART]
+   lp:
+      ins: {vvf: '!'}
+
+### Conjunctions
+-  gram: CONJ
+   pos: conj
+   id:
+      ins: {}
+   lp:
+      ins: {}
+
+#### Lexemes
+
+#### Words
+
+### Verbs
+
+### Nouns
+-  word: old
+   classes: [N_ADJ]
+### Pronouns
+-  word: I
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '!', ob: 0, iob: 0, pob1: 0, pob2: 0}
+      agrs: {pn: [[1,1]]}
+   lp:
+      ins: {vvf: '?', vf: '?'}
+-  word: you
+   label: you_sing
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '?', ob: '?', iob: '?', pob1: '?', pob2: '?'}
+      agrs: {pn: [[2,1]]}
+   lp:
+      ins: {vvf: '?', vf: '?', mf1: '?', mf2: '?', prpcf: '?'}
+-  word: you
+   label: you_plr
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '?', ob: '?', iob: '?', pob1: '?', pob2: '?'}
+      agrs: {pn: [[2,2]]}
+   lp:
+      ins: {vvf: '?', vf: '?', mf1: '?', mf2: '?', prpcf: '?'}
+-  word: me
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: 0, ob: '?', iob: '?', pob1: '?', pob2: '?'}
+      agrs: {pn: [[1,1]]}
+   lp:
+      ins: {mf1: '?', mf2: '?', prpcf: '?'}
+-  word: she
+   classes: [PRO_PRS]
+   id:
+      ins: {sb: '!', ob: 0, iob: 0, pob1: 0, pob2: 0}
+      agrs: {pn: [[3,1]]}
+   lp:
+      ins: {vvf: '?', vf: '?'}
+### Complementizers
+-  word: that
+   id:
+      ins: {comp: '?'}
+   lp:
+      ins: {compf: '?'}
+   idlp:
+      ldend: {compf: [comp]}
+
+### Adverbs
+### Adjectives
+### Determiners
+-  word: the
+   classes: [DET]
+   id:
+      agrs: {def: [[1]]}
+-  word: an
+   classes: [DET]
+   id:
+      agrs: {def: [[0]]}
+-  word: a
+   classes: [DET]
+   id:
+      agrs: {def: [[0]]}
+-  word: some
+   classes: [DET]
+   id:
+      agrs: {def: [[0]]}
+### Prepositions
+
+-  word: "in"
+   classes: [PADV]
+-  word: through
+   classes: [PADV]
+
+#### Groups
+
+#### Sublexicons
+#-  sublexicon: en_nouns
+#-  sublexicon: en_nouns_prop
+#-  sublexicon: en_verbs
+#-  sublexicon: en_adjs
+#-  sublexicon: en_misc
+
+### Small lexicon
+# Some verbs
+-  lexeme: ~V~die
+   classes: [V_I]
+-  word: died
+   classes: [V_PS, ~V~die]
+-  lexeme: ~V~run
+   classes: [V_I]
+-  word: ran
+   classes: [V_PS, ~V~run]
+-  lexeme: ~V~speak
+   classes: [V_I]
+-  lexeme: ~V~clean
+   classes: [V_T]
+-  word: cleaned
+   classes: [V_PS, ~V~clean]
+-  lexeme: ~V~filter
+   classes: [V_T]
+-  word: filtered
+   classes: [V_PS, ~V~filter]
+-  word: filters
+   classes: [V_3SG, ~V~filter]
+-  lexeme: ~V~buy
+   classes: [V_T]
+-  word: bought
+   classes: [V_PS, ~V~buy]
+-  lexeme: ~V~see
+   classes: [V_T]
+-  word: saw
+   classes: [V_PS, ~V~see]
+-  lexeme: ~V~break
+   classes: [V_TI]
+-  word: broke
+   classes: [V_PS, ~V~break]
+-  lexeme: ~V~flow
+   classes: [V_I]
+-  word: flowed
+   classes: [V_PS, ~V~flow]
+# Copula
+-  word: am
+   classes: [COP_MAIN_FIN]
+   id:
+      agrs: {sb: [[1,1]], tns: [[0]]}
+-  word: is
+   classes: [COP_MAIN_FIN]
+   id:
+      agrs: {sb: [[3,1]],
+             tns: [[0]]}
+-  word: are
+   classes: [COP_MAIN_FIN]
+   id:
+      agrs: {sb: [[1,2],[2,1],[2,2],[3,2]],
+             tns: [[0]]}
+-  word: was
+   classes: [COP_MAIN_FIN]
+   id:
+      agrs: {sb: [[1,2],[3,1]],
+             tns: [[1]]}
+-  word: were
+   classes: [COP_MAIN_FIN]
+   id:
+      agrs: {sb: [[1,2],[2,1],[2,2],[3,2]],
+             tns: [[1]]}
+# Some nouns
+-  word: Ali
+   classes: [N_P_HUM]
+   id:
+      agrs: {pn: [[3,1]]}
+-  word: Frog
+   classes: [N_P_HUM]
+   id:
+      agrs: {pn: [[3,1]]}
+-  word: Esther
+   classes: [N_P_HUM]
+   id:
+      agrs: {pn: [[3,1]]}
+-  lexeme: ~N~person
+   classes: [N_CT]
+-  word: people
+   classes: [N_PL, ~N~person]
+-  word: water
+   classes: [N_MS]
+-  lexeme: ~N~house
+   classes: [N_CT]
+-  word: house
+   classes: [N_SG_CT, ~N~house]
+-  word: houses
+   classes: [N_PL, ~N~house]
+-  word: woods
+   classes: [N_SG_CT]
+# Some adjectives
+-  word: contaminated
+   classes: [ADJ_COS]
+-  word: dirty
+   classes: [ADJ]

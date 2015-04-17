@@ -1,0 +1,257 @@
+#######################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2013
+#   The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+
+# Chunk grammar for English
+#
+# 2013.03.20
+
+#### End-of-sentence punctuation
+
+- lexeme: ROOT
+  syn: 
+    outs: {root: '*', del: '*'}
+    order: [[root, ^, del]]
+
+- word: '.'
+  classes: [ROOT]
+  cross:
+    es:
+      lex: '.'
+      synsyn:
+        arg: {root: [root, del, pcomp]}
+
+### Deleted nodes
+
+- word: zero
+  syn:
+    ins: {del: '!'}
+
+### Verbs
+
+- gram: VERB
+  pos: v
+  syn:
+    ins: {root: '!'}
+#    outs: {arg: '*'}
+
+### Nouns
+
+- gram: N
+  pos: n
+  syn:
+    ins: {root: '?', pcomp: '?', arg: '?'}
+    outs: {det: '?', adj: '*'}
+    order: [[det, adj, ^]]
+
+### Adjectives
+
+- gram: ADJ
+  pos: adj
+  syn:
+    ins: {adj: '!'}
+
+- word: good
+  classes: [ADJ]
+  cross:
+    es:
+    - lex: buen
+    - lex: buena
+
+### Prepositions
+
+- gram: PREP
+  pos: prep
+  syn:
+    ins: {root: '!', arg: '?'}
+    outs: {pcomp: '!'}
+    order: [[^, pcomp]]
+
+### Determiners
+
+- gram: DET
+  pos: det
+  syn:
+    ins: {det: '!'}
+
+- word: this
+  classes: [DET]
+  cross:
+    es:
+    - lex: este
+    - lex: esta
+- word: that
+  classes: [DET]
+  cross:
+    es:
+    - lex: ese
+    - lex: esa
+    - lex: aquel
+    - lex: aquella
+- word: these
+  classes: [DET]
+  cross:
+    es:
+    - lex: estos
+    - lex: estas
+- word: those
+  classes: [DET]
+  cross:
+    es:
+    - lex: esos
+    - lex: esas
+    - lex: aquellos
+    - lex: aquellas
+
+- word: the
+  classes: [DET]
+  cross:
+    es:
+    - lex: el
+    - lex: la
+    - lex: los
+    - lex: las
+- word: a
+  classes: [DET]
+  cross:
+    es:
+    - lex: un
+    - lex: una
+- word: an
+  classes: [DET]
+  cross:
+    es:
+    - lex: un
+    - lex: una
+
+- word: our
+  classes: [DET]
+
+## Prepositions
+- word: in
+  classes: [PREP]
+- word: with
+  classes: [PREP]
+- word: of
+  classes: [PREP]
+- word: to
+  classes: [PREP]
+
+## Verbs
+- word: speak
+  classes: [VERB]
+  syn:
+    agrs: {sb: [[1,0,0],[0,1,0],[1,0,1],[0,1,1],[0,0,1]]}
+  cross:
+    es:
+    - lex: hablar
+      synsyn:
+        agree: [[sj, sb]]
+- word: speaks
+  classes: [VERB]
+  syn:
+    agrs: {sb: [[0,0,0]]}
+  cross:
+    es:
+    - lex: hablar
+      synsyn:
+        agree: [[sj, sb]]
+- word: see
+  classes: [VERB]
+  cross:
+    es:
+    - lex: ven
+    - lex: veo
+    - lex: vemos
+    - lex: ves
+#      synsyn:
+#        ldend: {arg: [arg]}
+- word: sees
+  classes: [VERB]
+  cross:
+    es:
+      lex: ve
+
+## Nouns
+- word: woman
+  classes: [N]
+  cross:
+    es:
+      lex: mujer
+      synsyn:
+        ldend: {det: [det]}
+- word: women
+  classes: [N]
+  cross:
+    es:
+      lex: mujeres
+      synsyn:
+        ldend: {det: [det]}
+- word: boys
+  classes: [N]
+- word: Peter
+  classes: [N]
+  cross:
+    es:
+      lex: Pedro
+- word: house
+  classes: [N]
+  cross:
+    es:
+      lex: casa
+      synsyn:
+        ldend: {det: [det]}
+- word: country
+  classes: [N]
+  cross:
+    es:
+      lex: país
+
+- group: to_my_house
+  words:
+  - word: to
+    classes: [PREP]
+    head: true
+    syn:
+      groupouts: [pcomp]
+    cross:
+      es:
+        lex: a
+        bidir: false
+  - word: house
+    classes: [N]
+#    syn:
+#      groupouts: [det]
+    cross:
+      es:
+        lex: casa
+        synsyn:
+          ldend: {det: [det]}
+  - word: my
+    classes: [DET]
+    cross:
+      es:
+        lex: mi
+
+#- sublexicon: n_chunk
+#- sublexicon: v_chunk

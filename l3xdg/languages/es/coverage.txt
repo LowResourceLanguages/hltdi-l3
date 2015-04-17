@@ -1,0 +1,116 @@
+###
+### CHUNK GRAMMAR
+###
+
+VERBS
+
+only a few examples of specific lexemes so far
+
+mothers: root
+
+patterns
+  (no) (me, te, ...) golpean, golparon, ...
+  (no) (me, te, ...) (estoy, ...) golpeando
+  (no) (me, te, ...) (he, has, ...) golpeado
+  (no) me siento, ...
+  limitation: only one pronoun object
+
+features:
+  subject person-number
+  object person-number
+    -1 for intransitive
+    (0,0,0)/(0,0,1) [3s/p] for transitive with no pronoun object
+  negation
+  tense/aspect
+
+agreement
+  subject-reflexive object agreement
+    e.g., te sentaste
+
+-> Gn
+translation agreement
+  tense/aspect
+    preterite -> -'akue
+    present -> 0
+    progressive -> -'aína
+    perfect -> -ma
+  subject
+  object (3p objects translate as chupe(kuéra) or 0)
+  negation
+
+PREPOSITIONS
+
+mothers: root
+
+patterns
+  con Pedro
+  a mi casa
+
+-> Gn
+postpositions
+
+NOUNS
+
+only a few examples of specific words so far
+
+mothers: root, prepositions
+
+patterns
+  los (dos) hombres (viejos)
+  una (buena) mujer
+  mi casa
+
+features
+  gender
+  number
+
+agreement
+  determiner, adjective number/gender agreement
+
+-> Gn
+translation agreement
+  number
+
+ADJECTIVES
+
+only a few examples of specific words so far
+
+mothers: nouns
+
+features
+  gender
+  number
+
+-> Gn: isomorphic
+
+PRONOUNS
+
+subject
+  mothers: root (like nouns)
+
+object/reflexive
+  mothers: verbs
+  -> Gn:
+    3s/p pronouns translated as both chupe(kuéra) and 0 
+    other pronouns translated as prefixes
+
+CONJUNCTIONS
+
+mothers: root
+
+patterns
+  mi madre y tu padre
+  limitations:
+    only two conjuncts permitted
+    only noun conjuncts covered
+
+-> Gn: isomorphic
+
+QUANTIFIERS
+mothers: nouns
+-> Gn: isomorphic
+
+DETERMINERS
+mothers: nouns
+-> Gn: isomorphic
+

@@ -1,0 +1,4 @@
+This is a quick fork of parts of NLTK, which is licensed under the Apache 2.0
+License.
+
+As soon as NLTK is ported to Python 3, we won't need to keep this in here.

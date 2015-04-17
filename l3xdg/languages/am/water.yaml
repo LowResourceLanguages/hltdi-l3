@@ -1,0 +1,259 @@
+########################################################################
+#
+#   This file is part of the HLTDI L^3 project
+#       for parsing, generation, and translation within the
+#       framework of  Extensible Dependency Grammar.
+#
+#   Copyright (C) 2010 The HLTDI L^3 Team <gasser@cs.indiana.edu>
+#   
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of
+#   the License, or (at your option) any later version.
+#   
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#   GNU General Public License for more details.
+#   
+#   You should have received a copy of the GNU General Public License
+#   along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+#    Author: Michael Gasser <gasser@cs.indiana.edu>
+#
+# 2010.05.01
+# -- Removed govern constraint for relative verb -> head noun
+# 2010.12.12
+# -- GovernmentPrinciple works (again) for verb-argument government.
+# 2010.12.24
+# -- Basic things work for generation as well as analysis.
+# 2010.12.28
+# -- N synsem agreement on 'def' feature.
+# 2011.01
+# -- tense, adjectives, copula
+
+- lexeme: ROOT
+  id: 
+    outs: {root: '!', del: '*'}
+  lp:
+    outs: {root: '!', del: '*'}
+    order: [[root, del, ^]]
+  sem:
+    outs: {root: '+', rel: '*', del: '*'}
+
+#### Grammar
+### Verbs
+- gram: V
+  pos: v
+  # Main clause verbs; -sub (subordinate)
+  id:
+    ins: {root: '!'}
+    # not subordinate
+    agrs: {sub: [[0]],
+           # person (1, 2, 3), number (1, 2), gender (1, 2)
+           sb: [[1,1], [2,1,1], [2,1,2], [3,1,1], [3,1,2], [1,2], [2,2], [3,2]],
+           # voice (1, 2, 3, 4), aspect (1, 2, 3)
+           der: [[1,1], [1,3], [2,1], [2,2], [2,3], [3,1], [3,2], [3,3], [4,1], [4,3]],
+           # tense-aspect-mood (perfective, imperfective, pres perf)
+           tm: [[0], [1], [2]]}
+    agree: [[sb, sb, png]]
+    # all possible outs; assume subject is obligatory
+    outs: {adv: '*', pob: '*', sb: '!', ob: '?', top: '?'}
+    # Role features are nom/acc, +-preposition
+    govern: {sb: [rl, [0]], top: [rl, [0]], pob: [rl, [2]], ob: [rl, [1]]}
+    # everything precedes the verb but is unordered otherwise
+  lp:
+    ins: {root: '!'}
+    outs: {compf: '*'}
+    order: [[compf, predf, ^, prelf]]
+  idlp:
+    ldend: {compf: [sb, ob, top, pob, adv]}
+  sem:
+    ins: {root: '!'}
+    outs: {vmod: '*', arg1: '!', arg2: '?', arg3: '?'}
+  idsem:
+    arg: {arg3: [pob], arg1: [sb, top], arg2: [ob]}
+## Adj + Copula
+## lots of duplication with V
+- gram: COP
+  pos: cop
+  # Main clause copulas
+  id:
+    ins: {root: '!'}
+    # not subordinate
+    agrs: {sub: [[0]],
+           # person (1, 2, 3), number (1, 2), gender (1, 2), formality (0, 1)
+           sb: [[1,1], [2,1,1,0], [2,1,2,0], [2,1,-1,1], [3,1,1], [3,1,2], [1,2], [2,2], [3,2]],
+           # Tense: for now only present
+           tm: [[5]]}
+    agree: [[sb, sb, png]]
+    # all possible outs; assume subject is obligatory
+    outs: {sb: '!', pred: '!'}
+    # Subject: -acc
+    govern: {sb: [rl, [0]]}
+  # everything precedes the verb; pred must come last
+  lp:
+    ins: {root: '!'}
+    outs: {compf: '!', predf: '!'}
+    order: [[compf, predf, ^, prelf]]
+  idlp:
+    ldend: {compf: [sb], predf: [pred]}
+  sem:
+    ins: {del: '!'}
+- gram: V_T
+  classes: [V]
+  id:
+    # Assume object is obligatory
+    outs: {ob: '!', top: 0}
+    agrs: {# person (1, 2, 3), number (1, 2), gender (1, 2)
+           ob: [[1,1], [2,1,1], [2,1,2], [3,1,1], [3,1,2], [1,2], [2,2], [3,2]],
+           defob: [[0], [1]]}
+    agree: [[ob, ob, png], [ob, defob, def]]
+  sem:
+    outs: {arg2: '!'}
+- gram: V_I
+  classes: [V]
+  id:
+    outs: {ob: 0, top: 0}
+    agrs: {defob: [[0]]}
+  sem:
+    outs: {arg2: 0}
+## Tenses
+# Perfective
+- gram: V_PRF
+  classes: [V]
+  id:
+    agrs: {tm: [[0]]}
+# Imperfective
+- gram: V_IMF
+  classes: [V]
+  id:
+    agrs: {tm: [[1]]}
+# Present perfect (ger + -al)
+- gram: V_PPF
+  classes: [V]
+  id:
+    agrs: {tm: [[2]]}
+### Nouns
+- gram: N
+  pos: n
+  id:
+    ins: {sb: '?', ob: '?', pob: '?', top: '?', det: '?', adj: '*', rel: '*'}
+    agrs: {def: [[0], [1]], rl: [[0], [1], [2]]}
+  lp:
+    ins: {compf: '?'}
+  sem:
+    ins: {arg1: '*', arg2: '*', arg3: '*', del: '?'}
+    agrs: {def: [[0], [1]]}
+  idsem:
+    agree: [[def, def]]
+# proper nouns
+- gram: N_P
+  classes: [N]
+  id:
+    # All proper nouns are 3rd person singular and definite
+    agrs: {png: [[3,1]], def: [[1]], prp: [[1]]}
+  sem:
+    agrs: {def: [[1]]}
+- gram: N_C
+  classes: [N]
+#  id:
+#    # All common nouns are 3rd person
+#    agrs: {png: [[3]]}
+  sem:
+    outs: {nmod: '*'}
+- gram: PRO
+  classes: [N]
+  id:
+    agrs: {def: [[1]]}
+  sem:
+    agrs: {def: [[1]]}
+  
+### Adjectives (predicate adj only)
+-  gram: ADJ
+   pos: n
+#   label: ADJ_PRED
+   id:
+      ins: {pred: '!'}
+      agrs: {def: [[0]], rl: [[0]]}
+   lp:
+      ins: {predf: '!'}
+   sem:
+      ins: {root: '!'}
+      outs: {arg1: '!'}
+   idsem:
+      arg: {arg1: [sb]}
+
+### Lexicon
+## Empty
+- word: zero
+  id:
+    ins: {del: '!'}
+  lp:
+    ins: {del: '!'}
+  sem:
+    ins: {del: '!'}
+## Nouns
+- lexeme: wend
+  classes: [N_C]
+  root: wend
+  id:
+    agrs: {png: [[3,1,1]]}
+- lexeme: sEt
+  classes: [N_C]
+  root: sEt
+  id:
+    agrs: {png: [[3,1,2]]}
+- lexeme: "'astEr"
+  classes: [N_P]
+  root: "'astEr"
+  id:
+    agrs: {png: [[3,1,2]]}
+- lexeme: wha
+  classes: [N_C]
+  root: wha
+  id:
+    agrs: {png: [[3,1,1]]}
+- lexeme: "'ante"
+  classes: [PRO]
+  root: "'ante"
+  id:
+    agrs: {png: [[2,1,1,0]]}
+- lexeme: "'anci"
+  classes: [PRO]
+  root: "'anci"
+  id:
+    agrs: {png: [[2,1,2,0]]}
+- lexeme: "'nante"
+  classes: [PRO]
+  root: "'n_ante"
+  id:
+    agrs: {png: [[2,2]]}
+## Verbs
+- lexeme: tebekele
+  classes: [V]
+  root: bk_l
+  id:
+    agrs: {der: [[2,1]]}
+- lexeme: mote
+  classes: [V_I]
+  root: mwt
+  id:
+    agrs: {der: [[1,1]]}
+- lexeme: Terege
+  classes: [V_T]
+  root: Trg
+  id:
+    agrs: {der: [[1,1]]}
+- lexeme: "'aTelele"
+  classes: [V_T]
+  root: Tl_l
+  id:
+    agrs: {der: [[3,1]]}
+- lexeme: ne
+  classes: [COP]
+  root: ne
+## Adjectives
+- lexeme: qoxaxa
+  classes: [ADJ]
+  root: qoxaxa
